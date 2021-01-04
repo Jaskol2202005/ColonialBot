@@ -1,0 +1,71 @@
+{
+  "ranks": {
+    "combat": [
+      "Harmless",
+      "Mostly Harmless",
+      "Novice",
+      "Competent",
+      "Expert",
+      "Master",
+      "Dangerous",
+      "Deadly",
+      "Elite"
+    ],
+    "trade": [
+      "Penniless",
+      "Mostly Penniless",
+      "Peddler",
+      "Dealer",
+      "Merchant",
+      "Broker",
+      "Entrepreneur",
+      "Tycoon",
+      "Elite"
+    ],
+    "exploration": [
+      "Aimless",
+      "Mostly Aimless",
+      "Scout",
+      "Surveyor",
+      "Trailblazer",
+      "Pathfinder",
+      "Ranger",
+      "Pioneer",
+      "Elite"
+    ],
+    "empire": [
+      "None",
+      "Outsider",
+      "Serf",
+      "Master",
+      "Squire",
+      "Knight",
+      "Lord",
+      "Baron",
+      "Viscount",
+      "Count",
+      "Earl",
+      "Marquis",
+      "Duke",
+      "Prince",
+      "King"
+    ],
+    "federation": [
+      "None",
+      "Recruit",
+      "Cadet",
+      "Midshipman",
+      "Petty Officer",
+      "Chief Petty Officer",
+      "Warrant Officer",
+      "Ensign",
+      "Lieutenant",
+      "Lieutenant Commander",
+      "Post Commander",
+      "Post Captain",
+      "Rear Admiral",
+      "Vice Admiral",
+      "Admiral"
+    ]
+  }
+}
