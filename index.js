@@ -138,6 +138,9 @@ https.get(options, function(res) {
   console.log('Error:', err);
 });
 
+const bgsChannel = client.channels.cache.find(channel => channel.id === `708839430307184756`)
+bgsChannel.send(`test`)
+
 const http = require('http');
 const server = http.createServer((req, res) => {
   res.writeHead(200);
