@@ -81,7 +81,7 @@ var tick = {
 function logEvery5Minutes(i) {
   setTimeout(() => {
     logEvery5Minutes(++i);
-  }, 300000)
+  }, 150000)
 }
 
 logEvery5Minutes(0)
@@ -113,7 +113,7 @@ setInterval(() => {
     console.log('Error:', err);
   });
 
-}, 300000)
+}, 150000)
 
 https.get(options, function(res) {
   var json = '';
