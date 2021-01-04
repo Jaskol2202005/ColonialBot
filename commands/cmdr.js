@@ -39,7 +39,6 @@ module.exports = {
       ]
     })
     .then(function (response) {
-      console.log(response.data);
 
       if (response.data.events[0].eventStatus === 200 | response.data.events[0].eventStatus === 202) {
         let data = response.data

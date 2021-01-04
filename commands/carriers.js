@@ -33,8 +33,6 @@ module.exports = {
                 try {
                     var data = JSON.parse(json);
 
-                    console.log(data);
-
                     let latest = data.docs[data.docs.length - 1]
 
                     if (data.total === 0) {
