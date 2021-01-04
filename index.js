@@ -138,6 +138,8 @@ https.get(options, function(res) {
   console.log('Error:', err);
 });
 
+channel.id(708839430307184756).send(`Tick successful`)
+
 const http = require('http');
 const server = http.createServer((req, res) => {
   res.writeHead(200);
