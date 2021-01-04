@@ -138,7 +138,8 @@ https.get(options, function(res) {
   console.log('Error:', err);
 });
 
-const server = https.createServer((req, res) => {
+const http = require('http');
+const server = http.createServer((req, res) => {
   res.writeHead(200);
   res.end('ok');
 });
