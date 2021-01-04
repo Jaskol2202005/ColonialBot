@@ -127,7 +127,7 @@ https.get(options, function (res) {
             try {
                 var data = JSON.parse(json);
                 console.log(data);
-                let tick = data.updated_at
+                channel.id(568489134880981002).send(`BGS tick successful`)
               } catch (e) {
                 console.log('Error parsing JSON!');
               }
