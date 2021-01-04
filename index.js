@@ -43,31 +43,31 @@ client.on('message', message => {
       reply += `\nThe proper usage would be: \`${prefix}${commandName} ${command.usage}\``;
     }
     message.channel.send(reply)
-  }else {
+  } else {
 
     try {
-    	command.execute(message, args)
+      command.execute(message, args)
     } catch (error) {
-    	console.error(error);
-    	message.reply('There was an error trying to execute that command!');
+      console.error(error);
+      message.reply('There was an error trying to execute that command!');
     }
   }
 })
 
 
 var options = {
-    host: 'elitebgs.app',
-    path: `/api/ebgs/v5/ticks`,
-    headers: {
-        'Accept': 'application/json'
-      }
-    };
+  host: 'elitebgs.app',
+  path: `/api/ebgs/v5/ticks`,
+  headers: {
+    'Accept': 'application/json'
+  }
+};
 
 var tick = {
   value: '',
   letMeKnow() {
     console.log(`Tick detected`);
-    message.channel.get(`Tick successful`)
+    channel.id(708839430307184756).send(`Tick successful`)
   },
   get testVar() {
     return this.value;
@@ -89,55 +89,54 @@ logEvery5Minutes(0)
 let i = 0;
 setInterval(() => {
   console.log(`tick check`, i++);
-  https.get(options, function (res) {
-      var json = '';
+  https.get(options, function(res) {
+    var json = '';
 
-      res.on('data', function (chunk) {
-          json += chunk;
-        });
+    res.on('data', function(chunk) {
+      json += chunk;
+    });
 
-        res.on('end', function () {
-          if (res.statusCode === 200) {
-              try {
-                  var data = JSON.parse(json);
-                  console.log(data);
-                  let value = data.updated_at
-                } catch (e) {
-                  console.log('Error parsing JSON!');
-                }
-              } else {
-                console.log('Status:', res.statusCode);
-              }
-            });
-          }).on('error', function (err) {
-            console.log('Error:', err);
-          });
+    res.on('end', function() {
+      if (res.statusCode === 200) {
+        try {
+          var data = JSON.parse(json);
+          console.log(data);
+          let value = data.updated_at
+        } catch (e) {
+          console.log('Error parsing JSON!');
+        }
+      } else {
+        console.log('Status:', res.statusCode);
+      }
+    });
+  }).on('error', function(err) {
+    console.log('Error:', err);
+  });
 
 }, 300000)
 
-https.get(options, function (res) {
-    var json = '';
+https.get(options, function(res) {
+  var json = '';
 
-    res.on('data', function (chunk) {
-        json += chunk;
-      });
+  res.on('data', function(chunk) {
+    json += chunk;
+  });
 
-      res.on('end', function () {
-        if (res.statusCode === 200) {
-            try {
-                var data = JSON.parse(json);
-                console.log(data);
-                channel.id(568489134880981002).send(`BGS tick successful`)
-              } catch (e) {
-                console.log('Error parsing JSON!');
-              }
-            } else {
-              console.log('Status:', res.statusCode);
-            }
-          });
-        }).on('error', function (err) {
-          console.log('Error:', err);
-        });
+  res.on('end', function() {
+    if (res.statusCode === 200) {
+      try {
+        var data = JSON.parse(json);
+        console.log(data);
+      } catch (e) {
+        console.log('Error parsing JSON!');
+      }
+    } else {
+      console.log('Status:', res.statusCode);
+    }
+  });
+}).on('error', function(err) {
+  console.log('Error:', err);
+});
 
 const server = https.createServer((req, res) => {
   res.writeHead(200);
