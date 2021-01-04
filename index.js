@@ -67,7 +67,7 @@ var tick = {
   value: '',
   letMeKnow() {
     console.log(`Tick detected`);
-    channel.id(708839430307184756).send(`Tick successful`)
+    client.channels.cache.get("708839430307184756").send(`Tick successful`);
   },
   get testVar() {
     return this.value;
