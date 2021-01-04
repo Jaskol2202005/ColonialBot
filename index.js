@@ -27,6 +27,18 @@ client.login(process.env.token);
 
 client.on('message', message => {
   console.log(message.content);
+
+  let currentOperations = nconf.get(`currentOperations`)
+  for (var i = 0; i < currentOperations.length; i++) {
+    let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
+    if (message.content.includes(currentOperations[i]) && message.channel.id === `715038247964639282` || message.content.includes(currentOperations[i]) && message.channel.id === `783067630072234014` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `715038247964639282` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `783067630072234014`) {
+
+    } else if (message.content.includes(currentOperations[i]) || message.content.includes(currentOperationsUpperCase)) {
+      message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
+      message.delete()
+    }
+  }
+
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
