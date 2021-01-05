@@ -1,5 +1,8 @@
-require('dotenv').config();
-prefix = process.env.prefix
+const nconf = require('nconf');
+
+nconf.use(`./../ranksVerbose.json`)
+nconf.load()
+prefix = nconf.get(`prefix`)
 
 module.exports = {
   name: 'help',
