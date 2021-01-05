@@ -11,7 +11,7 @@ module.exports = {
   execute(message, args) {
     let authorizedUsers = nconf.get(`authorizedUsers`)
 
-    let pos = authorizedUsers.indexOf(message.author.discriminator)
+    let pos = authorizedUsers.indexOf(message.author.id)
 
     if (args.length === 0 && pos === -1 && message.channel.id === `715038247964639282` || args.length === 0 && pos === -1 && message.channel.id === `783067630072234014`) {
       let reply = 'Current operations:'
