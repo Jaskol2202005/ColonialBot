@@ -17,7 +17,7 @@ for (const file of commandFiles) {
   client.commands.set(command.name, command);
 }
 
-const prefix = process.env.prefix;
+const prefix = nconf.get(`prefix`);
 
 client.once('ready', () => {
   console.log('Authentication successful');
