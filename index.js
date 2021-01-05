@@ -75,28 +75,20 @@ var options = {
   }
 };
 
-var tick = {
-  value: '',
-  letMeKnow() {
-    console.log(`Tick detected`);
-    client.channels.cache.get("708839430307184756").send(`Tick successful`);
+x = {
+  aInternal: 10,
+  aListener: function(val) {},
+  set a(val) {
+    this.aInternal = val;
+    this.aListener(val);
   },
-  get testVar() {
-    return this.value;
+  get a() {
+    return this.aInternal;
   },
-  set testVar(value) {
-    this.value = value;
-    this.letMeKnow();
+  registerListener: function(listener) {
+    this.aListener = listener;
   }
 }
-
-function logEvery5Minutes(i) {
-  setTimeout(() => {
-    logEvery5Minutes(++i);
-  }, 150000)
-}
-
-logEvery5Minutes(0)
 
 let i = 0;
 setInterval(() => {
@@ -112,8 +104,11 @@ setInterval(() => {
       if (res.statusCode === 200) {
         try {
           var data = JSON.parse(json);
-          console.log(data);
-          let value = data.updated_at
+          console.log(data[0].updated_at);
+          if (x.a === data[0].updated_at) {
+          } else {
+            x.a = data[0].updated_at
+          }
         } catch (e) {
           console.log('Error parsing JSON!');
         }
@@ -138,7 +133,8 @@ https.get(options, function(res) {
     if (res.statusCode === 200) {
       try {
         var data = JSON.parse(json);
-        console.log(data);
+        console.log(data[0].updated_at);
+        x.a = data[0].updated_at
       } catch (e) {
         console.log('Error parsing JSON!');
       }
@@ -148,6 +144,12 @@ https.get(options, function(res) {
   });
 }).on('error', function(err) {
   console.log('Error:', err);
+});
+
+x.registerListener(function(val) {
+  console.log("x.a has been changed to " + val);
+  date = new Date;
+  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${date.getUTCMinutes()} UTC**`)
 });
 
 const http = require('http');
