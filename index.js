@@ -26,8 +26,6 @@ client.once('ready', () => {
 client.login(process.env.token);
 
 client.on('message', message => {
-  console.log(message.content);
-
   let currentOperations = nconf.get(`currentOperations`)
   for (var i = 0; i < currentOperations.length; i++) {
     let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
