@@ -110,6 +110,8 @@ module.exports = {
           message.channel.send('Operations cleared successfully.');
         });
       }
+    } else {
+      message.reply(`You aren't authorized to use this command **here**`)
     }
   }
 }
