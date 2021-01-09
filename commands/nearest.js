@@ -4,6 +4,6 @@ module.exports = {
   usage: '',
   args: false,
   execute(message, args) {
-    message.channel.send(`Find nearest stations and services at: https://inara.cz/galaxy-nearest/`);
+    message.channel.send(`Find nearest stations with services, commodities, modules or ships at https://eddb.io/station`);
   }
 }
