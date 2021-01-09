@@ -154,6 +154,12 @@ x.registerListener(function(val) {
     date = new Date;
     let minutes = date.getUTCMinutes()
     nconf.set(`lastTick`, x.a)
+    nconf.save(function (err) {
+      if (err) {
+        console.error(err.message);
+        return;
+      }
+    });
     if (date.getUTCMinutes() < 10) {
       utcMinutes = `0${date.getUTCMinutes()}`
     } else {
