@@ -146,14 +146,20 @@ https.get(options, function(res) {
 
 x.registerListener(function(val) {
   console.log("x.a has been changed to " + val);
-  date = new Date;
-  let minutes = date.getUTCMinutes()
-  if (date.getUTCMinutes() < 10) {
-    utcMinutes = `0${date.getUTCMinutes()}`
+  let lastTick = nconf.get(`lastTick`)
+  if (lastTick === val) {
+    return;
   } else {
-    utcMinutes = date.getUTCMinutes()
+    date = new Date;
+    let minutes = date.getUTCMinutes()
+    nconf.set(`lastTick`, x.a)
+    if (date.getUTCMinutes() < 10) {
+      utcMinutes = `0${date.getUTCMinutes()}`
+    } else {
+      utcMinutes = date.getUTCMinutes()
+    }
+    client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
   }
-  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
 });
 
 const http = require('http');
