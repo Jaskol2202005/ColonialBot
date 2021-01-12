@@ -4,6 +4,6 @@ module.exports = {
   usage: '',
   args: false,
   execute(message, args) {
-    message.channel.send(`https://inara.cz`);
+    message.channel.send(`Find mostly anything related to trading, combat and player stats at: https://inara.cz`);
   }
 }

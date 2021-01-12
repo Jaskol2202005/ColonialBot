@@ -4,6 +4,6 @@ module.exports = {
   usage: '',
   args: false,
   execute(message, args) {
-    message.channel.send(`https://eddb.io`);
+    message.channel.send(`Find accurate trading data at: https://eddb.io`);
   }
 }
