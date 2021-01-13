@@ -119,7 +119,7 @@ setInterval(() => {
     console.log('Error:', err);
   });
 
-}, 150000)
+}, 60000)
 
 https.get(options, function(res) {
   var json = '';
