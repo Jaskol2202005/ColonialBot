@@ -13,7 +13,7 @@ module.exports = {
 
     let pos = authorizedUsers.indexOf(message.author.id)
 
-    if (pos > -1 && args[0] === `nuclearcode`) {
+    if (pos > -1 && args[0] === `bot`) {
       message.channel.send(`Discord client shutting down, <!@637414359655514134> please turn me back on soon!`)
       process.exit(0)
     } else if (pos > -1) {
