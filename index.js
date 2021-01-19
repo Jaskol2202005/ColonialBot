@@ -27,10 +27,12 @@ client.login(process.env.token);
 
 client.on('message', message => {
   console.log(message.content);
+  let ignoreList = nconf.get(`ignoreList`)
   let currentOperations = nconf.get(`currentOperations`)
   for (var i = 0; i < currentOperations.length; i++) {
     let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
-    if (message.content.includes(currentOperations[i]) && message.channel.id === `781481229693222922` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `781481229693222922` || message.content.includes(currentOperations[i]) && message.channel.id === `568489134880981002` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `568489134880981002` || message.content.includes(currentOperations[i]) && message.channel.id === `764097736689451028` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `764097736689451028` || message.content.includes(currentOperations[i]) && message.channel.id === `569809907709247508` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `569809907709247508` || message.content.includes(currentOperations[i]) && message.channel.id === `569866296074698793` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `569866296074698793` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `568524008165998603` || message.content.includes(currentOperations[i]) && message.channel.id === `568524008165998603` || message.content.includes(currentOperations[i]) && message.channel.id === `800816235574067230` || message.content.includes(currentOperationsUpperCase) && message.channel.id === `800816235574067230`) {
+    let pos = ignoreList.indexOf(message.channel.id)
+    if (pos !== -1) {
 
     } else if (message.content.includes(currentOperations[i]) || message.content.includes(currentOperationsUpperCase)) {
       message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
