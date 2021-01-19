@@ -13,7 +13,7 @@ module.exports = {
 
     let pos = authorizedUsers.indexOf(message.author.id)
 
-    if (args.length === 0 && pos === -1 && message.channel.id === `781481229693222922` || args.length === 0 && pos === -1 && message.channel.id === `568489134880981002` || args.length === 0 && pos === -1 && message.channel.id === `764097736689451028` || args.length === 0 && pos === -1 && message.channel.id === `569809907709247508` || args.length === 0 && pos === -1 && message.channel.id === `569866296074698793` || args.length === 0 && pos === -1 && message.channel.id === `568524008165998603`) {
+    if (args.length === 0 && pos === -1 && message.channel.id === `781481229693222922` || args.length === 0 && pos === -1 && message.channel.id === `568489134880981002` || args.length === 0 && pos === -1 && message.channel.id === `764097736689451028` || args.length === 0 && pos === -1 && message.channel.id === `569809907709247508` || args.length === 0 && pos === -1 && message.channel.id === `569866296074698793` || args.length === 0 && pos === -1 && message.channel.id === `568524008165998603` || args.length === 0 && pos === -1 && message.channel.id === `800816235574067230`) {
       let reply = 'Current operations:'
       let currentOperations = nconf.get(`currentOperations`)
       if (currentOperations.length === 0) {
@@ -26,7 +26,7 @@ module.exports = {
       message.channel.send(reply)
     } else if (pos === -1) {
       message.reply(`You aren't authorized to use this command`)
-    } else if (args[0] === `add` && message.channel.id === `781481229693222922` || args[0] === `add` && message.channel.id === `568489134880981002` || args[0] === `add` && message.channel.id === `764097736689451028` || args[0] === `add` && message.channel.id === `569809907709247508` || args[0] === `add` && message.channel.id === `569866296074698793` || args[0] === `add` && message.channel.id === `568524008165998603`) {
+    } else if (args[0] === `add` && message.channel.id === `781481229693222922` || args[0] === `add` && message.channel.id === `568489134880981002` || args[0] === `add` && message.channel.id === `764097736689451028` || args[0] === `add` && message.channel.id === `569809907709247508` || args[0] === `add` && message.channel.id === `569866296074698793` || args[0] === `add` && message.channel.id === `568524008165998603` || args[0] === `add` && message.channel.id === `800816235574067230`) {
       args.shift()
       let nextOperation = ''
       for (var i = 0; i < args.length; i++) {
@@ -55,7 +55,7 @@ module.exports = {
         }
         message.channel.send('Operation added successfully.');
       });
-    } else if (args[0] === `remove` && message.channel.id === `781481229693222922` || args[0] === `remove` && message.channel.id === `568489134880981002` || args[0] === `remove` && message.channel.id === `764097736689451028` || args[0] === `remove` && message.channel.id === `569809907709247508` || args[0] === `remove` && message.channel.id === `569866296074698793` || args[0] === `remove` && message.channel.id === `568524008165998603`) {
+    } else if (args[0] === `remove` && message.channel.id === `781481229693222922` || args[0] === `remove` && message.channel.id === `568489134880981002` || args[0] === `remove` && message.channel.id === `764097736689451028` || args[0] === `remove` && message.channel.id === `569809907709247508` || args[0] === `remove` && message.channel.id === `569866296074698793` || args[0] === `remove` && message.channel.id === `568524008165998603` || args[0] === `remove` && message.channel.id === `800816235574067230`) {
       args.shift()
       let removedOperation = ''
       for (var i = 0; i < args.length; i++) {
@@ -83,7 +83,7 @@ module.exports = {
         }
         message.channel.send('Operation removed successfully.');
       });
-    } else if (args.length === 0 && message.channel.id === `781481229693222922` || args.length === 0 && message.channel.id === `568489134880981002` || args.length === 0 && message.channel.id === `764097736689451028` || args.length === 0 && message.channel.id === `569809907709247508` || args.length === 0 && message.channel.id === `569866296074698793` || args.length === 0 && message.channel.id === `568524008165998603`) {
+    } else if (args.length === 0 && message.channel.id === `781481229693222922` || args.length === 0 && message.channel.id === `568489134880981002` || args.length === 0 && message.channel.id === `764097736689451028` || args.length === 0 && message.channel.id === `569809907709247508` || args.length === 0 && message.channel.id === `569866296074698793` || args.length === 0 && message.channel.id === `568524008165998603` || args.length === 0 && message.channel.id === `800816235574067230`) {
       let reply = 'Current operations:'
       let currentOperations = nconf.get(`currentOperations`)
       if (currentOperations.length === 0) {
