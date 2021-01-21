@@ -83,7 +83,7 @@ module.exports = {
 
         message.channel.send(reply)
       } else if (response.data.events[0].eventStatus === 204) {
-        message.channel.send(`No commanders were found`)
+        message.channel.send(`No inara profiles were found`)
       } else if (response.data.events[0].eventStatus === 400) {
         message.channel.send(`There was an error executing that command`)
       }
