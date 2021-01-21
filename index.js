@@ -44,7 +44,7 @@ client.on('message', message => {
 
   const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
   const commandName = args.shift().toLowerCase();
-  
+
   if (!client.commands.has(commandName)) return;
 
   const command = client.commands.get(commandName);
@@ -105,10 +105,10 @@ setInterval(() => {
       if (res.statusCode === 200) {
         try {
           var data = JSON.parse(json);
-          console.log(data[0].updated_at);
-          if (x.a === data[0].updated_at) {
+          console.log(data[0].time);
+          if (x.a === data[0].time) {
           } else {
-            x.a = data[0].updated_at
+            x.a = data[0].time
           }
         } catch (e) {
           console.log('Error parsing JSON!');
@@ -134,8 +134,8 @@ https.get(options, function(res) {
     if (res.statusCode === 200) {
       try {
         var data = JSON.parse(json);
-        console.log(data[0].updated_at);
-        x.a = data[0].updated_at
+        console.log(data[0].time);
+        x.a = data[0].time
       } catch (e) {
         console.log('Error parsing JSON!');
       }
@@ -153,7 +153,7 @@ x.registerListener(function(val) {
   if (lastTick === val) {
     return;
   } else {
-    date = new Date;
+    date = new Date(x.a);
     let minutes = date.getUTCMinutes()
     nconf.set(`lastTick`, x.a)
     nconf.save(function (err) {
@@ -168,6 +168,7 @@ x.registerListener(function(val) {
       utcMinutes = date.getUTCMinutes()
     }
     client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
+    client.channels.cache.get(`708839430307184756`).send(`---------tick----------`)
   }
 });
 
