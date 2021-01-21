@@ -16,6 +16,8 @@ module.exports = {
     if (pos > -1 && args[0] === `bot`) {
       message.channel.send(`Discord client shutting down, <!@637414359655514134> please turn me back on soon!`)
       process.exit(0)
+    } else if (args[0] === `fed`) {
+      message.channel.send(`:boom:\n\nFed destroyed!`)
     } else if (pos > -1) {
       message.reply(`Wrong nuclear code provided`)
     } else {
