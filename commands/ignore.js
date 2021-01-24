@@ -39,9 +39,9 @@ module.exports = {
 
             db.set("ignoreList", ignoreList).then(() => {});
           }
-        } else {
-          message.reply(`You are not authorized to use this command!`)
         });
+      } else {
+        message.reply(`You are not authorized to use this command!`)
       }
     });
   }
