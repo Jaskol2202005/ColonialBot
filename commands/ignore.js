@@ -1,7 +1,5 @@
-const nconf = require('nconf');
-
-nconf.use('file', { file: './config.json' });
-nconf.load();
+const Database = require("@replit/database");
+const db = new Database();
 
 module.exports = {
   name: 'ignore',
@@ -9,54 +7,42 @@ module.exports = {
   usage: 'set|remove',
   args: true,
   execute(message, args) {
-    let authorizedUsers = nconf.get(`authorizedUsers`)
-    let authorPos = authorizedUsers.indexOf(message.author.id)
-    if (authorPos !== -1) {
-      if (args[0] === `set`) {
-        let ignoreList = nconf.get(`ignoreList`)
+    db.get("authorizedUsers").then(value => {
+      let authorizedUsers = value
+      let authorPos = authorizedUsers.indexOf(message.author.id)
+      if (authorPos !== -1) {
+        db.get("ignoreList").then(value => {
 
-        let posChannel = ignoreList.indexOf(message.channel.id)
+          let ignoreList = value
+          if (args[0] === `set`) {
 
-        if (posChannel > -1) {
-          message.reply(`This channel is already on the ignore list`)
-          return;
-        }
+            let posChannel = ignoreList.indexOf(message.channel.id)
 
-        ignoreList.push(message.channel.id)
+            if (posChannel > -1) {
+              message.reply(`This channel is already on the ignore list`)
+              return;
+            }
 
-        nconf.set(`ignoreList`, ignoreList)
-        nconf.save(function (err) {
-          if (err) {
-            console.error(err.message);
-            return;
+            ignoreList.push(message.channel.id)
+
+            db.set("ignoreList", currentOperations).then(() => {});
+          } else if (args[0] === `remove`) {
+
+            let posChannel = ignoreList.indexOf(message.channel.id)
+
+            if (posChannel === -1) {
+              message.reply(`This channel isn't on the ignore list, cannot remove`)
+              return;
+            }
+
+            let newIgnoreList = ignoreList.splice(posChannel, 1)
+
+            db.set("ignoreList", currentOperations).then(() => {});
           }
-          message.channel.send('Current channel added to ignore list');
-          return;
-        });
-      } else if (args[0] === `remove`) {
-        let ignoreList = nconf.get(`ignoreList`)
-
-        let posChannel = ignoreList.indexOf(message.channel.id)
-
-        if (posChannel === -1) {
-          message.reply(`This channel isn't on the ignore list, cannot remove`)
-          return;
+        } else {
+          message.reply(`You are not authorized to use this command!`)
         }
-
-        let newIgnoreList = ignoreList.splice(posChannel, 1)
-
-        nconf.set(`ignoreList`, ignoreList)
-        nconf.save(function (err) {
-          if (err) {
-            console.error(err.message);
-            return;
-          }
-          message.channel.send('Current channel removed to ignore list');
-          return;
-        });
       }
-    } else {
-      message.reply(`You are not authorized to use this command!`)
     }
   }
 }
