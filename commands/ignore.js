@@ -41,8 +41,8 @@ module.exports = {
           }
         } else {
           message.reply(`You are not authorized to use this command!`)
-        }
-      });
+        });
+      }
     });
   }
 }
