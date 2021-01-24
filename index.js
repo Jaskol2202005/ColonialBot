@@ -1,9 +1,12 @@
 console.log('Welcome to TRCG Bot');
 console.log('Authenticating...');
 
-var https = require('https');
-const fs = require('fs');
+const Database = require("@replit/database");
+const db = new Database();
+
+var https = require('https')
 var nconf = require('nconf');
+const fs = require('fs');
 require('dotenv').config();
 
 const Discord = require('discord.js');
@@ -27,19 +30,23 @@ client.login(process.env.token);
 
 client.on('message', message => {
   console.log(message.content);
-  let ignoreList = nconf.get(`ignoreList`)
-  let currentOperations = nconf.get(`currentOperations`)
-  for (var i = 0; i < currentOperations.length; i++) {
-    let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
-    let pos = ignoreList.indexOf(message.channel.id)
-    if (pos !== -1) {
+  db.get("ignoreList").then(value => {
+    let ignoreList = value
+    db.get("currentOperations").then(value => {
+      let currentOperations = value
+      for (var i = 0; i < currentOperations.length; i++) {
+      let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
+      let pos = ignoreList.indexOf(message.channel.id)
+      if (pos !== -1) {
 
     } else if (message.content.includes(currentOperations[i]) || message.content.includes(currentOperationsUpperCase)) {
       message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
       message.delete()
     }
-  }
-
+    }
+    });  
+  });
+  
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
@@ -148,28 +155,23 @@ https.get(options, function(res) {
 });
 
 x.registerListener(function(val) {
-  console.log("x.a has been changed to " + val);
-  let lastTick = nconf.get(`lastTick`)
-  if (lastTick === val) {
+  console.log("x.a has been changed to " + val); 
+  db.get("lastTick").then(value => {
+    if (value === val) {
     return;
-  } else {
+    } else {
     date = new Date(x.a);
     let minutes = date.getUTCMinutes()
-    nconf.set(`lastTick`, x.a)
-    nconf.save(function (err) {
-      if (err) {
-        console.error(err.message);
-        return;
-      }
-    });
+    db.set("lastTick", x.a).then(() => {});
     if (date.getUTCMinutes() < 10) {
       utcMinutes = `0${date.getUTCMinutes()}`
     } else {
       utcMinutes = date.getUTCMinutes()
     }
-    client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
-    client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
+    client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
+    client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
   }
+  });
 });
 
 const http = require('http');
