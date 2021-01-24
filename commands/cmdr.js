@@ -1,6 +1,5 @@
 const https = require('https');
 const nconf = require('nconf');
-const axios = require('axios');
 
 nconf.use('file', { file: './config.json' });
 nconf.load();
