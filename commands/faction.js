@@ -55,6 +55,7 @@ module.exports = {
                     }
                   } catch (e) {
                     console.log('Error parsing JSON!');
+                    message.channel.send(`Couldn't find this faction, make sure you spelled it right!\n\n*If you're 100% sure you spelled it right, faction may be restricted or the bot is broken*`)
                   }
                 } else {
                   console.log('Status:', res.statusCode);
