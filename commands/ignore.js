@@ -26,6 +26,7 @@ module.exports = {
             ignoreList.push(message.channel.id)
 
             db.set("ignoreList", ignoreList).then(() => {});
+            message.channel.send(`Channel added successfully to ignore list`)
           } else if (args[0] === `remove`) {
 
             let posChannel = ignoreList.indexOf(message.channel.id)
@@ -38,6 +39,7 @@ module.exports = {
             let newIgnoreList = ignoreList.splice(posChannel, 1)
 
             db.set("ignoreList", ignoreList).then(() => {});
+            message.channel.send(`Channel removed successfully from ignore list`)
           }
         });
       } else {
