@@ -44,9 +44,12 @@ client.on('message', message => {
       message.delete()
     }
     }
-    });  
+    });
   });
-  
+  if (message.mentions.first().id === `793349157720555570`) {
+    message.channel.send(`Hi, I am TRCG bot, I work here`)
+  }
+
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
@@ -155,7 +158,7 @@ https.get(options, function(res) {
 });
 
 x.registerListener(function(val) {
-  console.log("x.a has been changed to " + val); 
+  console.log("x.a has been changed to " + val);
   db.get("lastTick").then(value => {
     if (value === val) {
     return;
