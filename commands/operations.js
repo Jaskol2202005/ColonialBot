@@ -10,10 +10,10 @@ module.exports = {
   description: 'add or remove operations from the database, used to delete opsec breaches',
   usage: 'add|remove|clear <thing you want to censor>',
   args: false,
-  execute(message, args) {   
+  execute(message, args) {
     db.get("ignoreList").then(value => {
       let pos9000 = value.indexOf(message.channel.id)
-      if (pos9000 !== -1) { 
+      if (pos9000 !== -1) {
       db.get("authorizedUsers").then(value => {
         let position = value.indexOf(message.author.id)
         if (position !== -1) {
@@ -25,7 +25,7 @@ module.exports = {
             for (var i = 0; i < args.length; i++) {
               nextOperation += `${args[i]} `
             }
-            
+
               let currentOperations = value
               var edittedOperation = nextOperation.slice(0, -1);
 
@@ -39,7 +39,7 @@ module.exports = {
               let newOperations = currentOperations.push(edittedOperation)
 
               db.set("currentOperations", currentOperations).then(() => {});
-              message.channel.send(`Operation added successfully`)            
+              message.channel.send(`Operation added successfully`)
           } else if (args[0] === `remove`) {
             args.shift()
             let removedOperation = ''
@@ -80,23 +80,25 @@ module.exports = {
             }
             message.channel.send(reply)
           }
-        });        
+        });
         } else if (args.length === 0) {
           let reply = 'Current operations:'
-          let currentOperations = nconf.get(`currentOperations`)
-          if (currentOperations.length === 0) {
-            reply = `No operations are currently set`
-          } else {
-            for (var i = 0; i < currentOperations.length; i++) {
-              let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
-              reply += `\n${currentOperationsUpperCase}`
+          db.get("currentOperations").then(value => {
+            let currentOperations = value
+            if (currentOperations.length === 0) {
+              reply = `No operations are currently set`
+            } else {
+              for (var i = 0; i < currentOperations.length; i++) {
+                let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
+                reply += `\n${currentOperationsUpperCase}`
+              }
             }
+            message.channel.send(reply)
           }
-          message.channel.send(reply)
         } else {
           message.reply(`You aren't authorized to use this command!`)
         }
-      });     
+      });
       } else {
         message.reply(`You aren't authorized to use this command!`)
       }
