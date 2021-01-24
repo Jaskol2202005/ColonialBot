@@ -46,7 +46,7 @@ client.on('message', message => {
     }
     });
   });
-  if (message.mentions.first().id === `793349157720555570`) {
+  if (message.mentions.users.first().id === `793349157720555570`) {
     message.channel.send(`Hi, I am TRCG bot, I work here`)
   }
 
