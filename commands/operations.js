@@ -1,9 +1,5 @@
-const nconf = require('nconf');
-
 const Database = require("@replit/database");
 const db = new Database();
-nconf.use('file', { file: './config.json' });
-nconf.load();
 
 module.exports = {
   name: 'operations',
