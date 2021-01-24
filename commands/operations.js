@@ -90,7 +90,7 @@ module.exports = {
               }
             }
             message.channel.send(reply)
-          }
+          });
         } else {
           message.reply(`You aren't authorized to use this command!`)
         }
