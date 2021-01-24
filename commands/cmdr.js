@@ -23,7 +23,7 @@ module.exports = {
     axios.post('https://inara.cz/inapi/v1/', {
       header: {
         appName: 'TRCGbot',
-        appVersion: `0.1.0`,
+        appVersion: `1.0.0`,
         isDeveloped: `true`,
         APIkey: `28r9agl7t5a8gw880cc0wgcowc84k8k0kgsc4k`
       },
