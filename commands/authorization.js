@@ -49,6 +49,6 @@ module.exports = {
     } else {
       message.reply(`You aren't authorized to use this command!`)
     }
-  }
+  });
   }
 }
