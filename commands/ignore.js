@@ -25,7 +25,7 @@ module.exports = {
 
             ignoreList.push(message.channel.id)
 
-            db.set("ignoreList", currentOperations).then(() => {});
+            db.set("ignoreList", ignoreList).then(() => {});
           } else if (args[0] === `remove`) {
 
             let posChannel = ignoreList.indexOf(message.channel.id)
@@ -37,7 +37,7 @@ module.exports = {
 
             let newIgnoreList = ignoreList.splice(posChannel, 1)
 
-            db.set("ignoreList", currentOperations).then(() => {});
+            db.set("ignoreList", ignoreList).then(() => {});
           }
         } else {
           message.reply(`You are not authorized to use this command!`)
