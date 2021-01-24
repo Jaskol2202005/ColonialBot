@@ -1,7 +1,5 @@
-const nconf = require('nconf');
-
-nconf.use('file', { file: './config.json' });
-nconf.load();
+const Database = require("@replit/database");
+const db = new Database();
 
 module.exports = {
   name: 'authorization',
@@ -9,8 +7,8 @@ module.exports = {
   usage: 'add|remove <@person you want to modify>',
   args: true,
   execute(message, args) {
-    console.log(message.mentions.users.first().id);
-    let authorizedUsers = nconf.get(`authorizedUsers`)
+    db.get("authorizedUsers").then(value => {
+    let authorizedUsers = value
 
     let pos = authorizedUsers.indexOf(message.author.id)
     if (pos > -1) {
@@ -23,14 +21,8 @@ module.exports = {
         } else {
           authorizedUsers.push(newAuth)
 
-          nconf.set(`authorizedUsers`, authorizedUsers)
-          nconf.save(function (err) {
-            if (err) {
-              console.error(err.message);
-              return;
-            }
-            message.channel.send('User added successfully!');
-          });
+          db.set("authorizedUsers", authorizedUsers).then(() => {});
+          message.channel.send(`Full access member added successfully`)
         }
       } else if (args[0] === `remove` && args.length > 1) {
         let newAuth = message.mentions.users.first().id
@@ -41,14 +33,8 @@ module.exports = {
         } else {
           authorizedUsers.splice(pos1, 1)
 
-          nconf.set(`authorizedUsers`, authorizedUsers)
-          nconf.save(function (err) {
-            if (err) {
-              console.error(err.message);
-              return;
-            }
-            message.channel.send('User removed successfully!');
-          });
+          db.set("authorizedUsers", authorizedUsers).then(() => {});
+          message.channel.send(`Full access member removed successfully`)
         }
       } else {
         let newAuth = message.mentions.users.first().id
@@ -63,5 +49,6 @@ module.exports = {
     } else {
       message.reply(`You aren't authorized to use this command!`)
     }
+  }
   }
 }
