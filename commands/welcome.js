@@ -4,6 +4,7 @@ module.exports = {
   usage: '<commander name, or @>',
   args: false,
   execute(message, args) {
+    let nameUpperStr = ``
     let reply = ''
     for (var i = 0; i < args.length; i++) {
       let nameUpper = args[i].charAt(0).toUpperCase() + args[i].slice(1)
