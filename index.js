@@ -29,7 +29,7 @@ client.once('ready', () => {
 client.login(process.env.token);
 
 client.on(`guildMemberAdd`, member => {
-  const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
+  const channel = member.guild.channels.cache.get(`708839430307184756`);
 
   if (!channel) return;
 
