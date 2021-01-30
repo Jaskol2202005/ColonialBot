@@ -28,6 +28,14 @@ client.once('ready', () => {
 
 client.login(process.env.token);
 
+client.on(`guildMemberAdd`, member => {
+  const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
+
+  if (!channel) return;
+
+  channel.send(`Welcome to the server, ${member}`);
+})
+
 client.on('message', message => {
   console.log(message.content);
   db.get("ignoreList").then(value => {
