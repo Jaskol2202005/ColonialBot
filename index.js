@@ -28,15 +28,6 @@ client.once('ready', () => {
 
 client.login(process.env.token);
 
-client.on('guildMemberAdd', member => {
-  // Send the message to a designated channel on a server:
-  const channel = member.guild.channels.cache.find(ch => ch.name === 'general');
-  // Do nothing if the channel wasn't found on this server
-  if (!channel) return;
-  // Send the message, mentioning the member
-  channel.send(`Welcome to the server, ${member}`);
-});
-
 client.on('message', message => {
   console.log(message.content);
   db.get("ignoreList").then(value => {
