@@ -29,11 +29,7 @@ client.once('ready', () => {
 client.login(process.env.token);
 
 client.on(`guildMemberAdd`, member => {
-  const channel = member.guild.channels.cache.get(`708839430307184756`);
-
-  if (!channel) return;
-
-  channel.send(`Welcome to the server, ${member}`);
+  client.channels.cache.get(`708839430307184756`).send(`Welcome to the server, ${member}`);
 })
 
 client.on('message', message => {
