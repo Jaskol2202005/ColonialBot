@@ -22,10 +22,9 @@ module.exports = {
 
               if (pos1 > -1) {
                 message.channel.send(`This operation is already in the database`)
-                return;
-              }
-
-              currentOperations.push(args[i])
+              } else {
+                currentOperations.push(args[i])
+              }        
             }
             db.set("currentOperations", currentOperations).then(() => {});
             message.channel.send(`Operation(s) added successfully`)
@@ -36,10 +35,9 @@ module.exports = {
 
               if (pos1 === -1) {
                 message.channel.send(`Couldn't find this operation in the database`);
-                return;
+              } else {
+                currentOperations.splice(pos1, 1)
               }
-
-              currentOperations.splice(pos1, 1)
             }
             db.set("currentOperations", currentOperations).then(() => {});
             message.channel.send(`Operation(s) removed successfully`)
