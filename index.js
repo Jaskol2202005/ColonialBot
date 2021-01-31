@@ -38,7 +38,6 @@ client.on('message', message => {
         let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
         let pos = ignoreList.indexOf(message.channel.id)
         if (pos !== -1) {
-
         } else if (message.content.includes(currentOperations[i]) || message.content.includes(currentOperationsUpperCase)) {
           message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
           message.delete()
