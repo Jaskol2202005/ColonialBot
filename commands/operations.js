@@ -28,25 +28,19 @@ module.exports = {
               currentOperations.push(args[i])
             }
             db.set("currentOperations", currentOperations).then(() => {});
-            message.channel.send(`Operation added successfully`)
+            message.channel.send(`Operation(s) added successfully`)
           } else if (args[0] === `remove`) {
             args.shift()
-            let removedOperation = ''
             for (var i = 0; i < args.length; i++) {
-              removedOperation += `${args[i]} `
+              let pos1 = currentOperations.indexOf(args[i])
+
+              if (pos1 === -1) {
+                message.channel.send(`Couldn't find this operation in the database`);
+                return;
+              }
+
+              currentOperations.splice(pos1, 1)
             }
-
-            var edittedOperation = removedOperation.slice(0, -1);
-
-            let pos1 = currentOperations.indexOf(`${edittedOperation}`)
-
-            if (pos1 === -1) {
-              message.channel.send(`Couldn't find this operation in the database`);
-              return;
-            }
-
-            currentOperations.splice(pos1, 1)
-
             db.set("currentOperations", currentOperations).then(() => {});
             message.channel.send(`Operation removed successfully`)
           } else if (args[0] === `clear`) {
