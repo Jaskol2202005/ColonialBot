@@ -17,25 +17,19 @@ module.exports = {
           let currentOperations = value
           if (args[0] === `add`) {
             args.shift()
-            let nextOperation = ''
             for (var i = 0; i < args.length; i++) {
-              nextOperation += `${args[i]} `
-            }
-
-              let currentOperations = value
-              var edittedOperation = nextOperation.slice(0, -1);
-
-              let pos1 = currentOperations.indexOf(edittedOperation);
+              let pos1 = currentOperations.indexOf(args[i]);
 
               if (pos1 > -1) {
                 message.channel.send(`This operation is already in the database`)
                 return;
               }
 
-              let newOperations = currentOperations.push(edittedOperation)
+              currentOperations.push(args[i])
 
               db.set("currentOperations", currentOperations).then(() => {});
               message.channel.send(`Operation added successfully`)
+            }
           } else if (args[0] === `remove`) {
             args.shift()
             let removedOperation = ''
