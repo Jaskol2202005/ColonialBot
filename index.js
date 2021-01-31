@@ -35,15 +35,16 @@ client.on('message', message => {
     db.get("currentOperations").then(value => {
       let currentOperations = value
       for (var i = 0; i < currentOperations.length; i++) {
-      let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
-      let pos = ignoreList.indexOf(message.channel.id)
-      if (pos !== -1) {
+        let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
+        let pos = ignoreList.indexOf(message.channel.id)
+        if (pos !== -1) {
 
-    } else if (message.content.includes(currentOperations[i]) || message.content.includes(currentOperationsUpperCase)) {
-      message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
-      message.delete()
-    }
-    }
+        } else if (message.content.includes(currentOperations[i]) || message.content.includes(currentOperationsUpperCase)) {
+          message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
+          message.delete()
+          return;
+        }
+      }
     });
   });
 
