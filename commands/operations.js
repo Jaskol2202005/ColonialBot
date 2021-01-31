@@ -42,13 +42,13 @@ module.exports = {
               currentOperations.splice(pos1, 1)
             }
             db.set("currentOperations", currentOperations).then(() => {});
-            message.channel.send(`Operation removed successfully`)
+            message.channel.send(`Operation(s) removed successfully`)
           } else if (args[0] === `clear`) {
             if (currentOperations.length === 0) {
               message.reply(`Database is already empty!`)
             } else {
               let clear = []
-              db.set("currentOperations", currentOperations).then(() => {});
+              db.set("currentOperations", clear).then(() => {});
               message.channel.send(`Operations cleared successfully`)
             }
           } else if (args.length === 0) {
