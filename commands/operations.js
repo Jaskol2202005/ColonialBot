@@ -26,10 +26,9 @@ module.exports = {
               }
 
               currentOperations.push(args[i])
-
-              db.set("currentOperations", currentOperations).then(() => {});
-              message.channel.send(`Operation added successfully`)
             }
+            db.set("currentOperations", currentOperations).then(() => {});
+            message.channel.send(`Operation added successfully`)
           } else if (args[0] === `remove`) {
             args.shift()
             let removedOperation = ''
