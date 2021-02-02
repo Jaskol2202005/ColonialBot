@@ -17,36 +17,51 @@ module.exports = {
           let currentOperations = value
           if (args[0] === `add`) {
             args.shift()
+            let nextOperation = ''
             for (var i = 0; i < args.length; i++) {
-              let pos1 = currentOperations.indexOf(args[i]);
+              nextOperation += `${args[i]} `
+            }
+
+              let currentOperations = value
+              var edittedOperation = nextOperation.slice(0, -1);
+
+              let pos1 = currentOperations.indexOf(edittedOperation);
 
               if (pos1 > -1) {
                 message.channel.send(`This operation is already in the database`)
-              } else {
-                currentOperations.push(args[i])
-              }        
-            }
-            db.set("currentOperations", currentOperations).then(() => {});
-            message.channel.send(`Operation(s) added successfully`)
+                return;
+              }
+
+              let newOperations = currentOperations.push(edittedOperation)
+
+              db.set("currentOperations", currentOperations).then(() => {});
+              message.channel.send(`Operation added successfully`)
           } else if (args[0] === `remove`) {
             args.shift()
+            let removedOperation = ''
             for (var i = 0; i < args.length; i++) {
-              let pos1 = currentOperations.indexOf(args[i])
-
-              if (pos1 === -1) {
-                message.channel.send(`Couldn't find this operation in the database`);
-              } else {
-                currentOperations.splice(pos1, 1)
-              }
+              removedOperation += `${args[i]} `
             }
+
+            var edittedOperation = removedOperation.slice(0, -1);
+
+            let pos1 = currentOperations.indexOf(`${edittedOperation}`)
+
+            if (pos1 === -1) {
+              message.channel.send(`Couldn't find this operation in the database`);
+              return;
+            }
+
+            currentOperations.splice(pos1, 1)
+
             db.set("currentOperations", currentOperations).then(() => {});
-            message.channel.send(`Operation(s) removed successfully`)
+            message.channel.send(`Operation removed successfully`)
           } else if (args[0] === `clear`) {
             if (currentOperations.length === 0) {
               message.reply(`Database is already empty!`)
             } else {
               let clear = []
-              db.set("currentOperations", clear).then(() => {});
+              db.set("currentOperations", currentOperations).then(() => {});
               message.channel.send(`Operations cleared successfully`)
             }
           } else if (args.length === 0) {
