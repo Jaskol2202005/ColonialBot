@@ -21,8 +21,6 @@ module.exports = {
             for (var i = 0; i < args.length; i++) {
               nextOperation += `${args[i]} `
             }
-
-              let currentOperations = value
               var edittedOperation = nextOperation.slice(0, -1);
 
               let pos1 = currentOperations.indexOf(edittedOperation);
@@ -61,7 +59,7 @@ module.exports = {
               message.reply(`Database is already empty!`)
             } else {
               let clear = []
-              db.set("currentOperations", currentOperations).then(() => {});
+              db.set("currentOperations", clear).then(() => {});
               message.channel.send(`Operations cleared successfully`)
             }
           } else if (args.length === 0) {
@@ -71,7 +69,7 @@ module.exports = {
             } else {
               for (var i = 0; i < currentOperations.length; i++) {
                 let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
-                reply += `\n${currentOperationsUpperCase}`
+                reply += `\n**${currentOperationsUpperCase}**`
               }
             }
             message.channel.send(reply)
@@ -86,7 +84,7 @@ module.exports = {
             } else {
               for (var i = 0; i < currentOperations.length; i++) {
                 let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
-                reply += `\n${currentOperationsUpperCase}`
+                reply += `\n**${currentOperationsUpperCase}**`
               }
             }
             message.channel.send(reply)
