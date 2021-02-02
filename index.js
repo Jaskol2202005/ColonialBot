@@ -9,8 +9,6 @@ var nconf = require('nconf');
 const fs = require('fs');
 require('dotenv').config();
 
-db.set("currentOperations", [`Korubures`, `Changwuti`, `Sarahath`, `Hojin`, `Doolona`, `115151`, `Octantis`, `Cenu`]).then(() => {});
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
