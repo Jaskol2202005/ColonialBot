@@ -139,6 +139,7 @@ https.get(options, function(res) {
 
   res.on('end', function() {
     if (res.statusCode === 200) {
+      db.set("errorStatus", 0).then(() => {});
       try {
         var data = JSON.parse(json);
         console.log(data[0].time);
@@ -152,6 +153,14 @@ https.get(options, function(res) {
   });
 }).on('error', function(err) {
   console.log('Error:', err);
+  db.get("errorStatus").then(value => {
+    if (value === 1) {
+      return;
+    } else {
+      db.set("errorStatus", 1).then(() => {});
+      client.channels.cache.get(`715038247964639282`).send(`Error Encountered, Error code: ${err}`)
+    }
+  });
 });
 
 x.registerListener(function(val) {
