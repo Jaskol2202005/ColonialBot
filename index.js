@@ -128,7 +128,7 @@ setInterval(() => {
               }
             } else {
               let tickBefore = new Date(data[0].time)
-              if (tickBefore < currentDate) {
+              if (tickBefore < x.a) {
               } else if (lastTick + 1500000 < currentDate) {
                 x.a = currentDate
                 db.set("tickMalfunction", 1)
