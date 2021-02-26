@@ -198,8 +198,8 @@ x.registerListener(function(val) {
     } else {
       utcMinutes = date.getUTCMinutes()
     }
-    client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
-    client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+    client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
+    client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
   }
   });
 });
