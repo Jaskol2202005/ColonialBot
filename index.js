@@ -3,6 +3,7 @@ console.log('Authenticating...');
 
 const Database = require("@replit/database");
 const db = new Database();
+db.set("tickMalfunction", 0)
 
 var https = require('https')
 var nconf = require('nconf');
@@ -121,6 +122,7 @@ setInterval(() => {
             if (tickMalfunction = 0) {
               if (x.a === data[0].time) {
               } else if (lastTick.getUTCHours() + 25 < currentDate) {
+                client.channels.cache.get(`715038247964639282`).send(lastTick)
                 x.a = currentDate.toISOString()
                 db.set("tickMalfunction", 1)
               } else {
@@ -131,6 +133,7 @@ setInterval(() => {
               let tickBefore = new Date(data[0].time)
               if (tickBefore < x.a) {
               } else if (lastTick.getUTCHours() + 25 < currentDate) {
+                client.channels.cache.get(`715038247964639282`).send(lastTick)
                 x.a = currentDate.toISOString()
                 db.set("tickMalfunction", 1)
               } else {
