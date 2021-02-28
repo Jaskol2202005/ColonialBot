@@ -3,7 +3,6 @@ console.log('Authenticating...');
 
 const Database = require("@replit/database");
 const db = new Database();
-db.set("tickMalfunction", 0)
 
 var https = require('https')
 var nconf = require('nconf');
@@ -113,16 +112,32 @@ setInterval(() => {
       if (res.statusCode === 200) {
         try {
           let lastTick = new Date(x.a)
-          let inTwentyFive = lastTick.getTime() + 90000000
-          console.log(inTwentyFive.toISOString());
           let currentDate = new Date()
           var data = JSON.parse(json);
           console.log(data[0].time);
-          if (x.a === data[0].time) {
-            return;
-          } else if (inTwentyFive < currentDate) {
-            x.a = lastTick.toISOString()
-          }
+          db.get("tickMalfunction").then(value => {
+            let tickmalfunction = value
+            if (tickmalfunction = 0) {
+              if (x.a === data[0].time) {
+              } else if (lastTick + 1500000 < currentDate) {
+                x.a = currentDate
+                db.set("tickMalfunction", 1)
+              } else {
+                x.a = data[0].time
+                db.set("tickMalfunction", 0)
+              }
+            } else {
+              let tickBefore = new Date(data[0].time)
+              if (tickBefore < x.a) {
+              } else if (lastTick + 1500000 < currentDate) {
+                x.a = currentDate
+                db.set("tickMalfunction", 1)
+              } else {
+                x.a = data[0].time
+                db.set("tickMalfunction", 0)
+              }
+            }
+          })
         } catch (e) {
           console.log('Error parsing JSON!');
         }
@@ -183,8 +198,8 @@ x.registerListener(function(val) {
     } else {
       utcMinutes = date.getUTCMinutes()
     }
-    client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
-    client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+    client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
+    client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
   }
   });
 });
