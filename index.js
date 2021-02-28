@@ -121,8 +121,8 @@ setInterval(() => {
             client.channels.cache.get(`715038247964639282`).send(tickMalfunction)
             if (tickMalfunction = 0) {
               if (x.a === data[0].time) {
+              client.channels.cache.get(`715038247964639282`).send(lastTick)
               } else if (lastTick.getUTCHours() + 25 < currentDate) {
-                client.channels.cache.get(`715038247964639282`).send(lastTick)
                 x.a = currentDate.toISOString()
                 db.set("tickMalfunction", 1)
               } else {
@@ -132,8 +132,8 @@ setInterval(() => {
             } else {
               let tickBefore = new Date(data[0].time)
               if (tickBefore < x.a) {
+              client.channels.cache.get(`715038247964639282`).send(lastTick)
               } else if (lastTick.getUTCHours() + 25 < currentDate) {
-                client.channels.cache.get(`715038247964639282`).send(lastTick)
                 x.a = currentDate.toISOString()
                 db.set("tickMalfunction", 1)
               } else {
