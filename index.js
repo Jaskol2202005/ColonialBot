@@ -9,6 +9,8 @@ var nconf = require('nconf');
 const fs = require('fs');
 require('dotenv').config();
 
+const moment = require('moment');
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -111,31 +113,20 @@ setInterval(() => {
     res.on('end', function() {
       if (res.statusCode === 200) {
         try {
-          let lastTick = new Date(x.a)
-          let currentDate = new Date()
+          let lastTick = moment(x.a)
+          let currentDate = moment().format()
+          let inTwentyFive = lastTick.add(25, `hour`)
           var data = JSON.parse(json);
           console.log(data[0].time);
-          db.get("tickMalfunction").then(value => {
-            let tickmalfunction = value
-            if (tickmalfunction = 0) {
-              if (x.a === data[0].time) {
-              } else if (lastTick + 1500000 < currentDate) {
-                x.a = currentDate
-                db.set("tickMalfunction", 1)
-              } else {
-                x.a = data[0].time
-                db.set("tickMalfunction", 0)
-              }
+          db.get("nowTime").then(value => {
+            let nowTime = value
+            if (x.a === data[0].time) {
+            } else if (inTwentyFive.isBefore(currentDate)) {
+              x.a = currentDate
+              db.set("nowTime", currentDate)
+            } else if (x.a = nowTime) {              
             } else {
-              let tickBefore = new Date(data[0].time)
-              if (tickBefore < x.a) {
-              } else if (lastTick + 1500000 < currentDate) {
-                x.a = currentDate
-                db.set("tickMalfunction", 1)
-              } else {
-                x.a = data[0].time
-                db.set("tickMalfunction", 0)
-              }
+              x.a = data[0].time
             }
           })
         } catch (e) {
@@ -198,8 +189,8 @@ x.registerListener(function(val) {
     } else {
       utcMinutes = date.getUTCMinutes()
     }
-    client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
-    client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
+    client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
+    client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
   }
   });
 });
