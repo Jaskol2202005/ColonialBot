@@ -119,7 +119,7 @@ setInterval(() => {
             let tickmalfunction = value
             if (tickmalfunction = 0) {
               if (x.a === data[0].time) {
-              } else if (lastTick.getUTCHours() + 25 < currentDate) {
+              } else if (lastTick + 1500000 < currentDate) {
                 x.a = currentDate
                 db.set("tickMalfunction", 1)
               } else {
@@ -129,7 +129,7 @@ setInterval(() => {
             } else {
               let tickBefore = new Date(data[0].time)
               if (tickBefore < x.a) {
-              } else if (lastTick.getUTCHours() + 25 < currentDate) {
+              } else if (lastTick + 1500000 < currentDate) {
                 x.a = currentDate
                 db.set("tickMalfunction", 1)
               } else {
@@ -198,16 +198,7 @@ x.registerListener(function(val) {
     } else {
       utcMinutes = date.getUTCMinutes()
     }
-    let reply = `Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`
-    db.get("tickMalfunction").then(value => {
-      let tickMalfunction = rankValue
-      if (tickMalfunction = 1) {
-        reply += `\nCompleted under estimation (25 hours since last)`
-      } else {
-        reply += `\nCompleted under normal circumstances`
-      }
-    })
-    client.channels.cache.get(`568524008165998603`).send(reply)
+    client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
     client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
   }
   });
