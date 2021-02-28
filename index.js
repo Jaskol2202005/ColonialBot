@@ -113,35 +113,16 @@ setInterval(() => {
       if (res.statusCode === 200) {
         try {
           let lastTick = new Date(x.a)
+          let in25 = lastTick.getUTCHours() + 25
+          console.log(in25.toISOString());
           let currentDate = new Date()
           var data = JSON.parse(json);
           console.log(data[0].time);
-          db.get("tickMalfunction").then(value => {
-            let tickMalfunction = value
-            client.channels.cache.get(`715038247964639282`).send(tickMalfunction)
-            if (tickMalfunction = 0) {
-              if (x.a === data[0].time) {
-              client.channels.cache.get(`715038247964639282`).send(lastTick)
-              } else if (lastTick.getUTCHours() + 25 < currentDate) {
-                x.a = currentDate.toISOString()
-                db.set("tickMalfunction", 1)
-              } else {
-                x.a = data[0].time
-                db.set("tickMalfunction", 0)
-              }
-            } else {
-              let tickBefore = new Date(data[0].time)
-              if (tickBefore < x.a) {
-              client.channels.cache.get(`715038247964639282`).send(lastTick)
-              } else if (lastTick.getUTCHours() + 25 < currentDate) {
-                x.a = currentDate.toISOString()
-                db.set("tickMalfunction", 1)
-              } else {
-                x.a = data[0].time
-                db.set("tickMalfunction", 0)
-              }
-            }
-          })
+          if (x.a === data[0].time) {
+            return;
+          } else if (in25 < currentDate) {
+            x.a = lastTick.toISOString()
+          }
         } catch (e) {
           console.log('Error parsing JSON!');
         }
