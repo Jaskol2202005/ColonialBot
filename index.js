@@ -113,14 +113,14 @@ setInterval(() => {
       if (res.statusCode === 200) {
         try {
           let lastTick = new Date(x.a)
-          let in25 = lastTick.getUTCHours() + 25
-          console.log(in25.toISOString());
+          let inTwentyFive = lastTick.getUTCHours() + 25
+          console.log(inTwentyFive.toISOString());
           let currentDate = new Date()
           var data = JSON.parse(json);
           console.log(data[0].time);
           if (x.a === data[0].time) {
             return;
-          } else if (in25 < currentDate) {
+          } else if (inTwentyFive < currentDate) {
             x.a = lastTick.toISOString()
           }
         } catch (e) {
