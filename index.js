@@ -119,7 +119,7 @@ setInterval(() => {
             let tickmalfunction = value
             if (tickmalfunction = 0) {
               if (x.a === data[0].time) {
-              } else if (lastTick + 1500000 < currentDate) {
+              } else if (lastTick.getUTCHours() + 25 < currentDate) {
                 x.a = currentDate
                 db.set("tickMalfunction", 1)
               } else {
@@ -129,7 +129,7 @@ setInterval(() => {
             } else {
               let tickBefore = new Date(data[0].time)
               if (tickBefore < x.a) {
-              } else if (lastTick + 1500000 < currentDate) {
+              } else if (lastTick.getUTCHours() + 25 < currentDate) {
                 x.a = currentDate
                 db.set("tickMalfunction", 1)
               } else {
