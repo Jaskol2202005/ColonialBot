@@ -120,11 +120,11 @@ setInterval(() => {
           console.log(data[0].time);
           db.get("nowTime").then(value => {
             let nowTime = value
-            if (x.a === data[0].time) {
-            } else if (inTwentyFive.isBefore(currentDate)) {
+            if (inTwentyFive.isBefore(currentDate)) {
               x.a = currentDate
               db.set("nowTime", currentDate)
-            } else if (x.a = nowTime) {              
+            } else if (x.a === data[0].time) {
+            } else if (x.a = nowTime) {
             } else {
               x.a = data[0].time
             }
