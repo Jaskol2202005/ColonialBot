@@ -123,7 +123,7 @@ setInterval(() => {
             if (inTwentyFive.isBefore(currentDate)) {
               x.a = currentDate
               db.set("nowTime", currentDate)
-            } else if (x.a === a) {
+            } else if (x.a === data[0].time) {
             } else if (x.a = nowTime) {
             } else {
               x.a = data[0].time
