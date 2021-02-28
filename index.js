@@ -117,6 +117,7 @@ setInterval(() => {
           console.log(data[0].time);
           db.get("tickMalfunction").then(value => {
             let tickmalfunction = value
+            client.channels.cache.get(`715038247964639282`).send(tickMalfunction)
             if (tickmalfunction = 0) {
               if (x.a === data[0].time) {
               } else if (lastTick.getUTCHours() + 25 < currentDate) {
