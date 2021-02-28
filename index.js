@@ -198,7 +198,16 @@ x.registerListener(function(val) {
     } else {
       utcMinutes = date.getUTCMinutes()
     }
-    client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
+    let reply = `Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`
+    db.get("tickMalfunction").then(value => {
+      let tickMalfunction = rankValue
+      if (tickMalfunction = 1) {
+        reply += `\nCompleted under estimation (25 hours since last)`
+      } else {
+        reply += `\nCompleted under normal circumstances`
+      }
+    })
+    client.channels.cache.get(`568524008165998603`).send(reply)
     client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
   }
   });
