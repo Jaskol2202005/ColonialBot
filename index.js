@@ -113,7 +113,7 @@ setInterval(() => {
     res.on('end', function() {
       if (res.statusCode === 200) {
         try {
-          let lastTick = moment(x.a).format()
+          let lastTick = moment(x.a)
           let currentDate = moment().format()
           let inTwentyFive = lastTick.add(25, `hour`)
           var data = JSON.parse(json);
@@ -153,7 +153,7 @@ https.get(options, function(res) {
     if (res.statusCode === 200) {
       db.set("errorStatus", 0).then(() => {});
       try {
-        let lastTick = moment(x.a).format()
+        let lastTick = moment(x.a)
         let currentDate = moment().format()
         let inTwentyFive = lastTick.add(25, `hour`)
         var data = JSON.parse(json);
