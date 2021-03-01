@@ -121,11 +121,7 @@ setInterval(() => {
           db.get("nowTime").then(value => {
             let nowTime = value
             if (inTwentyFive.isBefore(currentDate)) {
-<<<<<<< HEAD
               x.a = currentDate
-=======
-              x.a = currentDate.toISOString()
->>>>>>> 28ecb05f472ac1ada746f0a0adaba47d04623645
               db.set("nowTime", currentDate)
             } else if (x.a === data[0].time) {
             } else if (x.a === nowTime) {
@@ -165,11 +161,7 @@ https.get(options, function(res) {
         db.get("nowTime").then(value => {
           let nowTime = value
           if (inTwentyFive.isBefore(currentDate)) {
-<<<<<<< HEAD
             x.a = currentDate
-=======
-            x.a = currentDate.toISOString()
->>>>>>> 28ecb05f472ac1ada746f0a0adaba47d04623645
             db.set("nowTime", currentDate)
           } else if (x.a === data[0].time) {
           } else if (x.a === nowTime) {
