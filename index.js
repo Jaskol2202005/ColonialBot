@@ -153,9 +153,22 @@ https.get(options, function(res) {
     if (res.statusCode === 200) {
       db.set("errorStatus", 0).then(() => {});
       try {
+        let lastTick = moment(x.a)
+        let currentDate = moment().format()
+        let inTwentyFive = lastTick.add(25, `hour`)
         var data = JSON.parse(json);
         console.log(data[0].time);
-        x.a = data[0].time
+        db.get("nowTime").then(value => {
+          let nowTime = value
+          if (inTwentyFive.isBefore(currentDate)) {
+            x.a = currentDate
+            db.set("nowTime", currentDate)
+          } else if (x.a === data[0].time) {
+          } else if (x.a = nowTime) {
+          } else {
+            x.a = data[0].time
+          }
+        })
       } catch (e) {
         console.log('Error parsing JSON!');
       }
