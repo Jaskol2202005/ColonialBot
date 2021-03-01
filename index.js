@@ -113,15 +113,15 @@ setInterval(() => {
     res.on('end', function() {
       if (res.statusCode === 200) {
         try {
-          let lastTick = moment(x.a).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
-          let currentDate = moment().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
+          let lastTick = moment(x.a).format()
+          let currentDate = moment().format()
           let inTwentyFive = lastTick.add(25, `hour`)
           var data = JSON.parse(json);
           console.log(data[0].time);
           db.get("nowTime").then(value => {
             let nowTime = value
             if (inTwentyFive.isBefore(currentDate)) {
-              x.a = currentDate
+              x.a = currentDate.toDate().toISOString()
               db.set("nowTime", currentDate)
             } else if (x.a === data[0].time) {
             } else if (x.a === nowTime) {
@@ -153,15 +153,15 @@ https.get(options, function(res) {
     if (res.statusCode === 200) {
       db.set("errorStatus", 0).then(() => {});
       try {
-        let lastTick = moment(x.a).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
-        let currentDate = moment().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
+        let lastTick = moment(x.a).format()
+        let currentDate = moment().format()
         let inTwentyFive = lastTick.add(25, `hour`)
         var data = JSON.parse(json);
         console.log(data[0].time);
         db.get("nowTime").then(value => {
           let nowTime = value
           if (inTwentyFive.isBefore(currentDate)) {
-            x.a = currentDate
+            x.a = currentDate.toDate().toISOString()
             db.set("nowTime", currentDate)
           } else if (x.a === data[0].time) {
           } else if (x.a === nowTime) {
