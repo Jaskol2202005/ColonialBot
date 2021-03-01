@@ -138,6 +138,14 @@ setInterval(() => {
     });
   }).on('error', function(err) {
     console.log('Error:', err);
+    db.get("errorStatus").then(value => {
+      if (value === 1) {
+        return;
+      } else {
+        db.set("errorStatus", 1).then(() => {});
+        client.channels.cache.get(`715038247964639282`).send(`Error Encountered, Error code: ${err}`)
+      }
+    });
   });
 
 }, 60000)
