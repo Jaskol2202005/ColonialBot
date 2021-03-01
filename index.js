@@ -113,7 +113,7 @@ setInterval(() => {
     res.on('end', function() {
       if (res.statusCode === 200) {
         try {
-          let lastTick = moment(x.a).format()
+          let lastTick = moment(x.a)
           let currentDate = moment().format()
           let inTwentyFive = lastTick.add(25, `hour`)
           var data = JSON.parse(json);
@@ -121,7 +121,11 @@ setInterval(() => {
           db.get("nowTime").then(value => {
             let nowTime = value
             if (inTwentyFive.isBefore(currentDate)) {
+<<<<<<< HEAD
               x.a = currentDate
+=======
+              x.a = currentDate.toISOString()
+>>>>>>> 28ecb05f472ac1ada746f0a0adaba47d04623645
               db.set("nowTime", currentDate)
             } else if (x.a === data[0].time) {
             } else if (x.a === nowTime) {
@@ -153,7 +157,7 @@ https.get(options, function(res) {
     if (res.statusCode === 200) {
       db.set("errorStatus", 0).then(() => {});
       try {
-        let lastTick = moment(x.a).format()
+        let lastTick = moment(x.a)
         let currentDate = moment().format()
         let inTwentyFive = lastTick.add(25, `hour`)
         var data = JSON.parse(json);
@@ -161,7 +165,11 @@ https.get(options, function(res) {
         db.get("nowTime").then(value => {
           let nowTime = value
           if (inTwentyFive.isBefore(currentDate)) {
+<<<<<<< HEAD
             x.a = currentDate
+=======
+            x.a = currentDate.toISOString()
+>>>>>>> 28ecb05f472ac1ada746f0a0adaba47d04623645
             db.set("nowTime", currentDate)
           } else if (x.a === data[0].time) {
           } else if (x.a === nowTime) {
