@@ -155,7 +155,7 @@ https.get(options, function(res) {
       try {
         let lastTick = moment(x.a).format()
         let currentDate = moment().format()
-        let inTwentyFive = lastTick.add(25, `hour`).format()
+        let inTwentyFive = lastTick.add(25, `hour`)
         var data = JSON.parse(json);
         console.log(data[0].time);
         db.get("nowTime").then(value => {
