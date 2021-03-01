@@ -124,7 +124,7 @@ setInterval(() => {
               x.a = currentDate
               db.set("nowTime", currentDate)
             } else if (x.a === data[0].time) {
-            } else if (x.a = nowTime) {
+            } else if (x.a === nowTime) {
             } else {
               x.a = data[0].time
             }
@@ -164,7 +164,7 @@ https.get(options, function(res) {
             x.a = currentDate
             db.set("nowTime", currentDate)
           } else if (x.a === data[0].time) {
-          } else if (x.a = nowTime) {
+          } else if (x.a === nowTime) {
           } else {
             x.a = data[0].time
           }
