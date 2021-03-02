@@ -26,6 +26,8 @@ const prefix = nconf.get(`prefix`);
 
 client.once('ready', () => {
   console.log('Authentication successful');
+  client.user.setStatus('online')
+  client.user.setPresence('For the Empire!', { type: 'PLAYING' })
 });
 
 client.login(process.env.token);
