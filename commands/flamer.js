@@ -4,6 +4,6 @@ module.exports = {
   usage: '',
   args: false,
   execute(message, args) {
-    message.channel.send(`https://media.tenor.co/videos/8fc6ffea72dc98f67d7d4ea50047461f/mp4`);
+    message.channel.send(`https://tenor.com/view/heavy-flamer-heresy-purge-warhammer40k-lightning-claws-gif-16488791`);
   }
 }
