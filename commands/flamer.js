@@ -1,6 +1,6 @@
 module.exports = {
   name: 'flamer',
-  description: 'sends gif',
+  description: 'sends gif, yeah',
   usage: '',
   args: false,
   execute(message, args) {
