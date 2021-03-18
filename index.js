@@ -78,7 +78,7 @@ client.on('message', message => {
 })
 
 client.on('guildMemberAdd', member => {
-    member.guild.channels.get('channelID').send("Welcome");
+    member.guild.channels.cache.get('channelID').send("Welcome");
 });
 
 var options = {
