@@ -82,7 +82,7 @@ client.on('guildMemberAdd', member => {
   member.send(`Royal Colonial Guard has a Code of Conduct which we expect all of our members to adhere to.\n\n1 - HONOR AND RESPECT:\nWe are a casual and friendly group, so be respectful of others in game and in Discord.  All members of this server will have their Discord nickname matching their in game CMDR name.\n\n2 - OPEN, PRIVATE GROUP (PG), or SOLO:\nWhile the Guard has no rules dictating the use of Solo and PG game modes, Power Play should be done in OPEN.\n\n3 - COMBAT LOGGING:\nCombat logging as described here: https://elite-dangerous.fandom.com/wiki/Combat_Logging, and use of cheats are not allowed.\n\n4 - GUESTS FROM OTHER SQUADRONS:\nIf you are a member of another in-game squadron or group, soliciting current Guard members to change or join other squadrons is prohibited.\n\n5 - BACKGROUND SIMULATION (BGS):\nWhile there is no obligation to contribute, concentrated work against our PMF is not allowed. This includes killing clean Aisling's Guardian NPCs.  If you are unsure on how your actions may affect our efforts please ask in the appropriate channels.\n\nWhen you're in our in game Squadron, you are wearing our [TRCG] badge, you are representing the entire group!  We do not gank other players.  If we engage, it is strictly on a powerplay and BGS basis.`)
 });
 client.on('guildMemberRemove', member => {
-  client.channels.cache.get(`821961477929959454`).send(`Goodbye **${member.user.username}** :(\nUsers pfp: https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`)
+  client.channels.cache.get(`821961477929959454`).send(`Goodbye **${member.user.username}** :(\nUser's pfp: https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`)
 });
 
 var options = {
