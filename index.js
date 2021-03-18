@@ -11,8 +11,6 @@ require('dotenv').config();
 
 const moment = require('moment-timezone');
 
-db.set("powerplayReminder", `not said`).then(() => {});
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -155,6 +153,10 @@ setInterval(() => {
     let powerplayReminder = value
     if (currentDay === `Wednesday` && powerplayReminder === `not said`) {
       client.channels.cache.get(`715038247964639282`).send(`Reminder that today is the last day to get your merits before the powerplay tick!`)
+      db.set("powerplayReminder", `said`).then(() => {})
+    } else if (currentDay === `Thursday` && powerplayReminder === `said`) {
+      client.channels.cache.get(`715038247964639282`).send(`The powerplay tick should now be in progress! The galaxy will be offline for aprox. 15 mins, enjoy your prismatics when it comes back online!`)
+      db.set("powerplayReminder", `not said`).then(() => {})
     }
   });
 }, 60000)
