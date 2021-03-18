@@ -77,6 +77,9 @@ client.on('message', message => {
   }
 })
 
+client.on('guildMemberAdd', member => {
+    member.guild.channels.get('channelID').send("Welcome");
+});
 
 var options = {
   host: 'elitebgs.app',
