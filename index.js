@@ -9,7 +9,9 @@ var nconf = require('nconf');
 const fs = require('fs');
 require('dotenv').config();
 
-const moment = require('moment');
+const moment = require('moment-timezone');
+
+db.set("powerplayReminder", `not said`).then(() => {});
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -148,7 +150,13 @@ setInterval(() => {
       }
     });
   });
-
+  let currentDay = moment.tz('America/Los_Angeles').format('dddd')
+  db.get("powerplayReminder").then( value => {
+    let powerplayReminder = value
+    if (currentDay === `Wednesday` && powerplayReminder === `not said`) {
+      client.channels.cache.get(`715038247964639282`).send(`Reminder that today is the last day to get your merits before the powerplay tick!`)
+    }
+  });
 }, 60000)
 
 https.get(options, function(res) {
