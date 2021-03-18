@@ -155,7 +155,7 @@ setInterval(() => {
       }
     });
   });
-  let currentDay = moment.tz('America/Denver').format('dddd')
+  let currentDay = moment.tz('America/Los_Angeles').format('dddd')
   db.get("powerplayReminder").then( value => {
     let powerplayReminder = value
     if (currentDay === `Wednesday` && powerplayReminder === `not said`) {
