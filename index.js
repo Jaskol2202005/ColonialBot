@@ -81,7 +81,7 @@ client.on('guildMemberAdd', member => {
   member.guild.channels.cache.get(`708839430307184756`).send(`Welcome!`)
 });
 client.on('guildMemberRemove', memeber => {
-  client.channels.find('log_channel').send(`Goodbye :(`);
+  client.channels.get('log_channel').send(`Goodbye :(`);
 });
 
 var options = {
