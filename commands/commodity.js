@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'edsm',
-  description: 'links to edsm homepage',
+  name: 'commodity',
+  description: 'finds commodity prices and locationsa',
   usage: '',
   args: false,
   execute(message, args) {
