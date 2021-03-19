@@ -23,7 +23,6 @@ module.exports = {
 
       res.on('end', function() {
         if (res.statusCode === 200) {
-          db.set("errorStatus", 0).then(() => {});
           try {
             var data = JSON.parse(json);
             console.log(data);
