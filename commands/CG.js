@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 module.exports = {
-  name: 'CG',
+  name: 'cg',
   description: 'Returns details of ongoing or recently finished community goals as are recorded on Inara.',
   usage: '',
   args: false,
