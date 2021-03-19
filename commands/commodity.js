@@ -1,3 +1,5 @@
+const https = require('https');
+
 module.exports = {
   name: 'commodity',
   description: 'finds commodity prices and locationsa',
