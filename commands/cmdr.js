@@ -1,4 +1,3 @@
-const https = require('https');
 const nconf = require('nconf');
 const axios = require('axios');
 
