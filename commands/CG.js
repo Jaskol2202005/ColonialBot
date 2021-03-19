@@ -24,7 +24,7 @@ module.exports = {
       ]
     })
     .then(function (response) {
-      console.log(response.data);
+      console.log(response.data.events[0]);
     })
     .catch(function (error) {
       console.log(error);
