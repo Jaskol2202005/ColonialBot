@@ -11,8 +11,8 @@ module.exports = {
       let mention = message.mentions.members.first()
       db.get(`snickers${mention}`).then(value => {
         let currentSnickers = value
-        db.set(`snickers${mention}`, currentSnickers++)
-        message.channel.send(`You gave ${mention} a Snickers!\nThey now have ${currentSnickers++} Snickers!`)
+        db.set(`snickers${mention}`, currentSnickers + 1)
+        message.channel.send(`You gave ${mention} a Snickers!\nThey now have ${currentSnickers + 1} Snickers!`)
       })
     } else {
       message.channel.send(`Please mention the person you would like to thank`)
