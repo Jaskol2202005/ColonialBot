@@ -1,3 +1,6 @@
+const Database = require("@replit/database");
+const db = new Database();
+
 module.exports = {
   name: 'thanks',
   description: 'thank someone, and give them a snickers',
