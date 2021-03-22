@@ -10,7 +10,7 @@ module.exports = {
     if (message.mentions.members.size) {
       let mention = message.mentions.members.first()
       console.log(mention);
-      if (mention === message.author.id) {
+      if (mention.user.id === message.author.id) {
         message.reply(`You can't thank yourself dummy`)
       } else {
         db.get(`snickers${mention}`).then(value => {
