@@ -15,7 +15,7 @@ module.exports = {
         message.channel.send(`You gave ${mention} a Snickers!\nThey now have ${currentSnickers + 1} Snickers!`)
       })
     } else {
-      message.channel.send(`Please mention the person you would like to thank`)
+      message.channel.reply(`Please mention the person you would like to thank`)
     }
   }
 }
