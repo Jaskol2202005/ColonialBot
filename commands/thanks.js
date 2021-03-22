@@ -9,11 +9,15 @@ module.exports = {
   execute(message, args) {
     if (message.mentions.members.size) {
       let mention = message.mentions.members.first()
-      db.get(`snickers${mention}`).then(value => {
-        let currentSnickers = value
-        db.set(`snickers${mention}`, currentSnickers + 1)
-        message.channel.send(`You gave ${mention} a Snickers!\nThey now have ${currentSnickers + 1} Snickers!`)
-      })
+      if (mention === `<@${message.user.id}>`) {
+        message.reply(`You can't thank yourself dummy`)
+      } else {
+        db.get(`snickers${mention}`).then(value => {
+          let currentSnickers = value
+          db.set(`snickers${mention}`, currentSnickers + 1)
+          message.channel.send(`You gave ${mention} a Snickers!\nThey now have ${currentSnickers + 1} Snickers!`)
+        })
+      }  
     } else {
       message.channel.reply(`Please mention the person you would like to thank`)
     }
