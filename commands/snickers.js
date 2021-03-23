@@ -5,7 +5,7 @@ module.exports = {
   name: 'snickers',
   description: 'check how many snickers someone has',
   usage: '@<whoever you want to check>',
-  args: true,
+  args: false,
   execute(message, args) {
     if (message.mentions.members.size) {
       let mention = message.mentions.members.first()
@@ -14,7 +14,11 @@ module.exports = {
         message.channel.send(`${mention} has ${currentSnickers} Snickers`)
       })
     } else {
-      message.channel.reply(`Please mention the person you would like to check`)
+      let author = message.author.id
+      db.get(`snickers${author}`).then(value => {
+        let currentSnickers = value
+        message.channel.send(`${mention} has ${currentSnickers} Snickers`)
+      })
     }
   }
 }
