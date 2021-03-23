@@ -3,7 +3,7 @@ const db = new Database();
 
 module.exports = {
   name: 'thank',
-  cooldown: 30,
+  cooldown: 1800,
   description: 'thank someone, and give them a snickers',
   usage: '@<whoever you want to thank>',
   args: true,
