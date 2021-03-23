@@ -3,6 +3,7 @@ const db = new Database();
 
 module.exports = {
   name: 'eat',
+  cooldown: 20,
   description: 'eat your tressured snickers',
   usage: '',
   args: false,
