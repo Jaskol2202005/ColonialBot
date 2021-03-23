@@ -9,7 +9,6 @@ module.exports = {
   execute(message, args) {
     if (message.mentions.members.size) {
       let mention = message.mentions.members.first()
-      console.log(mention);
       if (mention.user.id === message.author.id) {
         message.reply(`You can't thank yourself dummy`)
       } else {
