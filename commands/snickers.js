@@ -17,7 +17,7 @@ module.exports = {
       let author = message.author.id
       db.get(`snickers${author}`).then(value => {
         let currentSnickers = value
-        message.channel.send(`${author} has ${currentSnickers} Snickers`)
+        message.channel.send(`<@${author}> has ${currentSnickers} Snickers`)
       })
     }
   }
