@@ -3,6 +3,7 @@ const db = new Database();
 
 module.exports = {
   name: 'snickers',
+  cooldown: 20,
   description: 'check how many snickers someone has',
   usage: '@<whoever you want to check>',
   args: false,

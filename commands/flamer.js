@@ -1,5 +1,6 @@
 module.exports = {
   name: 'flamer',
+  cooldown: 10,
   description: 'sends gif, yeah',
   usage: '',
   args: false,

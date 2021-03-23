@@ -1,5 +1,6 @@
 module.exports = {
   name: 'heresy',
+  cooldown: 10,
   description: 'links to the "cease your heresy" gif',
   usage: '',
   args: false,
