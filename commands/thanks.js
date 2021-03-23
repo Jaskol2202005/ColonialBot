@@ -12,9 +12,9 @@ module.exports = {
       if (mention.user.id === message.author.id) {
         message.reply(`You can't thank yourself dummy`)
       } else {
-        db.get(`snickers${mention}`).then(value => {
+        db.get(`snickers${mention.user.id}`).then(value => {
           let currentSnickers = value
-          db.set(`snickers${mention}`, currentSnickers + 1)
+          db.set(`snickers${mention.user.id}`, currentSnickers + 1)
           message.channel.send(`You gave ${mention} a Snickers!\nThey now have ${currentSnickers + 1} Snickers!`)
         })
       }

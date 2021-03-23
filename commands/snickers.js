@@ -9,7 +9,7 @@ module.exports = {
   execute(message, args) {
     if (message.mentions.members.size) {
       let mention = message.mentions.members.first()
-      db.get(`snickers${mention}`).then(value => {
+      db.get(`snickers${mention.user.id}`).then(value => {
         let currentSnickers = value
         message.channel.send(`${mention} has ${currentSnickers} Snickers`)
       })
