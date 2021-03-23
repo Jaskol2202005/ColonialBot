@@ -7,7 +7,7 @@ module.exports = {
   usage: '@<whoever you want to check>',
   args: false,
   execute(message, args) {
-    if (message.mentions.members.size) {
+    if (message.mentions.members.first()) {
       let mention = message.mentions.members.first()
       db.get(`snickers${mention.user.id}`).then(value => {
         let currentSnickers = value
