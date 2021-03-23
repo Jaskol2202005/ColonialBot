@@ -51,6 +51,15 @@ client.on('message', message => {
     });
   });
 
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
+  const commandName = args.shift().toLowerCase();
+
+  if (!client.commands.has(commandName)) return;
+
+  const command = client.commands.get(commandName);
+
   const { cooldowns } = client;
 
   if (!cooldowns.has(command.name)) {
@@ -72,15 +81,6 @@ client.on('message', message => {
   }
   timestamps.set(message.author.id, now);
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-  const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
-  const commandName = args.shift().toLowerCase();
-
-  if (!client.commands.has(commandName)) return;
-
-  const command = client.commands.get(commandName);
 
   if (command.args && !args.length) {
     let reply = `You didn't provide any arguments, ${message.author}!`
