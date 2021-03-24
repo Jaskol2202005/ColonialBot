@@ -247,7 +247,6 @@ x.registerListener(function(val) {
   });
 });
 
-setInterval(() => {
   (async () => {
     let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
     console.log(feed);
@@ -256,8 +255,7 @@ setInterval(() => {
         let reply = `New Galnet news article!\n\n**${feed.items[i].title}**\nPublished: **${feed.items[i].pubDate}**\n${feed.items[i].content}`
         client.channels.cache.get(`708839430307184756`).send(reply)
     }
-  })();
-}, 600000);
+  });
 
 const http = require('http');
 const server = http.createServer((req, res) => {
