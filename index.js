@@ -134,6 +134,7 @@ x = {
   }
 }
 
+let i = 1
 setInterval(() => {
   console.log(`tick check`, i++);
   https.get(options, function(res) {
@@ -252,10 +253,8 @@ setInterval(() => {
     console.log(feed);
     let currentDate = moment()
     for (var i = 0; i < feed.items.length; i++) {
-      if (feed.items[i].isoDate > currentDate.subtract(10, `minutes`)) {
         let reply = `New Galnet news article!\n\n**${feed.items[i].title}**\nPublished: **${feed.items[i].pubDate}**\n${feed.items[i].content}`
         client.channels.cache.get(`708839430307184756`).send(reply)
-      }
     }
   })();
 }, 600000);
