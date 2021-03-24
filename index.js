@@ -16,6 +16,9 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 
+let Parser = require('rss-parser');
+let parser = new Parser();
+
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
@@ -243,6 +246,11 @@ x.registerListener(function(val) {
   }
   });
 });
+
+(async () => {
+  let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
+  console.log(feed);
+})();
 
 const http = require('http');
 const server = http.createServer((req, res) => {
