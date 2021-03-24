@@ -250,10 +250,7 @@ x.registerListener(function(val) {
 (async () => {
   let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
   console.log(feed);
-  let currentDate = moment()
-  let reply = `New Galnet news article!\n\n****`
-  client.channels.cache.get(`708839430307184756`).send(reply)
-});
+})();
 
 const http = require('http');
 const server = http.createServer((req, res) => {
