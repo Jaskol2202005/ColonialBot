@@ -250,6 +250,10 @@ x.registerListener(function(val) {
 (async () => {
   let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
   console.log(feed);
+  for (var i = 0; i < feed.items.length; i++) {
+    let reply = `**New Galnet Article!**\n\n**${feed.items[i].title}**\nPublished: **${feed.items[i].pubDate}**\n${feed.items[i].content}`
+    client.channels.cache.get(`708839430307184756`).send(reply)
+  }
 })();
 
 const http = require('http');
