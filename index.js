@@ -251,7 +251,7 @@ x.registerListener(function(val) {
     let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
     console.log(feed);
     let currentDate = moment()
-      let reply = `New Galnet news article!\n\n**${feed.items[0].title}**\nPublished: **${feed.items[0].pubDate}**\n${feed.items[0].content}`
+      let reply = `New Galnet news article!\n\n**${feed.items[0].title}**`
       client.channels.cache.get(`708839430307184756`).send(reply)
   });
 
