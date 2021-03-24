@@ -252,7 +252,7 @@ x.registerListener(function(val) {
   console.log(feed);
   for (var i = 0; i < feed.items.length; i++) {
     let reply = `---------------------------------------------------------------------\n**New Galnet Article!**\n\n**${feed.items[i].title}**\nPublished: **${feed.items[i].pubDate}**\n\n${feed.items[i].content}`
-    reply = reply.replaceAll(/<br [/>]/g, `\n`)
+    reply = reply.replace(/<br [/>]/g, `\n`)
     client.channels.cache.get(`708839430307184756`).send(reply)
   }
 })();
