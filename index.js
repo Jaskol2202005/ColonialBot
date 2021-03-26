@@ -259,6 +259,8 @@ x.registerListener(function(val) {
     db.get("feeded").then(value => {
       let feeded = value
       console.log(feeded);
+      console.log(`-----------------------break---------------------------`);
+      console.log(content);
     })
   })();
 
