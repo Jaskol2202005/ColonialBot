@@ -256,13 +256,11 @@ x.registerListener(function(val) {
       content.push(feed[i].contentSnippet)
     }
     db.set("feeded", content)
-    db.get("feeded").then(value => {
-      let feeded = value
-      console.log(feeded);
-      console.log(`-----------------------break---------------------------`);
-      console.log(content);
-    })
   })();
+  db.get("feeded").then(value => {
+    let feeded = value
+    console.log(feeded);
+  })
 
 const http = require('http');
 const server = http.createServer((req, res) => {
