@@ -268,7 +268,7 @@ x.registerListener(function(val) {
       }
       console.log(contented);
     })
-  })
+  }, 4000)
 
 const http = require('http');
 const server = http.createServer((req, res) => {
