@@ -250,6 +250,7 @@ x.registerListener(function(val) {
 setInterval(() => {
   (async () => {
     let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
+    db.set("feeded", feed);
     for (var i = 0; i < feed.items.length; i++) {
       db.get("feeded").then(value => {
         let feeded = value
@@ -260,7 +261,7 @@ setInterval(() => {
         }
       })
     }
-    db.set("feeded", feed);
+
   })();
 }, 600000)
 
