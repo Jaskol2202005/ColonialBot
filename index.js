@@ -247,14 +247,27 @@ x.registerListener(function(val) {
   });
 });
 
-setInterval(() => {
   (async () => {
     let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
     feed.items.pop(1)
-    console.log(feed);
-    db.set("feeded", feed)
+    db.set("feed", feed.items)
   })();
-}, 600000)
+  db.get("feed").then(value => {
+    let feed = value
+    let content = []
+    for (var i = 0; i < feed.length; i++) {
+      content.push(feed[i].contentSnippet)
+    }
+    console.log(content);
+    db.get("feeded").then(value => {
+      let feeded = value
+      let contented = []
+      for (var i = 0; i < feeded.length; i++) {
+        contented.push(feeded[i].contentSnippet)
+      }
+      console.log(contented);
+    })
+  })
 
 const http = require('http');
 const server = http.createServer((req, res) => {
