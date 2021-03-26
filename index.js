@@ -255,14 +255,14 @@ x.registerListener(function(val) {
     db.set("feed", feed.items)
     let content = []
     for (var i = 0; i < feed.length; i++) {
-      content.push(feed[i].contentSnippet)
+      content.push(`{${feed[i].contentSnippet}}`)
     }
     console.log(content);
     db.get("feeded").then(value => {
       let feeded = value
       let contented = []
       for (var i = 0; i < feeded.length; i++) {
-        contented.push(feeded[i].contentSnippet)
+        contented.push(`{${feeded[i].contentSnippet}}`)
       }
       console.log(contented);
     })
