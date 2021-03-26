@@ -254,6 +254,7 @@ x.registerListener(function(val) {
   })();
   db.get("feed").then(value => {
     let feed = value
+    console.log(feed);
     let content = []
     for (var i = 0; i < feed.length; i++) {
       content.push(feed[i].contentSnippet)
