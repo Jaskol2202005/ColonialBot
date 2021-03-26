@@ -260,7 +260,7 @@ x.registerListener(function(val) {
       let feeded = value
       console.log(feeded);
     })
-    db.set("feeded", content)
+    db.set("feeded", feed)
   })();
 
 const http = require('http');
