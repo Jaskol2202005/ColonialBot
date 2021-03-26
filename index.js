@@ -266,7 +266,7 @@ x.registerListener(function(val) {
       }
       console.log(contented);
     })
-    db.set("feeded", feed)
+    db.set("feeded", content)
   })();
 
 const http = require('http');
