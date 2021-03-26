@@ -250,11 +250,11 @@ x.registerListener(function(val) {
   (async () => {
     let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
     feed.items.pop(1)
+    console.log(feed.items);
     db.set("feed", feed.items)
   })();
   db.get("feed").then(value => {
     let feed = value
-    console.log(feed);
     let content = []
     for (var i = 0; i < feed.length; i++) {
       content.push(feed[i].contentSnippet)
