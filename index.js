@@ -250,16 +250,17 @@ x.registerListener(function(val) {
 setInterval(() => {
   (async () => {
     let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
-    db.set("feeded", feed);
     for (var i = 0; i < feed.items.length; i++) {
       db.get("feeded").then(value => {
         let feeded = value
-        if (!feeded.includes(feed.items[i])) {
+        let pos = feeded.items.indexOf(feed.items[i])
+        if (pos > -1) {
           let reply = `---------------------------------------------------------------------\n**New Galnet Article!**\n\n**${feed.items[i].title}**\nPublished: **${feed.items[i].pubDate.slice(0, -6)}**\n\n${feed.items[i].content}\n\nArticle Link: https://community.elitedangerous.com/galnet/uid/${feed.items[i].guid}`
           reply = reply.replace(/<br [/]>/g, ``)
           client.channels.cache.get(`708839430307184756`).send(reply)
         }
       })
+      db.set("feeded", feed);
     }
 
   })();
