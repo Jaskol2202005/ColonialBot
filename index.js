@@ -259,11 +259,7 @@ x.registerListener(function(val) {
     console.log(content[0]);
     db.get("feeded").then(value => {
       let feeded = value
-      let contented = []
-      for (var i = 0; i < feeded.length; i++) {
-        contented.push(feeded[i].contentSnippet)
-      }
-      console.log(contented);
+      console.log(feeded);
     })
     db.set("feeded", content)
   })();
