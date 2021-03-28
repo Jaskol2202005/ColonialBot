@@ -35,9 +35,9 @@ client.once('ready', () => {
   client.user.setActivity('feds die', { type: "LISTENING" })
   client.api.applications(client.user.id).commands.post({
     data: {
-      name: "operations",
-      description: "Links to the fuelrat website",
-      options: []
+      name: "fuel",
+      description: "Links to the fuelrat website"
+    }
   });
 });
 
