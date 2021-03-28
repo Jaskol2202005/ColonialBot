@@ -33,6 +33,26 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "thanks",
+      description: "Thank someone in the server",
+      options: [
+        {
+          name: "user",
+          description: "User you want to thank",
+          type: 6,
+          required: true
+        },
+        {
+          name: "message",
+          description: "message you'd like to thank the user with",
+          type: 3,
+          required: false
+        }
+      ]
+    }
+  });
 });
 
 client.login(process.env.token);
@@ -44,8 +64,6 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
   const args = interaction.data.options
   const command = client.commands.get(commandName);
 
-  console.log(commandName);
-  console.log(command);
   try {
     command.execute(interaction, args, client);
   } catch (error) {
