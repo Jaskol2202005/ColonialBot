@@ -43,6 +43,13 @@ client.once('ready', () => {
 
 client.login(process.env.token);
 
+client.ws.on('INTERACTION_CREATE', async interaction => {
+  console.log(interaction);
+  const command = interaction.data.name.toLowerCase();
+  const args = interaction.data.options.toLowerCase();
+
+});
+
 client.on('message', message => {
   console.log(message.content);
   db.get("ignoreList").then(value => {
