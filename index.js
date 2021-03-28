@@ -271,9 +271,6 @@ const server = http.createServer((req, res) => {
 });
 server.listen(3000);
 
-import requests
-
-
 url = "https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands"
 
 json = {
@@ -313,4 +310,4 @@ headers = {
     "Authorization": `Bot ${process.env.token}`
 }
 
-r = requests.post(url, headers=headers, json=json)
+r = axios.post(url, headers=headers, json=json)
