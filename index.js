@@ -45,9 +45,16 @@ client.login(process.env.token);
 
 client.ws.on('INTERACTION_CREATE', async interaction => {
   console.log(interaction);
-  const command = interaction.data.name.toLowerCase();
-  const args = interaction.data.options.toLowerCase();
-
+  const commandName = interaction.data.name.toLowerCase();
+  let args = []
+  if (interactions.data.options) {
+    const raw = interaction.data.options  
+    for (var i = 0; i < raw.length; i++) {
+      args.push(raw[i].toLowerCase())
+    }
+  }
+  console.log(`commandName: ${commandName}`);
+  console.log(`args: ${args}`);
 });
 
 client.on('message', message => {
