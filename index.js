@@ -271,7 +271,7 @@ const server = http.createServer((req, res) => {
 });
 server.listen(3000);
 
-axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands`, `header`={
+axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands`, headers={
   "Authorization": `${process.env.token}`
 }, json={
   "name": "fuel",
