@@ -55,7 +55,14 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
     command.execute(interaction, args)
   } catch (error) {
     console.error(error);
-    message.reply('There was an error trying to execute that command!');
+    client.api.interactions(interaction.id, interaction.token).callback.post({
+      data: {
+        type: 4,
+        data: {
+          content: "An error occured trying to execute this command"
+        }
+      }
+    })
   }
 });
 
