@@ -281,7 +281,7 @@ json = {
             "name": "animal",
             "description": "The type of animal",
             "type": 3,
-            "required": True,
+            "required": true,
             "choices": [
                 {
                     "name": "Dog",
