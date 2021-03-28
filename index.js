@@ -35,7 +35,7 @@ client.once('ready', () => {
   client.user.setActivity('feds die', { type: "LISTENING" })
   client.api.applications(client.user.id).commands.post({
     data: {
-      name: "thanks",
+      name: "thank",
       description: "Thank someone in the server",
       options: [
         {
