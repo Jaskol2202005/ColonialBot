@@ -271,13 +271,14 @@ const server = http.createServer((req, res) => {
 });
 server.listen(3000);
 
-axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands`, headers={
-  Authorization: `${process.env.token}`
-}, json={
-  name: "fuel",
-  description: "links to the fuelrat website",
-  options: []
-})
-.then(function (response) {
-  console.log(response);
+let token = process.env.token
+
+axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands`, {
+  headers: {
+    Authorization: `${token}`
+  }, json: {
+    name: "fuel",
+    description: "links to the fuelrat website",
+    options: []
+  }
 })
