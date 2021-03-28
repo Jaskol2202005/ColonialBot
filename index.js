@@ -48,8 +48,9 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
 
   const commandName = interaction.data.name.toLowerCase();
   const args = interaction.data.options
-
   const command = client.commands.get(commandName);
+
+  console.log(commandName);
   console.log(command);
 
   try {
