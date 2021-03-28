@@ -44,6 +44,7 @@ client.once('ready', () => {
 client.login(process.env.token);
 
 client.ws.on('INTERACTION_CREATE', async interaction => {
+  console.log(interaction.data.options);
   const commandName = interaction.data.name.toLowerCase();
   let args = []
   if (interaction.data.options) {
