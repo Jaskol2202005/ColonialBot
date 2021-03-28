@@ -50,6 +50,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
   const args = interaction.data.options
 
   const command = client.commands.get(commandName);
+  console.log(command);
 
   try {
     command.execute(interaction, args)
