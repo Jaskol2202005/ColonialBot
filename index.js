@@ -45,8 +45,18 @@ client.login(process.env.token);
 
 client.ws.on('INTERACTION_CREATE', async interaction => {
   console.log(interaction);
+
   const commandName = interaction.data.name.toLowerCase();
   const args = interaction.data.options
+
+  const command = client.commands.get(commandName);
+
+  try {
+    command.execute(interaction, args)
+  } catch (error) {
+    console.error(error);
+    message.reply('There was an error trying to execute that command!');
+  }
 });
 
 client.on('message', message => {
