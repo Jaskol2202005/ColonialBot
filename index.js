@@ -275,7 +275,7 @@ let token = process.env.token
 
 axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands`, {
   headers: {
-    Authorization: `${token}`
+    Authorization: `Bot ${token}`
   }, json: {
     name: "fuel",
     description: "links to the fuelrat website",
