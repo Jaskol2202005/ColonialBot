@@ -33,7 +33,7 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).guilds(708839430307184753).commands.post({
+  client.api.applications(client.user.id).guilds(`708839430307184753`).commands.post({
     data: {
       name: "fuel",
       description: "links to the fuelrat website"
