@@ -44,11 +44,10 @@ client.once('ready', () => {
 client.login(process.env.token);
 
 client.ws.on('INTERACTION_CREATE', async interaction => {
-  console.log(interaction);
   const commandName = interaction.data.name.toLowerCase();
   let args = []
   if (interactions.data.options) {
-    const raw = interaction.data.options  
+    const raw = interaction.data.options
     for (var i = 0; i < raw.length; i++) {
       args.push(raw[i].toLowerCase())
     }
