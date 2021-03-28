@@ -33,44 +33,11 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).guilds(`708839430307184753`).commands.delete({
+  client.api.applications(client.user.id).commands.post({
     data: {
       name: "operations",
-      description: "Allows you to modify the operations list",
-      options: [
-        {
-          name: "add",
-          description: "Add an operation to the list",
-          type: 1,
-          options: [
-            {
-              name: "operation",
-              description: "The operation to add",
-              type: 3,
-              required: true
-            }
-          ]
-        },
-        {
-          name: "remove",
-          description: "Remove an operation from the list",
-          type: 1,
-          options: [
-            {
-              name: "operation",
-              description: "The operation to remove",
-              type: 3,
-              required: true
-            }
-          ]
-        },
-        {
-          name: "clear",
-          description: "Clears the command list",
-          type: 1
-        }
-      ]
-    }
+      description: "Links to the fuelrat website",
+      options: []
   });
 });
 
