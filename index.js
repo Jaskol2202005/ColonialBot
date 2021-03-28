@@ -52,9 +52,9 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
 
   console.log(commandName);
   console.log(command);
-
+  command.execute(interaction, args);
   try {
-    command.execute(interaction, args)
+
   } catch (error) {
     console.error(error);
     client.api.interactions(interaction.id, interaction.token).callback.post({
