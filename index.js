@@ -271,14 +271,46 @@ const server = http.createServer((req, res) => {
 });
 server.listen(3000);
 
-let token = process.env.token
+import requests
 
-axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands`, {
-  headers: {
-    Authorization: `Bot ${token}`
-  }, json: {
-    name: "fuel",
-    description: "links to the fuelrat website",
-    options: []
-  }
-})
+
+url = "https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands"
+
+json = {
+    "name": "blep",
+    "description": "Send a random adorable animal photo",
+    "options": [
+        {
+            "name": "animal",
+            "description": "The type of animal",
+            "type": 3,
+            "required": True,
+            "choices": [
+                {
+                    "name": "Dog",
+                    "value": "animal_dog"
+                },
+                {
+                    "name": "Cat",
+                    "value": "animal_cat"
+                },
+                {
+                    "name": "Penguin",
+                    "value": "animal_penguin"
+                }
+            ]
+        },
+        {
+            "name": "only_smol",
+            "description": "Whether to show only baby animals",
+            "type": 5,
+            "required": False
+        }
+    ]
+}
+
+headers = {
+    "Authorization": `Bot ${process.env.token}`
+}
+
+r = requests.post(url, headers=headers, json=json)
