@@ -278,3 +278,6 @@ axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/70
   "description": "links to the fuelrat website",
   "options": []
 })
+.then(function (response) {
+  console.log(response);
+})
