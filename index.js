@@ -301,7 +301,7 @@ json = {
             "name": "only_smol",
             "description": "Whether to show only baby animals",
             "type": 5,
-            "required": False
+            "required": false
         }
     ]
 }
