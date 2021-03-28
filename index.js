@@ -11,6 +11,8 @@ require('dotenv').config();
 
 const moment = require('moment-timezone');
 
+const axios = require('axios');
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
