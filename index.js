@@ -51,6 +51,11 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
     const raw = interaction.data.options
     for (var i = 0; i < raw.length; i++) {
       args.push(raw[i].name.toLowerCase())
+      if (raw[i].options) {
+        for (var i = 0; i < raw[i].options.length; i++) {
+          args.push(raw.options[i].name.toLowerCase)
+        }
+      }
     }
   }
   console.log(`commandName: ${commandName}`);
