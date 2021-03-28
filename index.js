@@ -72,45 +72,6 @@ client.once('ready', () => {
       ]
     }
   });
-  client.api.applications(client.user.id).commands.post({
-    data: {
-      name: "operations",
-      description: "Allows you to modify the operations list",
-      options: [
-        {
-          name: "add",
-          description: "Add an operation to the list",
-          type: 1,
-          options: [
-            {
-              name: "operation",
-              description: "The operation to add",
-              type: 3,
-              required: true
-            }
-          ]
-        },
-        {
-          name: "remove",
-          description: "Remove an operation from the list",
-          type: 1,
-          options: [
-            {
-              name: "operation",
-              description: "The operation to remove",
-              type: 3,
-              required: true
-            }
-          ]
-        },
-        {
-          name: "clear",
-          description: "Clears the command list",
-          type: 1
-        }
-      ]
-    }
-  });
 });
 
 client.login(process.env.token);
