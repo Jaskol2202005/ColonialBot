@@ -271,9 +271,9 @@ const server = http.createServer((req, res) => {
 });
 server.listen(3000);
 
-axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands`, {
+axios.post(`https://discord.com/api/v8/applications/793349157720555570/guilds/708839430307184753/commands`, `header`={
   "Authorization": `${process.env.token}`
-}, {
+}, json={
   "name": "fuel",
   "description": "links to the fuelrat website",
   "options": []
