@@ -33,7 +33,7 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).commands(`825940355547004929`).edit({
+  client.api.applications(client.user.id).commands(`825940355547004929`).post({
     data: {
       name: "authorization",
       description: "Modify the authorization list",
