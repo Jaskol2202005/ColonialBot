@@ -5,62 +5,92 @@ module.exports = {
   name: 'operations',
   description: 'add or remove operations from the database, used to delete opsec breaches',
   usage: 'add|remove|clear <thing you want to censor>',
-  args: false,
-  execute(message, args) {
+  execute(interaction, args, client) {
     db.get("ignoreList").then(value => {
-      let pos9000 = value.indexOf(message.channel.id)
+      let pos9000 = value.indexOf(interaction.channel_id)
       if (pos9000 !== -1) {
       db.get("authorizedUsers").then(value => {
-        let position = value.indexOf(message.author.id)
+        let position = value.indexOf(interaction.member.user.id)
         if (position !== -1) {
         db.get("currentOperations").then(value => {
           let currentOperations = value
-          if (args[0] === `add`) {
-            args.shift()
-            let nextOperation = ''
-            for (var i = 0; i < args.length; i++) {
-              nextOperation += `${args[i]} `
+          if (args[0].name === `add`) {
+            let nextOperation = args[0].options[0].value
+
+            let pos1 = currentOperations.indexOf(nextOperation);
+
+            if (pos1 > -1) {
+              client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content: "This operation is already in the database"
+                  }
+                }
+              })
+              return;
             }
-              var edittedOperation = nextOperation.slice(0, -1);
 
-              let pos1 = currentOperations.indexOf(edittedOperation);
+            let newOperations = currentOperations.push(nextOperation)
 
-              if (pos1 > -1) {
-                message.channel.send(`This operation is already in the database`)
-                return;
+            db.set("currentOperations", currentOperations).then(() => {});
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content: "Operation added successfully"
+                }
               }
+            })
+          } else if (args[0].name === `remove`) {
+            let removedOperation = args[0].options[0].value
 
-              let newOperations = currentOperations.push(edittedOperation)
-
-              db.set("currentOperations", currentOperations).then(() => {});
-              message.channel.send(`Operation added successfully`)
-          } else if (args[0] === `remove`) {
-            args.shift()
-            let removedOperation = ''
-            for (var i = 0; i < args.length; i++) {
-              removedOperation += `${args[i]} `
-            }
-
-            var edittedOperation = removedOperation.slice(0, -1);
-
-            let pos1 = currentOperations.indexOf(`${edittedOperation}`)
+            let pos1 = currentOperations.indexOf(removedOperation)
 
             if (pos1 === -1) {
-              message.channel.send(`Couldn't find this operation in the database`);
+              client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content: "Couldn't find this operation in the database"
+                  }
+                }
+              })
               return;
             }
 
             currentOperations.splice(pos1, 1)
 
             db.set("currentOperations", currentOperations).then(() => {});
-            message.channel.send(`Operation removed successfully`)
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content: "Operation removed successfully"
+                }
+              }
+            })
           } else if (args[0] === `clear`) {
             if (currentOperations.length === 0) {
-              message.reply(`Database is already empty!`)
+              client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content: "Database is already empty!"
+                  }
+                }
+              })
             } else {
               let clear = []
               db.set("currentOperations", clear).then(() => {});
-              message.channel.send(`Operations cleared successfully`)
+              client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content: "Operations cleared successfully"
+                  }
+                }
+              })
             }
           } else if (args.length === 0) {
             let reply = 'Current operations:'
@@ -72,7 +102,14 @@ module.exports = {
                 reply += `\n**${currentOperationsUpperCase}**`
               }
             }
-            message.channel.send(reply)
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content: reply
+                }
+              }
+            })
           }
         });
         } else if (args.length === 0) {
@@ -87,14 +124,35 @@ module.exports = {
                 reply += `\n**${currentOperationsUpperCase}**`
               }
             }
-            message.channel.send(reply)
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content: reply
+                }
+              }
+            })
           });
         } else {
-          message.reply(`You aren't authorized to use this command!`)
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: "You aren't authorized to use this command!"
+              }
+            }
+          })
         }
       });
       } else {
-        message.reply(`You aren't authorized to use this command!`)
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: "You aren't authorized to use this command!"
+            }
+          }
+        })
       }
     });
   }
