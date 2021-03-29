@@ -9,10 +9,10 @@ module.exports = {
     db.get("authorizedUsers").then(value => {
     let authorizedUsers = value
 
-    let pos = authorizedUsers.indexOf(interaction.member.user.id)
+    let pos = authorizedUsers.indexOf(interaction.member.users.id)
     if (pos > -1) {
       if (args[0].name === `add` && args.length > 1) {
-        let newAuth = interaction.data.resolved.user.id
+        let newAuth = interaction.data.resolved.users.id
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 > -1) {
@@ -38,7 +38,7 @@ module.exports = {
           })
         }
       } else if (args[0].name === `remove` && args.length > 1) {
-        let newAuth = interaction.data.resolved.user.id
+        let newAuth = interaction.data.resolved.users.id
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 === -1) {
@@ -64,7 +64,7 @@ module.exports = {
           })
         }
       } else {
-        let newAuth = interaction.data.resolved.user.id
+        let newAuth = interaction.data.resolved.users.id
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 > -1) {
