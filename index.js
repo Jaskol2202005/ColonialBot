@@ -33,10 +33,10 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).commands(`825938892724109372`).edit({
+  client.api.applications(client.user.id).commands(`825940355547004929`).edit({
     data: {
-      name: "operations",
-      description: "Modify the operations list",
+      name: "authorization",
+      description: "Modify the authorization list",
       options: [
         {
           name: "add",
@@ -65,15 +65,10 @@ client.once('ready', () => {
           ]
         },
         {
-          name: "clear",
-          description: "Clear the list",
-          type: 1,
-        },
-        {
           name: "user",
           description: "User you'd like to check",
           type: 6,
-          required: true
+          required: false
         }
       ]
     }
