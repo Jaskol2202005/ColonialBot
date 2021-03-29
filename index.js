@@ -40,7 +40,7 @@ client.once('ready', () => {
     process.env.token,
     client.user.id
   )
-  client
+  slash
   .editCommand(
     {
       name: "authorization",
