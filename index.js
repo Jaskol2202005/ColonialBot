@@ -1,6 +1,8 @@
 console.log('Welcome to TRCG Bot');
 console.log('Authenticating...');
 
+const interactions = require('discord-slash-commands-client');
+
 const Database = require("@replit/database");
 const db = new Database();
 
@@ -33,8 +35,14 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).commands.post({
-    data: {
+
+  const slash = new interactions.Client(
+    process.env.token,
+    client.user.id
+  )
+  client
+  .editCommand(
+    {
       name: "authorization",
       description: "Modify the authorization list",
       options: [
@@ -71,8 +79,11 @@ client.once('ready', () => {
           required: false
         }
       ]
-    }
-  });
+    },
+    "826215738506477569"
+  )
+  .then(console.log)
+  .catch(console.error);
 });
 
 client.login(process.env.token);
