@@ -70,7 +70,7 @@ module.exports = {
                 }
               }
             })
-          } else if (args[0] === `clear`) {
+          } else if (args[0].name === `clear`) {
             if (currentOperations.length === 0) {
               client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
