@@ -68,7 +68,7 @@ client.once('ready', () => {
           name: "clear",
           description: "Clear the list",
           type: 1,
-        }
+        },
         {
           name: "user",
           description: "User you'd like to check",
