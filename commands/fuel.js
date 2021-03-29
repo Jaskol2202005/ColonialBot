@@ -1,6 +1,7 @@
 module.exports = {
   name: 'fuel',
   description: 'links to fuelrat website',
+  usage: ``,
   execute(interaction, args, client) {
     client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
