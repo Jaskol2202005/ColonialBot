@@ -68,7 +68,7 @@ client.once('ready', () => {
           name: "user",
           description: "User you'd like to check",
           type: 6,
-          required: true
+          required: false
         }
       ]
     }
