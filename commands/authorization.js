@@ -5,49 +5,97 @@ module.exports = {
   name: 'authorization',
   description: 'add or remove authorized users',
   usage: 'add|remove <@person you want to modify>',
-  args: true,
-  execute(message, args) {
+  execute(interaction, args, client) {
     db.get("authorizedUsers").then(value => {
     let authorizedUsers = value
 
-    let pos = authorizedUsers.indexOf(message.author.id)
+    let pos = authorizedUsers.indexOf(interaction.member.user.id)
     if (pos > -1) {
-      if (args[0] === `add` && args.length > 1) {
-        let newAuth = message.mentions.users.first().id
+      if (args[0].name === `add` && args.length > 1) {
+        let newAuth = interaction.data.resolved.user.id
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 > -1) {
-          message.reply(`This member is already authorized!`)
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: "This member is already authorized!"
+              }
+            }
+          })
         } else {
           authorizedUsers.push(newAuth)
 
           db.set("authorizedUsers", authorizedUsers).then(() => {});
-          message.channel.send(`Full access member added successfully`)
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: "Full access member added successfully"
+              }
+            }
+          })
         }
-      } else if (args[0] === `remove` && args.length > 1) {
-        let newAuth = message.mentions.users.first().id
+      } else if (args[0].name === `remove` && args.length > 1) {
+        let newAuth = interaction.data.resolved.user.id
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 === -1) {
-          message.reply(`This member isn't authorized, can't remove!`)
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: "This member isn't authorized, can't remove!"
+              }
+            }
+          })
         } else {
           authorizedUsers.splice(pos1, 1)
 
           db.set("authorizedUsers", authorizedUsers).then(() => {});
-          message.channel.send(`Full access member removed successfully`)
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: "Full access member removed successfully"
+              }
+            }
+          })
         }
       } else {
-        let newAuth = message.mentions.users.first().id
+        let newAuth = interaction.data.resolved.user.id
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 > -1) {
-          message.channel.send(`This member has full authorization with this bot`)
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: "This member has full authorization with this bot"
+              }
+            }
+          })
         } else {
-          message.channel.send(`This member doesn't have authorization with this bot`)
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: "This member doesn't have authorization with this bot"
+              }
+            }
+          })
         }
       }
     } else {
-      message.reply(`You aren't authorized to use this command!`)
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content: "You aren't authorized to use this command"
+          }
+        }
+      })
     }
   });
   }
