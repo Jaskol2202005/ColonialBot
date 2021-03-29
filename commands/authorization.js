@@ -12,7 +12,7 @@ module.exports = {
     let pos = authorizedUsers.indexOf(interaction.member.user.id)
     if (pos > -1) {
       if (interaction.data.options[0].name === `add`) {
-        let newAuth = interaction.data.resolved.users.id
+        let newAuth = interaction.data.options[0].options[0].value
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 > -1) {
@@ -38,7 +38,7 @@ module.exports = {
           })
         }
       } else if (interaction.data.options[0].name === `remove`) {
-        let newAuth = interaction.data.resolved.users.id
+        let newAuth = interaction.data.options[0].options[0].value
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 === -1) {
@@ -64,7 +64,7 @@ module.exports = {
           })
         }
       } else {
-        let newAuth = interaction.data.resolved.users.id
+        let newAuth = interaction.data.options[0].options[0].value
 
         let pos1 = authorizedUsers.indexOf(newAuth)
         if (pos1 > -1) {
