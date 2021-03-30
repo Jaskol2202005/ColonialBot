@@ -33,6 +33,60 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "merits",
+      description: "lists a quick description on how to earn and maintain merits for powerplay",
+      options: [
+        {
+          name: "delivery",
+          description: "describes how to earn merits by delivery",
+          type: 1
+        },
+        {
+          name: "combat",
+          description: "describes how to earn merits by combat",
+          type: 1
+        },
+        {
+          name: "overview",
+          description: "gives an overview on how to earn merits",
+          type: 1
+        }
+      ]
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "search",
+      description: "does a global search on inara, sends link",
+      options: [
+        {
+          name: "query",
+          description: "thing you want to search inara for",
+          type: 3,
+          required: true
+        }
+      ]
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "welcome",
+      description: "sends welcome message",
+      options: [
+        {
+          name: "commander",
+          description: "commander you want to welcome",
+          type: 6,
+          required: true
+        }
+      ]
+    }
+  });
 });
 
 client.login(process.env.token);
