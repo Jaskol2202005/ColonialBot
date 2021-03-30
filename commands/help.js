@@ -6,19 +6,25 @@ module.exports = {
   name: 'help',
   description: 'lists all commands and usages',
   usage: '',
-  args: false,
-  execute(message, args) {
+  execute(interaction, args, client) {
     const data = [];
-    const { commands } = message.client;
+    const { commands } = client;
 
-    if (!args.length) {
+    if (!args[0]) {
       data.push('Here\'s a list of all my commands:');
       data.push(commands.map(command => command.name).join(', '));
       data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
 
-      return message.channel.send(data, { split: true })
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content: data, { split: true }
+          }
+        }
+      })
     }
-    const name = args[0].toLowerCase();
+    const name = args[0].value.toLowerCase();
     const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
     if (!command) {
@@ -31,6 +37,13 @@ module.exports = {
      if (command.description) data.push(`**Description:** ${command.description}`);
      if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
 
-     message.channel.send(data, { split: true });
+     client.api.interactions(interaction.id, interaction.token).callback.post({
+       data: {
+         type: 4,
+         data: {
+           content: data, { split: true }
+         }
+       }
+     })
   }
 }

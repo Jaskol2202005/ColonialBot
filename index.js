@@ -36,57 +36,68 @@ client.once('ready', () => {
 
   client.api.applications(client.user.id).commands.post({
     data: {
-      name: "t9",
-      description: "links to a video of a t9, really, that's it"
+      name: "cmdr",
+      description: "looks up a commander on inara.cz",
+      options: [
+        {
+          name: "commander",
+          description: "commander you want to look up",
+          type: 3,
+          required: true
+        }
+      ]
     }
   });
 
   client.api.applications(client.user.id).commands.post({
     data: {
-      name: "nearest",
-      description: "links to inara.cz/nearest"
+      name: "eat",
+      description: "eat your tressured snickers"
     }
   });
 
   client.api.applications(client.user.id).commands.post({
     data: {
-      name: "pins",
-      description: "links to pins gif"
+      name: "faction",
+      description: "Looks for faction details",
+      options: [
+        {
+          name: "faction",
+          description: "Faction you want to look up",
+          type: 3,
+          required: true
+        }
+      ]
     }
   });
 
   client.api.applications(client.user.id).commands.post({
     data: {
-      name: "sctimes",
-      description: "links to a sc travel time reference sheet"
+      name: "factions",
+      description: "Looks for faction details in a specified system",
+      options: [
+        {
+          name: "system",
+          description: "System's factions you want to look up",
+          type: 3,
+          required: true
+        }
+      ]
     }
   });
 
   client.api.applications(client.user.id).commands.post({
     data: {
-      name: "shipyard",
-      description: "links to coriolis and edsy as well as inara"
-    }
-  });
-
-  client.api.applications(client.user.id).commands.post({
-    data: {
-      name: "squadron",
-      description: "gives explanation on how to join the TRCG squadron + a link to the inara squadron"
-    }
-  });
-
-  client.api.applications(client.user.id).commands.post({
-    data: {
-      name: "toolbox",
-      description: "links to cmdrs toolbox"
-    }
-  });
-
-  client.api.applications(client.user.id).commands.post({
-    data: {
-      name: "weblist",
-      description: "lists, links and gives a short desc. of a few 3rd party elite dangerous websites"
+      name: "help",
+      description: "help command",
+      options: [
+        {
+          name: "command",
+          description: "Command you want details on",
+          type: 3,
+          required: false
+        }
+      ]
     }
   });
 });

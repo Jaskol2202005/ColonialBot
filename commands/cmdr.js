@@ -8,17 +8,17 @@ module.exports = {
   name: 'cmdr',
   description: 'looks up a commander on inara.cz',
   usage: '<commander name>',
-  args: true,
-  execute(message, args) {
+  execute(interaction, args, client) {
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
     let reply = ''
     var currentTime = new Date();
-    let commanderName = `${args[0]}`
-    args.shift()
-    for (var i = 0; i < args.length; i++) {
-      commanderName += ` ${args[i]}`
+    let array = args[0].value.toLowerCase().split(/ +/);
+    let commanderName = array[0]
+    array.shift()
+    for (var i = 0; i < array.length; i++) {
+      commanderName += `+${array[i]}`
     }
     axios.post('https://inara.cz/inapi/v1/', {
       header: {
@@ -80,11 +80,32 @@ module.exports = {
           }
         }
 
-        message.channel.send(reply)
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: reply
+            }
+          }
+        })
       } else if (response.data.events[0].eventStatus === 204) {
-        message.channel.send(`No inara profiles were found`)
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: "No inara profiles were found"
+            }
+          }
+        })
       } else if (response.data.events[0].eventStatus === 400) {
-        message.channel.send(`There was an error executing that command`)
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: "There was an error executing that command"
+            }
+          }
+        })
       }
 
     })

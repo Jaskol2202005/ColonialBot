@@ -3,12 +3,10 @@ const db = new Database();
 
 module.exports = {
   name: 'eat',
-  cooldown: 20,
   description: 'eat your tressured snickers',
   usage: '',
-  args: false,
-  execute(message, args) {
-    let mention = message.author.id
+  execute(interaction, args, client) {
+    let mention = interaction.member.user.id
     db.get(`snickers${mention}`).then(value => {
       let currentSnickers = value
       if (currentSnickers < 1) {

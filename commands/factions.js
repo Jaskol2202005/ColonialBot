@@ -4,19 +4,19 @@ module.exports = {
   name: 'factions',
   description: 'Looks for factions in a certain system',
   usage: '<system name>',
-  args: true,
-  execute(message, args) {
+  execute(interaction, args, client) {
+    let array = args[0].value.toLowerCase().split(/ +/);
     var options = {
         host: 'www.edsm.net',
-        path: `/api-system-v1/factions?systemName=${args[0]}`,
+        path: `/api-system-v1/factions?systemName=${array[0]}`,
         headers: {
             'Accept': 'application/json'
           }
         };
 
         args.shift()
-        for (var i = 0; i < args.length; i++) {
-          options.path += `+${args[i]}`;
+        for (var i = 0; i < array.length; i++) {
+          options.path += `+${array[i]}`;
         };
 
     https.get(options, function (res) {
@@ -32,9 +32,23 @@ module.exports = {
                     var data = JSON.parse(json);
 
                     if (json === `{}`) {
-                      message.reply(`Couldn't find that system (Make sure you spelled it right).`);
+                      client.api.interactions(interaction.id, interaction.token).callback.post({
+                        data: {
+                          type: 4,
+                          data: {
+                            content: `Couldn't find that system (Make sure you spelled it right).`
+                          }
+                        }
+                      })
                     } else if (data.factions.length === 0) {
-                      message.reply(`This system doesn't have any factions.`);
+                      client.api.interactions(interaction.id, interaction.token).callback.post({
+                        data: {
+                          type: 4,
+                          data: {
+                            content: `This system doesn't have any factions.`
+                          }
+                        }
+                      })
                     }
                     let reply = `**${data.name}** - Current state: ${data.factions[0].state}\n\nFactions:\n`;
 
@@ -47,7 +61,14 @@ module.exports = {
                       }
                     }
 
-                    message.channel.send(reply);
+                    client.api.interactions(interaction.id, interaction.token).callback.post({
+                      data: {
+                        type: 4,
+                        data: {
+                          content: reply
+                        }
+                      }
+                    })
                   } catch (e) {
                     console.log('Error parsing JSON!');
                   }
