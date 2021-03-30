@@ -92,7 +92,7 @@ module.exports = {
                 }
               })
             }
-          } else if (args.length === 0) {
+          } else {
             let reply = 'Current operations:'
             if (currentOperations.length === 0) {
               reply = `No operations are currently set`
@@ -112,7 +112,7 @@ module.exports = {
             })
           }
         });
-        } else if (args.length === 0) {
+      } else if (args[0].name === "check") {
           let reply = 'Current operations:'
           db.get("currentOperations").then(value => {
             let currentOperations = value
