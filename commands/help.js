@@ -19,7 +19,7 @@ module.exports = {
         data: {
           type: 4,
           data: {
-            content: data, { split: true }
+            content: data
           }
         }
       })
@@ -41,7 +41,7 @@ module.exports = {
        data: {
          type: 4,
          data: {
-           content: data, { split: true }
+           content: data
          }
        }
      })
