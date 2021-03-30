@@ -1,9 +1,15 @@
 module.exports = {
   name: 't9',
-  description: `dunno why I let them peer pressure me into making this :/`,
-  usage: '',
-  args: false,
-  execute(message, args) {
-    message.channel.send(`https://www.youtube.com/watch?v=uIBPtuwpQQ4`);
+  description: `links to a video of a t9, really, that's it`,
+  usage: ``,
+  execute(interaction, args, client) {
+    client.api.interactions(interaction.id, interaction.token).callback.post({
+      data: {
+        type: 4,
+        data: {
+          content: "https://www.youtube.com/watch?v=uIBPtuwpQQ4"
+        }
+      }
+    })
   }
 }

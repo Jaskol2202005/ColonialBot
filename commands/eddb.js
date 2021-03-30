@@ -1,9 +1,15 @@
 module.exports = {
   name: 'eddb',
-  description: 'links to eddb homepage',
-  usage: '',
-  args: false,
-  execute(message, args) {
-    message.channel.send(`Find accurate trading data at: https://eddb.io`);
+  description: `links to the eddb homepage`,
+  usage: ``,
+  execute(interaction, args, client) {
+    client.api.interactions(interaction.id, interaction.token).callback.post({
+      data: {
+        type: 4,
+        data: {
+          content: "Find accurate trading data at: https://eddb.io"
+        }
+      }
+    })
   }
 }
