@@ -40,57 +40,6 @@ client.once('ready', () => {
     process.env.token,
     client.user.id
   )
-  slash
-  .editCommand(
-    {
-      name: "authorization",
-      description: "Modify the authorization list",
-      options: [
-        {
-          name: "add",
-          description: "Add a user to the list",
-          type: 1,
-          options: [
-            {
-              name: "user",
-              description: "User you'd like to add",
-              type: 6,
-              required: true
-            }
-          ]
-        },
-        {
-          name: "remove",
-          description: "Remove a user from the list",
-          type: 1,
-          options: [
-            {
-              name: "user",
-              description: "User you'd like to remove",
-              type: 6,
-              required: true
-            }
-          ]
-        },
-        {
-          name: "check",
-          description: "Check a user on the list",
-          type: 1,
-          options: [
-            {
-              name: "user",
-              description: "User you'd like to check",
-              type: 6,
-              required: true
-            }
-          ]
-        }
-      ]
-    },
-    "826215738506477569"
-  )
-  .then(console.log)
-  .catch(console.error);
 });
 
 client.login(process.env.token);
