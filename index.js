@@ -1,8 +1,6 @@
 console.log('Welcome to TRCG Bot');
 console.log('Authenticating...');
 
-const interactions = require('discord-slash-commands-client');
-
 const Database = require("@replit/database");
 const db = new Database();
 
@@ -36,10 +34,98 @@ client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
 
-  const slash = new interactions.Client(
-    process.env.token,
-    client.user.id
-  )
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "authorization",
+      description: "Modify the authorization list",
+      options: [
+        {
+          name: "add",
+          description: "Add a member to the list",
+          type: 1,
+          options: [
+            {
+              name: "user",
+              description: "User you'd like to add",
+              type: 6,
+              required: true
+            }
+          ]
+        },
+        {
+          name: "remove",
+          description: "Remove a member from the list",
+          type: 1,
+          options: [
+            {
+              name: "user",
+              description: "User you'd like to remove",
+              type: 6,
+              required: true
+            }
+          ]
+        },
+        {
+          name: "check",
+          description: "Check the authorization of a user",
+          type: 1,
+          options: [
+            {
+              name: "user",
+              description: "User you'd like to check",
+              type: 6,
+              required: true
+            }
+          ]
+        }
+      ]
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "operations",
+      description: "Modify the operations list",
+      options: [
+        {
+          name: "add",
+          description: "Add an operation to the list",
+          type: 1,
+          options: [
+            {
+              name: "operation",
+              description: "Operation you'd like to add",
+              type: 6,
+              required: true
+            }
+          ]
+        },
+        {
+          name: "remove",
+          description: "Remove an operation from the list",
+          type: 1,
+          options: [
+            {
+              name: "operation",
+              description: "Operation you'd like to remove",
+              type: 6,
+              required: true
+            }
+          ]
+        },
+        {
+          name: "clear",
+          description: "Clear the operations list",
+          type: 1
+        },
+        {
+          name: "check",
+          description: "Check current active operations",
+          type: 1
+        }
+      ]
+    }
+  });
 });
 
 client.login(process.env.token);
