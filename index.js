@@ -33,51 +33,6 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-
-  client.api.applications(client.user.id).commands.post({
-        data: {
-            name: "operations",
-            description: "Modify the operations list",
-            options: [
-              {
-                name: "add",
-                description: "Add an operation to the list",
-                type: 1,
-                options: [
-                  {
-                    name: "operation",
-                    description: "Operation you'd like to add",
-                    type: 3,
-                    required: true
-                  }
-                ]
-              },
-              {
-                name: "remove",
-                description: "Remove an operation from the list",
-                type: 1,
-                options: [
-                  {
-                    name: "operation",
-                    description: "Operation you'd like to remove",
-                    type: 3,
-                    required: true
-                  }
-                ]
-              },
-              {
-                name: "clear",
-                description: "Clear the list",
-                type: 1
-              },
-              {
-                name: "check",
-                description: "Check the list",
-                type: 1
-              }
-            ]
-        }
-    });
 });
 
 client.login(process.env.token);
