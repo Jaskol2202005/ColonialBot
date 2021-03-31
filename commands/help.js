@@ -33,9 +33,12 @@ module.exports = {
 
      let reply = `**Name:** ${command.name}`
 
-     if (command.aliases) reply += `**Aliases:** ${command.aliases.join(', ')}`
-     if (command.description) reply += `**Description:** ${command.description}`
-     if (command.usage) reply += `**Usage:** ${prefix}${command.name} ${command.usage}`
+     if (command.description) {
+       reply += `\n\n**Description:** ${command.description}`
+     }
+     if (command.usage) {
+       reply += `\n\n**Usage:** ${prefix}${command.name} ${command.usage}`
+     }
 
      client.api.interactions(interaction.id, interaction.token).callback.post({
        data: {
