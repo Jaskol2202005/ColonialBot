@@ -7,7 +7,6 @@ module.exports = {
   description: 'lists all commands and usages',
   usage: '',
   execute(interaction, args, client) {
-    const data = [];
     const { commands } = client;
 
     if (!args) {
@@ -44,7 +43,7 @@ module.exports = {
        data: {
          type: 4,
          data: {
-           content: data
+           content: reply
          }
        }
      })
