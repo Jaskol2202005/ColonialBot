@@ -33,6 +33,110 @@ const prefix = nconf.get(`prefix`);
 client.once('ready', () => {
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "ignore",
+      description: "Adds a channel to the ignore list",
+      options: [
+        {
+          name: "set",
+          description: "Sets a channel to the ignore list",
+          type: 1,
+          options: [
+            {
+              name: "channel",
+              description: "channel you'd like to remove",
+              type: 7,
+              required: true
+            }
+          ]
+        },
+        {
+          name: "remove",
+          description: "Remove a channel from the ignore list",
+          type: 1,
+          options: [
+            {
+              name: "channel",
+              description: "channel you'd like to remove",
+              type: 7,
+              required: true
+            }
+          ]
+        }
+      ]
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "neutron",
+      description: "gives tutorials on how to use the neutron highway",
+      options: [
+        {
+          name: "tutorial",
+          description: "Image on how to neutron jump",
+          type: 1
+        },
+        {
+          name: "website",
+          description: "Links to spansh.co.uk",
+          type: 1
+        },
+        {
+          name: "desktop",
+          description: "Links to Winnoen/Neutron desktop neutron client",
+          type: 1
+        }
+      ]
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "snickers",
+      description: "check how many snickers a user has",
+      options: [
+        {
+          name: "user",
+          description: "User you'd like to check",
+          type: 6,
+          required: true
+        }
+      ]
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "thanks",
+      description: "Thank a member and give them a snickers",
+      options: [
+        {
+          name: "user",
+          description: "User you'd like to thank",
+          type: 6,
+          required: true
+        }
+      ]
+    }
+  });
+
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "thank",
+      description: "Thank a member and give them a snickers",
+      options: [
+        {
+          name: "user",
+          description: "User you'd like to thank",
+          type: 6,
+          required: true
+        }
+      ]
+    }
+  });
 });
 
 client.login(process.env.token);

@@ -4,46 +4,80 @@ const db = new Database();
 module.exports = {
   name: 'ignore',
   description: 'adds or removes a channel from the ignore list',
-  usage: 'set|remove',
-  args: true,
-  execute(message, args) {
+  usage: 'set|remove <#channel>',
+  execute(interaction, args, client) {
     db.get("authorizedUsers").then(value => {
       let authorizedUsers = value
-      let authorPos = authorizedUsers.indexOf(message.author.id)
+      let authorPos = authorizedUsers.indexOf(interaction.member.user.id)
       if (authorPos !== -1) {
         db.get("ignoreList").then(value => {
 
           let ignoreList = value
-          if (args[0] === `set`) {
+          if (args[0].name === `set`) {
 
-            let posChannel = ignoreList.indexOf(message.channel.id)
+            let posChannel = ignoreList.indexOf(args[0].options[0].value)
 
             if (posChannel > -1) {
-              message.reply(`This channel is already on the ignore list`)
+              client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content: "This channel is already on the ignore list"
+                  }
+                }
+              })
               return;
             }
 
             ignoreList.push(message.channel.id)
 
             db.set("ignoreList", ignoreList).then(() => {});
-            message.channel.send(`Channel added successfully to ignore list`)
-          } else if (args[0] === `remove`) {
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content: "Channel added successfully to ignore list"
+                }
+              }
+            })
+          } else if (args[0].name === `remove`) {
 
-            let posChannel = ignoreList.indexOf(message.channel.id)
+            let posChannel = ignoreList.indexOf(args[0].options[0].value)
 
             if (posChannel === -1) {
-              message.reply(`This channel isn't on the ignore list, cannot remove`)
+              client.api.interactions(interaction.id, interaction.token).callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content: "This channel isn't on the ignore list, cannot remove"
+                  }
+                }
+              })
               return;
             }
 
             let newIgnoreList = ignoreList.splice(posChannel, 1)
 
             db.set("ignoreList", ignoreList).then(() => {});
-            message.channel.send(`Channel removed successfully from ignore list`)
+            client.api.interactions(interaction.id, interaction.token).callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content: "Channel removed successfully from ignore list"
+                }
+              }
+            })
           }
         });
       } else {
-        message.reply(`You are not authorized to use this command!`)
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: "You are not authorized to use this command!"
+            }
+          }
+        })
       }
     });
   }

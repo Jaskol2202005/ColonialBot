@@ -3,23 +3,19 @@ const db = new Database();
 
 module.exports = {
   name: 'snickers',
-  cooldown: 10,
   description: 'check how many snickers someone has',
   usage: '@<whoever you want to check>',
-  args: false,
-  execute(message, args) {
-    try {
-      let mention = message.mentions.members.first()
-      db.get(`snickers${mention.user.id}`).then(value => {
-        let currentSnickers = value
-        message.channel.send(`${mention} has ${currentSnickers} Snickers`)
+  execute(interaction, args, client) {
+    db.get(`snickers${args[0].value}`).then(value => {
+      let currentSnickers = value
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content: `<@${args[0].value}> has ${currentSnickers} Snickers`
+          }
+        }
       })
-    } catch (e) {
-      let author = message.author.id
-      db.get(`snickers${author}`).then(value => {
-        let currentSnickers = value
-        message.channel.send(`<@${author}> has ${currentSnickers} Snickers`)
-      })
-    }
+    })
   }
 }
