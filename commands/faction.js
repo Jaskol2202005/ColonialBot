@@ -6,6 +6,7 @@ module.exports = {
   usage: '<faction name>',
   execute(interaction, args, client) {
     let array = args[0].value.toLowerCase().split(/ +/);
+    console.log(array);
     var options = {
         host: 'elitebgs.app',
         path: `/api/ebgs/v4/factions?name=${array[0]}`,
