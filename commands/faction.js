@@ -15,7 +15,7 @@ module.exports = {
           }
         };
 
-        args.shift()
+        array.shift()
         for (var i = 0; i < array.length; i++) {
           options.path += `+${array[i]}`;
         };
