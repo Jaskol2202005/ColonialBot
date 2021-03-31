@@ -29,7 +29,7 @@ module.exports = {
               return;
             }
 
-            ignoreList.push(message.channel.id)
+            ignoreList.push(args[0].options[0].value)
 
             db.set("ignoreList", ignoreList).then(() => {});
             client.api.interactions(interaction.id, interaction.token).callback.post({
