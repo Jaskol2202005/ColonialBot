@@ -10,15 +10,13 @@ module.exports = {
     const { commands } = client;
 
     if (!args) {
-      data.push('Here\'s a list of all my commands:');
-      data.push(commands.map(command => command.name).join(', '));
-      data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
+      let reply = `Here's a list of all my commands:\n${commands.map(command => command.name).join(', ')}\nYou can send "${prefix}help [command name]" to get info on a specific command!`
 
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
           data: {
-            content: data
+            content: reply
           }
         }
       })
@@ -33,10 +31,10 @@ module.exports = {
      let reply = `**Name:** ${command.name}`
 
      if (command.description) {
-       reply += `\n\n**Description:** ${command.description}`
+       reply += `\n**Description:** ${command.description}`
      }
      if (command.usage) {
-       reply += `\n\n**Usage:** ${prefix}${command.name} ${command.usage}`
+       reply += `\n**Usage:** ${prefix}${command.name} ${command.usage}`
      }
 
      client.api.interactions(interaction.id, interaction.token).callback.post({
