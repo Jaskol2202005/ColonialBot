@@ -20,6 +20,7 @@ module.exports = {
           options.path += `+${array[i]}`;
         };
 
+        console.log(options.path);
     https.get(options, function (res) {
         var json = '';
 
