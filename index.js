@@ -280,7 +280,12 @@ x.registerListener(function(val) {
       content.push(feed[i].contentSnippet)
     }
     db.set("feeded", content)
+    db.get("feeded").then(value => {
+      let feeded = value
+      console.log(feeded);
+    })
   })();
+  console.log('-------------break--------------');
   db.get("feeded").then(value => {
     let feeded = value
     console.log(feeded);
