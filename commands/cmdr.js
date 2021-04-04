@@ -18,7 +18,7 @@ module.exports = {
     let commanderName = array[0]
     array.shift()
     for (var i = 0; i < array.length; i++) {
-      commanderName += `+${array[i]}`
+      commanderName += ` ${array[i]}`
     }
     axios.post('https://inara.cz/inapi/v1/', {
       header: {
