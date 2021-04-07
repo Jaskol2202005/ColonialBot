@@ -267,6 +267,7 @@ x.registerListener(function(val) {
     }
     client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
     client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
+    client.channels.cache.get(`829207812005429268`).send(`---------tick----------`)
   }
   });
 });
