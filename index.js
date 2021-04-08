@@ -99,23 +99,22 @@ client.on('message', message => {
         let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
         let pos = ignoreList.indexOf(message.channel.id)
         if (pos !== -1) {
-        } else if (message.content.has(`${currentOperations[i]} `) || message.content.includes(`${currentOperationsUpperCase} `) || message.content.includes(` ${currentOperations[i]}`) || message.content.includes(` ${currentOperationsUpperCase}`) || message.content.includes(` ${currentOperations[i]}.`) || message.content.includes(` ${currentOperationsUpperCase}.`) || message.content.includes(`${currentOperations[i]}.`) && message.content.length === currentOperations[i] + 1 || message.content.includes(`${currentOperationsUpperCase}.`) && message.content.length === currentOperationsUpperCase.length + 1 || message.content.includes(` ${currentOperations[i]},`) || message.content.includes(` ${currentOperationsUpperCase},`) || message.content.includes(`${currentOperations[i]},`) && message.content.length === currentOperations[i] + 1 || message.content.includes(` ${currentOperationsUpperCase},`) && message.content.length === currentOperationsUpperCase.length + 1 || message.content.includes(`${currentOperations[i]}`) && message.content.length === currentOperations[i].length || message.content.includes(`${currentOperationsUpperCase}`) && message.content.length === currentOperationsUpperCase.length) {
+        } else if (message.content.includes(`${currentOperations[i]} `) || message.content.includes(`${currentOperationsUpperCase} `) || message.content.includes(` ${currentOperations[i]}`) || message.content.includes(` ${currentOperationsUpperCase}`) || message.content.includes(` ${currentOperations[i]}.`) || message.content.includes(` ${currentOperationsUpperCase}.`) || message.content.includes(`${currentOperations[i]}.`) && message.content.length === currentOperations[i] + 1 || message.content.includes(`${currentOperationsUpperCase}.`) && message.content.length === currentOperationsUpperCase.length + 1 || message.content.includes(` ${currentOperations[i]},`) || message.content.includes(` ${currentOperationsUpperCase},`) || message.content.includes(`${currentOperations[i]},`) && message.content.length === currentOperations[i] + 1 || message.content.includes(` ${currentOperationsUpperCase},`) && message.content.length === currentOperationsUpperCase.length + 1 || message.content.includes(`${currentOperations[i]}`) && message.content.length === currentOperations[i].length || message.content.includes(`${currentOperationsUpperCase}`) && message.content.length === currentOperationsUpperCase.length) {
           message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
           message.delete()
           return;
         }
       }
     });
-
-    if (!message.content.startsWith(prefix) || message.author.bot) return
-
-    const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
-    const commandName = args.shift().toLowerCase();
-
-    if (!client.commands.has(commandName)) return;
-
-    message.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
   });
+  if (!message.content.startsWith(prefix) || message.author.bot) return
+
+  const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
+  const commandName = args.shift().toLowerCase();
+
+  if (!client.commands.has(commandName)) return;
+
+  message.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
 })
 
 client.on('guildMemberAdd', member => {
