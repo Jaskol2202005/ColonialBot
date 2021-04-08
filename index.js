@@ -113,8 +113,8 @@ client.on('message', message => {
     const commandName = args.shift().toLowerCase();
 
     if (!client.commands.has(commandName)) return;
-    
-    message.channel.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
+
+    message.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
   });
 })
 
