@@ -107,11 +107,14 @@ client.on('message', message => {
       }
     });
 
-    if (!message.content.startsWith(prefix) || message.author.bot) {
-      return
-    } else {
-      message.channel.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
-    }
+    if (!message.content.startsWith(prefix) || message.author.bot) return
+
+    const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
+    const commandName = args.shift().toLowerCase();
+
+    if (!client.commands.has(commandName)) return;
+    
+    message.channel.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
   });
 })
 
