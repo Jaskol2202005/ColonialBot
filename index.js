@@ -54,17 +54,17 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
   const timestamps = cooldowns.get(command.name);
   const cooldownAmount = (command.cooldown || 1) * 1000;
 
-  if (timestamps.has(message.author.id)) {
-    if (timestamps.has(message.author.id)) {
-	    const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+  if (timestamps.has(interaction.member.user.id)) {
+    if (timestamps.has(interaction.member.user.id)) {
+	    const expirationTime = timestamps.get(interaction.member.user.id) + cooldownAmount;
 	    if (now < expirationTime) {
 		    const timeLeft = (expirationTime - now) / 1000;
 		    return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
 	    }
     }
   }
-  timestamps.set(message.author.id, now);
-  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+  timestamps.set(interaction.member.user.id, now);
+  setTimeout(() => timestamps.delete(interaction.member.user.id), cooldownAmount);
 
   try {
     command.execute(interaction, args, client);
