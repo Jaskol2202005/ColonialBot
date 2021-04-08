@@ -106,6 +106,12 @@ client.on('message', message => {
         }
       }
     });
+
+    if (!message.content.startsWith(prefix) || message.author.bot) {
+      return
+    } else {
+      message.channel.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
+    }
   });
 })
 
