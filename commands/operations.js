@@ -15,7 +15,7 @@ module.exports = {
         db.get("currentOperations").then(value => {
           let currentOperations = value
           if (args[0].name === `add`) {
-            let nextOperation = args[0].options[0].value
+            let nextOperation = args[0].options[0].value.toLowerCase()
 
             let pos1 = currentOperations.indexOf(nextOperation);
 
@@ -43,7 +43,7 @@ module.exports = {
               }
             })
           } else if (args[0].name === `remove`) {
-            let removedOperation = args[0].options[0].value
+            let removedOperation = args[0].options[0].value.toLowerCase()
 
             let pos1 = currentOperations.indexOf(removedOperation)
 
