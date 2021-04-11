@@ -98,7 +98,6 @@ client.on('message', message => {
       db.get("currentOperations").then(value => {
         let currentOperations = value
         let messageArray = message.content.replace(/[\]\-\^\\\[/!@#$%&*(){}|;:'",.<>?~`=+_]/g, ` `).toLowerCase().split(/ +/)
-        console.log(messageArray);
         for (var i = 0; i < currentOperations.length; i++) {
           let pos = messageArray.indexOf(currentOperations[i]);
           if (pos !== -1) {
