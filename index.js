@@ -96,11 +96,12 @@ client.on('message', message => {
     let pos = ignoreList.indexOf(message.channel.id)
     if (pos === -1) {
       db.get("currentOperations").then(value => {
+        let currentOperations = value
         let messageArray = message.content.replace(/[\]\-\^\\/!@#$%&*(){}|;:'",.<>?~`]/g, ` `).toLowerCase().split(/ +/)
         console.log(messageArray);
-        let currentOperations = value
         for (var i = 0; i < currentOperations.length; i++) {
           let pos = messageArray.indexOf(currentOperations[i]);
+          console.log(pos);
           if (pos !== -1) {
             message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
             message.delete()
