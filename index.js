@@ -97,6 +97,7 @@ client.on('message', message => {
     if (pos === -1) {
       db.get("currentOperations").then(value => {
         let messageArray = message.content.replace(/[\]\-\^\\/!@#$%&*(){}|;:'",.<>?~`]/g, ` `).toLowerCase().split(/ +/)
+        console.log(messageArray);
         let currentOperations = value
         for (var i = 0; i < currentOperations.length; i++) {
           let pos = messageArray.indexOf(currentOperations[i]);
@@ -107,7 +108,7 @@ client.on('message', message => {
           }
         }
       });
-    }    
+    }
   });
   if (!message.content.startsWith(prefix) || message.author.bot) return
 
