@@ -93,19 +93,21 @@ client.on('message', message => {
   console.log(message.content);
   db.get("ignoreList").then(value => {
     let ignoreList = value
-    db.get("currentOperations").then(value => {
-      let currentOperations = value
-      for (var i = 0; i < currentOperations.length; i++) {
-        let currentOperationsUpperCase = currentOperations[i].charAt(0).toUpperCase() + currentOperations[i].slice(1)
-        let pos = ignoreList.indexOf(message.channel.id)
-        if (pos !== -1) {
-        } else if (message.content.includes(`${currentOperations[i]} `) || message.content.includes(`${currentOperationsUpperCase} `) || message.content.includes(` ${currentOperations[i]}`) || message.content.includes(` ${currentOperationsUpperCase}`) || message.content.includes(` ${currentOperations[i]}.`) || message.content.includes(` ${currentOperationsUpperCase}.`) || message.content.includes(`${currentOperations[i]}.`) && message.content.length === currentOperations[i] + 1 || message.content.includes(`${currentOperationsUpperCase}.`) && message.content.length === currentOperationsUpperCase.length + 1 || message.content.includes(` ${currentOperations[i]},`) || message.content.includes(` ${currentOperationsUpperCase},`) || message.content.includes(`${currentOperations[i]},`) && message.content.length === currentOperations[i] + 1 || message.content.includes(` ${currentOperationsUpperCase},`) && message.content.length === currentOperationsUpperCase.length + 1 || message.content.includes(`${currentOperations[i]}`) && message.content.length === currentOperations[i].length || message.content.includes(`${currentOperationsUpperCase}`) && message.content.length === currentOperationsUpperCase.length) {
-          message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
-          message.delete()
-          return;
+    let pos = ignoreList.indexOf(message.channel.id)
+    if (pos === -1) {
+      db.get("currentOperations").then(value => {
+        let messageArray = message.content.replace(/[\]\-\^\\/!@#$%&*(){}|;:'",.<>?~`]/g, ` `).toLowerCase().split(/ +/)
+        let currentOperations = value
+        for (var i = 0; i < currentOperations.length; i++) {
+          let pos = messageArray.indexOf(currentOperations[i]);
+          if (pos !== -1) {
+            message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
+            message.delete()
+            return;
+          }
         }
-      }
-    });
+      });
+    }    
   });
   if (!message.content.startsWith(prefix) || message.author.bot) return
 
