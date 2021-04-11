@@ -97,7 +97,7 @@ client.on('message', message => {
     if (pos === -1) {
       db.get("currentOperations").then(value => {
         let currentOperations = value
-        let messageArray = message.content.replace(/[\]\-\^\\/!@#$%&*(){}|;:'",.<>?~`]/g, ` `).toLowerCase().split(/ +/)
+        let messageArray = message.content.replace(/[\]\-\^\\\[/!@#$%&*(){}|;:'",.<>?~`]/g, ` `).toLowerCase().split(/ +/)
         for (var i = 0; i < currentOperations.length; i++) {
           let pos = messageArray.indexOf(currentOperations[i]);
           if (pos !== -1) {
