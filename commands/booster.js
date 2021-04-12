@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = { //just read the description lol
   name: 'booster',
   description: 'links to exegious video on how to unlock the gfsd booster',
   usage: ``,

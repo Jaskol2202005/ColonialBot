@@ -1,7 +1,7 @@
-const Database = require("@replit/database");
+const Database = require("@replit/database"); //database dependency
 const db = new Database();
 
-module.exports = {
+module.exports = { //command for adding or removing members from the auth list
   name: 'authorization',
   description: 'add or remove authorized users',
   usage: 'add|remove <@person you want to modify>',

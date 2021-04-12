@@ -1,50 +1,50 @@
+//Welcome text in console
 console.log('Welcome to TRCG Bot');
 console.log('Authenticating...');
 
-const Database = require("@replit/database");
+//dependencies
+const Database = require("@replit/database"); //Since I use replit for hosting, I use their database as well
 const db = new Database();
 
-var https = require('https')
+var https = require('https') //general dependencies
 var nconf = require('nconf');
 const fs = require('fs');
 require('dotenv').config();
 
-const moment = require('moment-timezone');
+const moment = require('moment-timezone'); //moment for powerplay tick reminders
 
-const axios = require('axios');
-
-const Discord = require('discord.js');
+const Discord = require('discord.js'); //discordjs dependency and collection bootup
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 
-let Parser = require('rss-parser');
+let Parser = require('rss-parser'); //rss parser for galnet articles (prototype rn)
 let parser = new Parser();
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')); //loads directory for commands
 
-for (const file of commandFiles) {
+for (const file of commandFiles) { //loads commands
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
 }
 
-const prefix = nconf.get(`prefix`);
+const prefix = nconf.get(`prefix`); //gets prefix from database
 
-client.once('ready', () => {
+client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
 });
 
-client.login(process.env.token);
+client.login(process.env.token); //discord token login, happens before .once('ready')
 
-client.ws.on('INTERACTION_CREATE', async interaction => {
-  console.log(interaction);
+client.ws.on('INTERACTION_CREATE', async interaction => { //recieving commands
+  console.log(interaction); //currently logs it, doesn't need to if you don't want it
 
-  const commandName = interaction.data.name.toLowerCase();
+  const commandName = interaction.data.name.toLowerCase(); //sets variables
   const args = interaction.data.options
   const command = client.commands.get(commandName);
 
-  const { cooldowns } = client;
+  const { cooldowns } = client; //cooldown stuff
 
   if (!cooldowns.has(command.name)) {
 	   cooldowns.set(command.name, new Discord.Collection());
@@ -74,7 +74,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
   timestamps.set(interaction.member.user.id, now);
   setTimeout(() => timestamps.delete(interaction.member.user.id), cooldownAmount);
 
-  try {
+  try { //executes the command
     command.execute(interaction, args, client);
   } catch (error) {
     console.error(error);
@@ -89,9 +89,9 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
   }
 });
 
-client.on('message', message => {
-  console.log(message.content);
-  db.get("ignoreList").then(value => {
+client.on('message', message => { //recieving regular messages
+  console.log(message.content); //logs messages, doesn't have to if you don't want it
+  db.get("ignoreList").then(value => { //opsec breach detection
     let ignoreList = value
     let pos = ignoreList.indexOf(message.channel.id)
     if (pos === -1) {
@@ -109,7 +109,7 @@ client.on('message', message => {
       });
     }
   });
-  if (!message.content.startsWith(prefix) || message.author.bot) return
+  if (!message.content.startsWith(prefix) || message.author.bot) return //normal command deprection notice
 
   const args = message.content.slice(prefix.length).trim().toLowerCase().split(/ +/);
   const commandName = args.shift().toLowerCase();
@@ -119,15 +119,15 @@ client.on('message', message => {
   message.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
 })
 
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', member => { //welcome message
   client.channels.cache.get(`567685575197458434`).send(`Hello <@!${member.id}>, welcome to **The Royal Colonial Guard** :tada::hugging: !! I will be with you shortly.  In the mean time, please read and agree to the rules they're in the pinned message!  Top right of your screen :pushpin:  You were also sent a dm from our welcome bot with the rules!  I need you to verify your Cmdr name.  You can also tell me a little about yourself and what you like to do in game!\n\n<@&572424557772668959>\n<@&567746245637046272>`)
   member.send(`Royal Colonial Guard has a Code of Conduct which we expect all of our members to adhere to.\n\n1 - HONOR AND RESPECT:\nWe are a casual and friendly group, so be respectful of others in game and in Discord.  All members of this server will have their Discord nickname matching their in game CMDR name.\n\n2 - OPEN, PRIVATE GROUP (PG), or SOLO:\nWhile the Guard has no rules dictating the use of Solo and PG game modes, Power Play should be done in OPEN.\n\n3 - COMBAT LOGGING:\nCombat logging as described here: https://elite-dangerous.fandom.com/wiki/Combat_Logging, and use of cheats are not allowed.\n\n4 - GUESTS FROM OTHER SQUADRONS:\nIf you are a member of another in-game squadron or group, soliciting current Guard members to change or join other squadrons is prohibited.\n\n5 - BACKGROUND SIMULATION (BGS):\nWhile there is no obligation to contribute, concentrated work against our PMF is not allowed. This includes killing clean Aisling's Guardian NPCs.  If you are unsure on how your actions may affect our efforts please ask in the appropriate channels.\n\nWhen you're in our in game Squadron, you are wearing our [TRCG] badge, you are representing the entire group!  We do not gank other players.  If we engage, it is strictly on a powerplay and BGS basis.`)
 });
-client.on('guildMemberRemove', member => {
+client.on('guildMemberRemove', member => { //leaving message + pfp for identification
   client.channels.cache.get(`821961477929959454`).send(`Goodbye **${member.user.username}** :(\nUser's pfp: https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`)
 });
 
-var options = {
+var options = { //bgs tick detection
   host: 'elitebgs.app',
   path: `/api/ebgs/v5/ticks`,
   headers: {
@@ -197,7 +197,7 @@ setInterval(() => {
       }
     });
   });
-  let currentDay = moment.tz('America/Los_Angeles').format('dddd')
+  let currentDay = moment.tz('America/Los_Angeles').format('dddd') //powerplay tick detection
   db.get("powerplayReminder").then( value => {
     let powerplayReminder = value
     if (currentDay === `Wednesday` && powerplayReminder === `not said`) {
@@ -264,7 +264,7 @@ x.registerListener(function(val) {
   });
 });
 
-  (async () => {
+  (async () => { //rss feed (prototype, doesn't work, yet)
     let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
     feed.items.pop(1)
     feed = feed.items
@@ -278,13 +278,8 @@ x.registerListener(function(val) {
       console.log(feeded);
     })
   })();
-  console.log('-------------break--------------');
-  db.get("feeded").then(value => {
-    let feeded = value
-    console.log(feeded);
-  })
 
-const http = require('http');
+const http = require('http'); //a ping exploit to keep it running on replit
 const server = http.createServer((req, res) => {
   res.writeHead(200);
   res.end('ok');

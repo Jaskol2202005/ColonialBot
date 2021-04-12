@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = { //again... read the description
   name: 'caniscthere',
   description: `pretty much a meme, tells people that they can't supercruise to another system`,
   usage: ``,

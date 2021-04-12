@@ -1,10 +1,12 @@
 const nconf = require('nconf');
 const axios = require('axios');
 
+require('dotenv').config();
+
 nconf.use('file', { file: './config.json' });
 nconf.load();
 
-module.exports = {
+module.exports = { //yeah, description
   name: 'cmdr',
   description: 'looks up a commander on inara.cz',
   usage: '<commander name>',
@@ -25,7 +27,7 @@ module.exports = {
         appName: 'TRCGbot',
         appVersion: `1.0.0`,
         isDeveloped: `true`,
-        APIkey: `28r9agl7t5a8gw880cc0wgcowc84k8k0kgsc4k`
+        APIkey: process.env.inaraToken
       },
       events: [
         {
