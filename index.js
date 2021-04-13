@@ -54,7 +54,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => { //recieving commands
   const timestamps = cooldowns.get(command.name);
   const cooldownAmount = (command.cooldown || 1) * 1000;
 
-  if (interaction.member !== null) {
+  if (interaction.member) {
     if (timestamps.has(interaction.member.user.id)) {
       if (timestamps.has(interaction.member.user.id)) {
   	    const expirationTime = timestamps.get(interaction.member.user.id) + cooldownAmount;
