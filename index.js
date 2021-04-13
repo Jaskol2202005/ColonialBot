@@ -107,7 +107,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => { //recieving commands
       }
     }
     timestamps.set(interaction.user.id, now);
-    setTimeout(() => timestamps.delete(interaction.member.user.id), cooldownAmount);
+    setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
     try { //executes the command
       command.execute(interaction, args, client);
