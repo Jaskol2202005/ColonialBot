@@ -9,7 +9,7 @@ module.exports = { //command for adding or removing members from the auth list
     db.get("authorizedUsers").then(value => {
     let authorizedUsers = value
 
-    let pos = authorizedUsers.indexOf(interaction.member.user.id)
+    let pos = authorizedUsers.indexOf(interaction.member.user.id || interaction.user.id)
     if (pos > -1) {
       if (interaction.data.options[0].name === `add`) {
         let newAuth = interaction.data.options[0].options[0].value

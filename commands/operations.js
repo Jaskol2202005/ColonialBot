@@ -10,7 +10,7 @@ module.exports = {
       let pos9000 = value.indexOf(interaction.channel_id)
       if (pos9000 !== -1) {
       db.get("authorizedUsers").then(value => {
-        let position = value.indexOf(interaction.member.user.id)
+        let position = value.indexOf(interaction.member.user.id || interaction.user.id)
         if (position !== -1) {
         db.get("currentOperations").then(value => {
           let currentOperations = value

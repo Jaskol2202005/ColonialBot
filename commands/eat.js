@@ -6,7 +6,7 @@ module.exports = {
   description: 'eat your tressured snickers',
   usage: '',
   execute(interaction, args, client) {
-    let mention = interaction.member.user.id
+    let mention = interaction.member.user.id || interaction.user.id
     db.get(`snickers${mention}`).then(value => {
       let currentSnickers = value
       if (currentSnickers < 1) {

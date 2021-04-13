@@ -8,7 +8,7 @@ module.exports = {
   execute(interaction, args, client) {
     db.get("authorizedUsers").then(value => {
       let authorizedUsers = value
-      let authorPos = authorizedUsers.indexOf(interaction.member.user.id)
+      let authorPos = authorizedUsers.indexOf(interaction.member.user.id || interaction.user.id)
       if (authorPos !== -1) {
         db.get("ignoreList").then(value => {
 
