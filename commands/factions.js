@@ -7,17 +7,17 @@ module.exports = {
   execute(interaction, args, client) {
     let array = args[0].value.toLowerCase().split(/ +/);
     var options = {
-        host: 'www.edsm.net',
-        path: `/api-system-v1/factions?systemName=${array[0]}`,
-        headers: {
-            'Accept': 'application/json'
-          }
-        };
+      host: 'www.edsm.net',
+      path: `/api-system-v1/factions?systemName=${array[0]}`,
+      headers: {
+        'Accept': 'application/json'
+      }
+    };
 
-        array.shift()
-        for (var i = 0; i < array.length; i++) {
-          options.path += `+${array[i]}`;
-        };
+    array.shift()
+    for (var i = 0; i < array.length; i++) {
+      options.path += `+${array[i]}`;
+    };
 
     https.get(options, function (res) {
       var json = '';
