@@ -30,7 +30,7 @@ module.exports = {
         if (res.statusCode === 200) {
           try {
             var data = JSON.parse(json);
-            console.log(json);
+            console.log(data);
 
             if (json === `{}`) {
               client.api.interactions(interaction.id, interaction.token).callback.post({
