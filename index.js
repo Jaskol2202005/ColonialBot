@@ -54,38 +54,74 @@ client.ws.on('INTERACTION_CREATE', async interaction => { //recieving commands
   const timestamps = cooldowns.get(command.name);
   const cooldownAmount = (command.cooldown || 1) * 1000;
 
-  if (timestamps.has(interaction.member.user.id || interaction.user.id)) {
-    if (timestamps.has(interaction.member.user.id || interaction.user.id)) {
-	    const expirationTime = timestamps.get(interaction.member.user.id || interaction.user.id) + cooldownAmount;
-	    if (now < expirationTime) {
-		    const timeLeft = (expirationTime - now) / 1000;
-        client.api.interactions(interaction.id, interaction.token).callback.post({
-          data: {
-            type: 4,
+  if (interaction.member !== null) {
+    if (timestamps.has(interaction.member.user.id)) {
+      if (timestamps.has(interaction.member.user.id)) {
+  	    const expirationTime = timestamps.get(interaction.member.user.id) + cooldownAmount;
+  	    if (now < expirationTime) {
+  		    const timeLeft = (expirationTime - now) / 1000;
+          client.api.interactions(interaction.id, interaction.token).callback.post({
             data: {
-              content: `please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`
+              type: 4,
+              data: {
+                content: `please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`
+              }
             }
-          }
-        })
-        return
-	    }
-    }
-  }
-  timestamps.set(interaction.member.user.id || interaction.user.id, now);
-  setTimeout(() => timestamps.delete(interaction.member.user.id), cooldownAmount);
-
-  try { //executes the command
-    command.execute(interaction, args, client);
-  } catch (error) {
-    console.error(error);
-    client.api.interactions(interaction.id, interaction.token).callback.post({
-      data: {
-        type: 4,
-        data: {
-          content: "An error occured trying to execute this command"
-        }
+          })
+          return
+  	    }
       }
-    })
+    }
+    timestamps.set(interaction.member.user.id, now);
+    setTimeout(() => timestamps.delete(interaction.member.user.id), cooldownAmount);
+
+    try { //executes the command
+      command.execute(interaction, args, client);
+    } catch (error) {
+      console.error(error);
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content: "An error occured trying to execute this command"
+          }
+        }
+      })
+    }
+  } else {
+    if (timestamps.has(interaction.user.id)) {
+      if (timestamps.has(interaction.user.id)) {
+  	    const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
+  	    if (now < expirationTime) {
+  		    const timeLeft = (expirationTime - now) / 1000;
+          client.api.interactions(interaction.id, interaction.token).callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: `please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`
+              }
+            }
+          })
+          return
+  	    }
+      }
+    }
+    timestamps.set(interaction.user.id, now);
+    setTimeout(() => timestamps.delete(interaction.member.user.id), cooldownAmount);
+
+    try { //executes the command
+      command.execute(interaction, args, client);
+    } catch (error) {
+      console.error(error);
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content: "An error occured trying to execute this command"
+          }
+        }
+      })
+    }
   }
 });
 
