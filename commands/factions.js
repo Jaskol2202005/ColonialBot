@@ -67,6 +67,7 @@ module.exports = {
             let lastUpdated = new Date(data.factions[0].lastUpdate * 1000)
 
             reply += `\n**Last Updated:** ${lastUpdated}\n**Needs Update:** `
+            reply.replace(`+0000`, ``)
 
             db.get("lastTick").then(value => {
               let lastTick = new Date(value)
