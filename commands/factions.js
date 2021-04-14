@@ -1,4 +1,6 @@
 const https = require('https');
+const Database = require("@replit/database");
+const db = new Database();
 
 module.exports = {
   name: 'factions',
