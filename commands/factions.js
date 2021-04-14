@@ -67,7 +67,6 @@ module.exports = {
             let lastUpdated = new Date(data.factions[0].lastUpdate * 1000)
 
             reply += `\n**Last Updated:** ${lastUpdated}\n**Needs Update:** `
-            reply.replace(`+0000`, ``)
 
             db.get("lastTick").then(value => {
               let lastTick = new Date(value)
@@ -75,7 +74,8 @@ module.exports = {
                 reply += `Yes`
               } else {
                 reply += `No`
-              }
+              }        
+              reply.replace(`+0000`, ``)
               client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
                   type: 4,
