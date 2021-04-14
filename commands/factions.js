@@ -58,7 +58,7 @@ module.exports = {
                 if (data.factions[i].isPlayer) {
                   reply += `(Player) `
                 }
-                reply += `**${data.factions[i].name}** - ${data.factions[i].allegiance} - ${data.faction[i].government} - ${data.factions[i].state} - ${data.factions[i].happiness} - ${Math.trunc(data.factions[i].influence*1000)/10}%\n`;
+                reply += `**${data.factions[i].name}** - ${data.factions[i].allegiance} - ${data.factions[i].government} - ${data.factions[i].state} - ${data.factions[i].happiness} - ${Math.trunc(data.factions[i].influence*1000)/10}%\n`;
               }
             }
 
