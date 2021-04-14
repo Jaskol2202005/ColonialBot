@@ -75,7 +75,6 @@ module.exports = {
               } else {
                 reply += `No`
               }
-              reply.replace(/\+0000/, ``)
               client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
                   type: 4,
