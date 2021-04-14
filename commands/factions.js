@@ -58,9 +58,22 @@ module.exports = {
                 if (data.factions[i].isPlayer) {
                   reply += `(Player) `
                 }
-                reply += `**${data.factions[i].name}** - ${data.factions[i].allegiance} - ${data.factions[i].state} - ${data.factions[i].happiness} - ${Math.trunc(data.factions[i].influence*1000)/10}%\n`;
+                reply += `**${data.factions[i].name}** - ${data.factions[i].allegiance} - ${data.faction[i].government} - ${data.factions[i].state} - ${data.factions[i].happiness} - ${Math.trunc(data.factions[i].influence*1000)/10}%\n`;
               }
             }
+
+            let lastUpdated = new Date(data.factions[0].lastUpdate)
+
+            reply += `**Last Updated:** ${lastUpdate}\n**Needs Update:** `
+
+            db.get("lastTick").then(value => {
+              let lastTick = new Date(value)
+              if (lastUpdate < lastTick) {
+                reply += `Yes`
+              } else {
+                reply += `No`
+              }
+            })
 
             client.api.interactions(interaction.id, interaction.token).callback.post({
               data: {
