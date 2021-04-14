@@ -62,7 +62,7 @@ module.exports = {
               }
             }
 
-            let lastUpdated = new Date(data.factions[0].lastUpdate)
+            let lastUpdated = new Date(data.factions[0].lastUpdate * 1000)
 
             reply += `**Last Updated:** ${lastUpdated}\n**Needs Update:** `
 
