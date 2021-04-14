@@ -64,7 +64,8 @@ module.exports = {
 
             let lastUpdated = new Date(data.factions[0].lastUpdate * 1000)
 
-            reply += `\n**Last Updated:** ${lastUpdated.replace(`+0000 (Coordinated Universal Time)`, ``)}\n\n**Needs Update:** `
+            reply += `\n**Last Updated:** ${lastUpdated}\n\n**Needs Update:** `
+            reply.replace(`+0000 (Coordinated Universal Time)`, ``)
 
             db.get("lastTick").then(value => {
               let lastTick = new Date(value)
