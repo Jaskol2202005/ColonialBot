@@ -70,11 +70,11 @@ module.exports = {
 
             db.get("lastTick").then(value => {
               let lastTick = new Date(value)
-              console.log(lastTick);
-              console.log(lastUpdated);
-              if (lastUpdated.getTime() < lastTick.getTime()) {
+              if (lastUpdated < lastTick) {
+                console.log(`test`);
                 reply += `Yes`
               } else {
+                console.log(`test`);
                 reply += `No`
               }
             })
