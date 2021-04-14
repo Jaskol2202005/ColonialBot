@@ -70,7 +70,7 @@ module.exports = {
             reply.replace(`GMT+0000 (Coordinated Universal Time)`, `GMT`)
 
             db.get("lastTick").then(value => {
-              let lastTick = new Date(value)
+              let lastTick = new Date(2021-04-15T19:12:25.000Z)
               console.log(lastTick);
               console.log(lastUpdated);
               if (lastUpdated.getTime() < lastTick.getTime()) {
