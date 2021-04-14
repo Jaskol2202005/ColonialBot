@@ -85,6 +85,7 @@ module.exports = {
             })
           } catch (e) {
             console.log('Error parsing JSON!');
+            console.log(e);
           }
         } else {
           console.log('Status:', res.statusCode);
