@@ -64,10 +64,12 @@ module.exports = {
 
             let lastUpdated = new Date(data.factions[0].lastUpdate * 1000)
 
-            reply += `**Last Updated:** ${lastUpdated.replace(`+0000 (Coordinated Universal Time)`)}\n\n**Needs Update:** `
+            reply += `\n**Last Updated:** ${lastUpdated.replace(`+0000 (Coordinated Universal Time)`, ``)}\n\n**Needs Update:** `
 
             db.get("lastTick").then(value => {
               let lastTick = new Date(value)
+              console.log(lastTick);
+              console.log(lastUpdated);
               if (lastUpdated < lastTick) {
                 reply += `Yes`
               } else {
