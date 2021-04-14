@@ -64,11 +64,11 @@ module.exports = {
 
             let lastUpdated = new Date(data.factions[0].lastUpdate)
 
-            reply += `**Last Updated:** ${lastUpdate}\n**Needs Update:** `
+            reply += `**Last Updated:** ${lastUpdated}\n**Needs Update:** `
 
             db.get("lastTick").then(value => {
               let lastTick = new Date(value)
-              if (lastUpdate < lastTick) {
+              if (lastUpdated < lastTick) {
                 reply += `Yes`
               } else {
                 reply += `No`
