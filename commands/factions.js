@@ -67,10 +67,9 @@ module.exports = {
             let lastUpdated = new Date(data.factions[0].lastUpdate * 1000)
 
             reply += `\n**Last Updated:** ${lastUpdated}\n**Needs Update:** `
-            reply.replace(`GMT+0000 (Coordinated Universal Time)`, `GMT`)
 
             db.get("lastTick").then(value => {
-              let lastTick = new Date(2021-04-15T19:12:25.000Z)
+              let lastTick = new Date(value)
               console.log(lastTick);
               console.log(lastUpdated);
               if (lastUpdated.getTime() < lastTick.getTime()) {
