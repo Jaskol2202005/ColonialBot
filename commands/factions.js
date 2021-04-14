@@ -70,23 +70,19 @@ module.exports = {
 
             db.get("lastTick").then(value => {
               let lastTick = new Date(value)
-              reply += `test`
               if (lastUpdated < lastTick) {
-                console.log(`test`);
                 reply += `Yes`
               } else {
-                console.log(`test`);
                 reply += `No`
               }
-            })
-
-            client.api.interactions(interaction.id, interaction.token).callback.post({
-              data: {
-                type: 4,
+              client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
-                  content: reply
+                  type: 4,
+                  data: {
+                    content: reply
+                  }
                 }
-              }
+              })
             })
           } catch (e) {
             console.log('Error parsing JSON!');
