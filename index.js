@@ -204,6 +204,7 @@ setInterval(() => {
           let inTwentyFive = lastTick.add(25, `hour`)
           var data = JSON.parse(json);
           console.log(data[0].time);
+          console.log(data)
           db.get("nowTime").then(value => {
             let nowTime = value
             if (inTwentyFive.isBefore(currentDate)) {
@@ -258,6 +259,7 @@ https.get(options, function(res) {
       db.set("errorStatus", 0).then(() => {});
       try {
         var data = JSON.parse(json);
+        console.log(data)
         console.log(data[0].time);
         x.a = data[0].time
       } catch (e) {
