@@ -212,9 +212,6 @@ setInterval(() => {
             if (inTwentyFive.isBefore(currentDate)) {
               x.a = currentDate
               db.set("nowTime", currentDate)
-            } else if (firstTime) {
-              firstTime = false
-              return;
             } else if (x.a !== data[0].time || x.a !== nowTime) {
               x.a = data[0].time
             }
@@ -264,10 +261,13 @@ x.registerListener(function(val) {
     } else {
       utcMinutes = date.getUTCMinutes()
     }
-    client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
-    client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
-    client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
-
+    if (!firstTime) {
+      client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
+      client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+      client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+    } else {
+      firstTime = false
+    }
   }
   });
 });
