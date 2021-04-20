@@ -213,7 +213,7 @@ setInterval(() => {
               let firstTime = value
               if (firstTime) {
                 x.a = data[0].time
-                firstTime = false
+                db.set("firstTime", false)
               } else if (inTwentyFive.isBefore(currentDate)) {
                 x.a = currentDate
                 db.set("nowTime", currentDate)
