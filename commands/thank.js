@@ -7,7 +7,7 @@ module.exports = {
   usage: '@<whoever you want to thank>',
   execute(interaction, args, client) {
     let mention = args[0].value
-    if (mention === interaction.member.user.id || interaction.user.id) {
+    if (mention === interaction.member.user.id) {
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,

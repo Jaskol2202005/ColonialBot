@@ -21,6 +21,8 @@ client.cooldowns = new Discord.Collection();
 let Parser = require('rss-parser'); //rss parser for galnet articles (prototype rn)
 let parser = new Parser();
 
+let firstTime = true
+
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')); //loads directory for commands
 
 for (const file of commandFiles) { //loads commands
@@ -210,9 +212,10 @@ setInterval(() => {
             if (inTwentyFive.isBefore(currentDate)) {
               x.a = currentDate
               db.set("nowTime", currentDate)
-            } else if (x.a === data[0].time) {
-            } else if (x.a === nowTime) {
-            } else {
+            } else if (firstTime) {
+              firstTime = false
+              return;
+            } else if (x.a !== data[0].time || x.a !== nowTime) {
               x.a = data[0].time
             }
           })
@@ -247,40 +250,6 @@ setInterval(() => {
   });
 }, 60000)
 
-https.get(options, function(res) {
-  var json = '';
-
-  res.on('data', function(chunk) {
-    json += chunk;
-  });
-
-  res.on('end', function() {
-    if (res.statusCode === 200) {
-      db.set("errorStatus", 0).then(() => {});
-      try {
-        var data = JSON.parse(json);
-        console.log(data)
-        console.log(data[0].time);
-        x.a = data[0].time
-      } catch (e) {
-        console.log('Error parsing JSON!');
-      }
-    } else {
-      console.log('Status:', res.statusCode);
-    }
-  });
-}).on('error', function(err) {
-  console.log('Error:', err);
-  db.get("errorStatus").then(value => {
-    if (value === 1) {
-      return;
-    } else {
-      db.set("errorStatus", 1).then(() => {});
-      client.channels.cache.get(`715038247964639282`).send(`Error Encountered, Error code: ${err}`)
-    }
-  });
-});
-
 x.registerListener(function(val) {
   console.log("x.a has been changed to " + val);
   db.get("lastTick").then(value => {
@@ -295,9 +264,9 @@ x.registerListener(function(val) {
     } else {
       utcMinutes = date.getUTCMinutes()
     }
-    client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
-    client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
-    client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+    client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
+    client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
+    client.channels.cache.get(`829207812005429268`).send(`---------tick----------`)
 
   }
   });
