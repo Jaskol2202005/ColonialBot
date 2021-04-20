@@ -209,7 +209,10 @@ setInterval(() => {
           console.log(data)
           db.get("nowTime").then(value => {
             let nowTime = value
-            if (inTwentyFive.isBefore(currentDate)) {
+            if (firstTime) {
+              x.a = data[0].time
+              firstTime = false
+            } else if (inTwentyFive.isBefore(currentDate)) {
               x.a = currentDate
               db.set("nowTime", currentDate)
             } else if (x.a !== data[0].time || x.a !== nowTime) {
@@ -265,8 +268,6 @@ x.registerListener(function(val) {
       client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
       client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
       client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
-    } else {
-      firstTime = false
     }
   }
   });
