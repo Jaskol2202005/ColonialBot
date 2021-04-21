@@ -173,21 +173,6 @@ var options = { //bgs tick detection
   }
 };
 
-x = {
-  aInternal: 10,
-  aListener: function(val) {},
-  set a(val) {
-    this.aInternal = val;
-    this.aListener(val);
-  },
-  get a() {
-    return this.aInternal;
-  },
-  registerListener: function(listener) {
-    this.aListener = listener;
-  }
-}
-
 let i = 1
 setInterval(() => {
   console.log(`tick check`, i++);
@@ -201,25 +186,33 @@ setInterval(() => {
     res.on('end', function() {
       if (res.statusCode === 200) {
         try {
-          let lastTick = moment(x.a)
-          let currentDate = moment().format()
-          let inTwentyFive = lastTick.add(25, `hour`)
-          var data = JSON.parse(json);
-          console.log(data[0].time);
-          console.log(data)
-          db.get("nowTime").then(value => {
-            let nowTime = value
-            db.get("firstTime").then(value => {
-              let firstTime = value
-              if (firstTime) {
-                x.a = data[0].time
-                db.set("firstTime", false)
-              } else if (inTwentyFive.isBefore(currentDate)) {
-                x.a = currentDate
-                db.set("nowTime", currentDate)
-              } else if (x.a !== data[0].time || x.a !== nowTime) {
-                x.a = data[0].time
-              }
+          db.get("lastTick").then(value => {
+            let lastTick = moment(value)
+            let currentDate = moment().format()
+            let inTwentyFive = lastTick.add(25, `hour`)
+            var data = JSON.parse(json);
+            console.log(data[0].time);
+            console.log(data)
+            db.get("nowTime").then(value => {
+              let nowTime = value
+              db.get("firstTime").then(value => {
+                let firstTime = value
+                if (firstTime) {
+                  db.set("lastTick", data[0].time)
+                  db.set("firstTime", false)
+                } else if (inTwentyFive.isBefore(currentDate)) {
+                  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${currentDate.format("HH:mm:ss")} UTC**`)
+                  client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+                  client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+                  db.set("lastTick", currentDate)
+                  db.set("nowTime", currentDate)
+                } else if (lastTick !== data[0].time || lastTick !== nowTime) {
+                  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${lastTick.format("HH:mm:ss")} UTC**`)
+                  client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+                  client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
+                  db.set("lastTick", data[0].time)
+                }
+              })
             })
           })
         } catch (e) {
@@ -252,32 +245,6 @@ setInterval(() => {
     }
   });
 }, 60000)
-
-x.registerListener(function(val) {
-  console.log("x.a has been changed to " + val);
-  db.get("lastTick").then(value => {
-    if (value === val) {
-    return;
-    } else {
-    date = new Date(x.a);
-    let minutes = date.getUTCMinutes()
-    db.set("lastTick", x.a).then(() => {});
-    if (date.getUTCMinutes() < 10) {
-      utcMinutes = `0${date.getUTCMinutes()}`
-    } else {
-      utcMinutes = date.getUTCMinutes()
-    }
-    db.get("firstTime").then(value => {
-      let firstTime = value
-      if (!firstTime) {
-        client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${date.getUTCHours()}:${utcMinutes} UTC**`)
-        client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
-        client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
-      }
-    })
-  }
-  });
-});
 
   (async () => { //rss feed (prototype, doesn't work, yet)
     let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
