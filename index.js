@@ -188,10 +188,10 @@ setInterval(() => {
         try {
           db.get("lastTick").then(value => {
             var data = JSON.parse(json);
-            let currentTick = moment(data[0].time).format()
-            let lastTick = moment(value).format()
-            let currentDate = moment().format()
-            let inTwentyFive = moment(value).add(25, `hour`).format()
+            let currentTick = moment(data[0].time).toISOString()
+            let lastTick = moment(value).toISOString()
+            let currentDate = moment().toISOString()
+            let inTwentyFive = moment(value).add(25, `hour`).toISOString()
             console.log(data[0].time);
             db.get("nowTime").then(value => {
               let nowTime = value
