@@ -206,7 +206,7 @@ setInterval(() => {
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   db.set("lastTick", currentDate)
                   db.set("nowTime", currentDate)
-                } else if (lastTick !== currentTick || lastTick !== nowTime) {
+                } else if (lastTick !== currentTick && lastTick !== nowTime) {
                   client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${lastTick.format("HH:mm:ss")} UTC**`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
