@@ -246,20 +246,20 @@ setInterval(() => {
   });
 }, 60000)
 
-  (async () => { //rss feed (prototype, doesn't work, yet)
-    let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
-    feed.items.pop(1)
-    feed = feed.items
-    let content = []
-    for (var i = 0; i < feed.length; i++) {
-      content.push(feed[i].contentSnippet)
-    }
-    db.set("feeded", content)
-    db.get("feeded").then(value => {
-      let feeded = value
-      console.log(feeded);
-    })
-  })();
+(async () => { //rss feed (prototype, doesn't work, yet)
+  let feed = await parser.parseURL('https://community.elitedangerous.com/en/galnet-rss');
+  feed.items.pop(1)
+  feed = feed.items
+  let content = []
+  for (var i = 0; i < feed.length; i++) {
+    content.push(feed[i].contentSnippet)
+  }
+  db.set("feeded", content)
+  db.get("feeded").then(value => {
+    let feeded = value
+  console.log(feeded);
+  })
+})();
 
 const http = require('http'); //a ping exploit to keep it running on replit
 const server = http.createServer((req, res) => {
