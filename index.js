@@ -198,7 +198,7 @@ setInterval(() => {
               db.get("firstTime").then(value => {
                 let firstTime = value
                 if (firstTime) {
-                  db.set("lastTick", data[0].time)
+                  db.set("lastTick", currentTick)
                   db.set("firstTime", false)
                 } else if (inTwentyFive.isBefore(currentDate)) {
                   client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${currentDate.format("HH:mm:ss")} UTC**`)
@@ -210,7 +210,7 @@ setInterval(() => {
                   client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${lastTick.format("HH:mm:ss")} UTC**`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
-                  db.set("lastTick", data[0].time)
+                  db.set("lastTick", currentTick)
                 }
               })
             })
