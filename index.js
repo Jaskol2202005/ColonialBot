@@ -194,7 +194,7 @@ setInterval(() => {
             let inTwentyFive = moment(value).add(25, `hour`).toISOString()
             console.log(data[0].time);
             db.get("nowTime").then(value => {
-              let nowTime = value
+              let nowTime = moment(value).toISOString()
               db.get("firstTime").then(value => {
                 let firstTime = value
                 if (firstTime) {
