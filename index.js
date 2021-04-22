@@ -201,15 +201,13 @@ setInterval(() => {
                   db.set("lastTick", currentTick)
                   db.set("firstTime", false)
                 } else if (inTwentyFive < currentDate) {
-                  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${currentDate.format("HH:mm:ss")} UTC**`)
+                  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${moment().format("HH:mm:ss")} UTC**`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   db.set("lastTick", currentDate)
                   db.set("nowTime", currentDate)
                 } else if (lastTick !== currentTick && lastTick !== nowTime) {
-                  console.log(lastTick)
-                  console.log(currentTick)
-                  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${currentTick.format("HH:mm:ss")} UTC**`)
+                  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${moment(data[0].time).format("HH:mm:ss")} UTC**`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   db.set("lastTick", currentTick)
