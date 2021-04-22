@@ -208,6 +208,7 @@ setInterval(() => {
                   db.set("nowTime", currentDate)
                 } else if (lastTick !== currentTick) {
                 } else if (lastTick !== nowTime) {
+                } else {
                   console.log(lastTick)
                   console.log(currentTick)
                   client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${currentTick.format("HH:mm:ss")} UTC**`)
