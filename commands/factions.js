@@ -69,10 +69,10 @@ module.exports = {
 
             reply += `\n**Last Updated:** ${lastUpdated}\n**Needs Update:** `
 
-            db.get("lastTick").then(value => {
+            db.get("lastTick").then(value => {        
+              let lastTick = value
               console.log(lastUpdated);
               console.log(lastTick);
-              let lastTick = new Date(value)
               if (lastUpdated < lastTick) {
                 reply += `Yes`
               } else {
