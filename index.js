@@ -188,9 +188,12 @@ setInterval(() => {
         try {
           db.get("lastTick").then(value => {
             var data = JSON.parse(json);
+            console.log(data[0].time)
+            console.log(value)
             let currentTick = moment(data[0].time)
             let lastTick = moment(value)
-            let currentDate = moment().format()
+            console.log(lastTick)
+            let currentDate = moment()
             let inTwentyFive = lastTick.add(25, `hour`)
             console.log(data[0].time);
             db.get("nowTime").then(value => {
@@ -207,10 +210,12 @@ setInterval(() => {
                   db.set("lastTick", currentDate)
                   db.set("nowTime", currentDate)
                 } else if (lastTick !== currentTick && lastTick !== nowTime) {
-                  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${lastTick.format("HH:mm:ss")} UTC**`)
+                  console.log(lastTick)
+                  console.log(currentTick)
+                  client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${currentTick.format("HH:mm:ss")} UTC**`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
-                  db.set("lastTick", currentTick)
+                  db.set("lastTick", currentTick.subtract(1, `hour`))
                 }
               })
             })
