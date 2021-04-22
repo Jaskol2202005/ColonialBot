@@ -67,7 +67,7 @@ module.exports = {
 
             let lastUpdated = moment(data.factions[0].lastUpdate * 1000).toISOString()
 
-            reply += `\n**Last Updated:** ${lastUpdated}\n**Needs Update:** `
+            reply += `\n**Last Updated:** ${moment(data.factions[0].lastUpdate * 1000).format(`LLLL`)}\n**Needs Update:** `
 
             db.get("lastTick").then(value => {
               let lastTick = value
