@@ -187,6 +187,7 @@ setInterval(() => {
       if (res.statusCode === 200) {
         try {
           db.get("lastTick").then(value => {
+            let currentTick = moment(data[0].time)
             let lastTick = moment(value)
             let currentDate = moment().format()
             let inTwentyFive = lastTick.add(25, `hour`)
@@ -206,7 +207,7 @@ setInterval(() => {
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   db.set("lastTick", currentDate)
                   db.set("nowTime", currentDate)
-                } else if (lastTick !== data[0].time || lastTick !== nowTime) {
+                } else if (lastTick !== currentTick || lastTick !== nowTime) {
                   client.channels.cache.get(`715038247964639282`).send(`Tick successfully completed at **${lastTick.format("HH:mm:ss")} UTC**`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
                   client.channels.cache.get(`715038247964639282`).send(`---------tick----------`)
