@@ -187,13 +187,12 @@ setInterval(() => {
       if (res.statusCode === 200) {
         try {
           db.get("lastTick").then(value => {
+            var data = JSON.parse(json);
             let currentTick = moment(data[0].time)
             let lastTick = moment(value)
             let currentDate = moment().format()
             let inTwentyFive = lastTick.add(25, `hour`)
-            var data = JSON.parse(json);
             console.log(data[0].time);
-            console.log(data)
             db.get("nowTime").then(value => {
               let nowTime = value
               db.get("firstTime").then(value => {
