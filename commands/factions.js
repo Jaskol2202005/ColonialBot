@@ -1,6 +1,7 @@
 const https = require('https');
 const Database = require("@replit/database");
 const db = new Database();
+const moment = require('moment-timezone');
 
 module.exports = {
   name: 'factions',
@@ -64,7 +65,7 @@ module.exports = {
               }
             }
 
-            let lastUpdated = new Date(data.factions[0].lastUpdate * 1000)
+            let lastUpdated = moment(data.factions[0].lastUpdate * 1000).toISOString()
 
             reply += `\n**Last Updated:** ${lastUpdated}\n**Needs Update:** `
 
