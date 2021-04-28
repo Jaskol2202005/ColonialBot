@@ -4,6 +4,7 @@ const db = new Database();
 module.exports = {
   name: 'thanks',
   description: 'thank someone, and give them a snickers',
+  cooldown: `600`,
   usage: '@<whoever you want to thank>',
   execute(interaction, args, client) {
     let mention = args[0].value
