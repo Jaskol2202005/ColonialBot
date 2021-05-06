@@ -165,6 +165,11 @@ client.on('guildMemberRemove', member => { //leaving message + pfp for identific
   client.channels.cache.get(`821961477929959454`).send(`Goodbye **${member.user.username}** :(\nUser's pfp: https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`)
 });
 
+client.on(`voiceStateUpdate`, (oldState, newState) => {
+  console.log(oldState);
+  console.log(newState);
+})
+
 var options = { //bgs tick detection
   host: 'elitebgs.app',
   path: `/api/ebgs/v5/ticks`,
