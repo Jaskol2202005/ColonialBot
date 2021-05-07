@@ -9,12 +9,8 @@ module.exports = {
     db.get("ignoreList").then(value => {
       let pos9000 = value.indexOf(interaction.channel_id)
       if (pos9000 !== -1) {
-      if (interaction.member) {
-        let pos = interaction.member.user.id
-      } else {
-        let pos = interaction.user.id
-      }
       db.get("authorizedUsers").then(value => {
+        let pos = interaction.member.user.id
         let position = value.indexOf(pos)
         if (position !== -1) {
         db.get("currentOperations").then(value => {
