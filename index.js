@@ -174,8 +174,7 @@ client.on(`voiceStateUpdate`, (oldState, newState) => {
   if (newState.channelID === `781458562672230431`) return;
   if (oldState.channelID === null || typeof oldState.channelID == `undefined`) {
     db.get(`${newState.channelID}`).then(value => {
-      let userID = oldState.id
-      client.channels.cache.get(value).updateOverwrite(channel.guild.members.userID, { VIEW_CHANNEL: true })
+      client.channels.cache.get(value).updateOverwrite(oldState.id, { VIEW_CHANNEL: true })
     })
   }
   console.log(oldState);
