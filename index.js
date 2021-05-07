@@ -165,7 +165,19 @@ client.on('guildMemberRemove', member => { //leaving message + pfp for identific
   client.channels.cache.get(`821961477929959454`).send(`Goodbye **${member.user.username}** :(\nUser's pfp: https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`)
 });
 
+db.set(`567685575197458436`, `820157893205950494`)
+db.set(`781439168177897472`, `820158025263874048`)
+db.set(`831291737434619975`, `831291900601958460`)
+db.set(`831292748660211802`, `831292905565192192`)
+
 client.on(`voiceStateUpdate`, (oldState, newState) => {
+  if (newState.channelID === `781458562672230431`) return;
+  if (oldState.channelID === null || typeof oldState.channelID == `undefined`) {
+    db.get(`${newState.channelID}`).then(value => {
+      let userID = oldState.id
+      client.channels.cache.get(value).updateOverwrite(channel.guild.members.userID, { VIEW_CHANNEL: true })
+    })
+  }
   console.log(oldState);
   console.log(newState);
 })
