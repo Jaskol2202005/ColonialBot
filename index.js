@@ -181,7 +181,7 @@ client.on(`voiceStateUpdate`, (oldState, newState) => {
       db.get(`${newState.channelID}`).then(value => {
         let newLink = value
         client.channels.cache.get(oldLink).permissionOverwrites.get(oldState.id).delete();
-        client.channels.cache.get(newState).updateOverwrite(oldState.id, { VIEW_CHANNEL: true })
+        client.channels.cache.get(newLink).updateOverwrite(oldState.id, { VIEW_CHANNEL: true })
       })
     })
   }
