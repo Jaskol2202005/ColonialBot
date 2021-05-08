@@ -190,8 +190,6 @@ client.on(`voiceStateUpdate`, (oldState, newState) => {
       client.channels.cache.get(value).permissionOverwrites.get(oldState.id).delete();
     })
   }
-  console.log(oldState);
-  console.log(newState);
 })
 
 var options = { //bgs tick detection
