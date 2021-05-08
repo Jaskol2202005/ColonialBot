@@ -43,7 +43,8 @@ client.once('ready', () => { //console text and status set
         {
           name: `target`,
           description: `thing you wish to be destroyed`,
-          type: 3
+          type: 3,
+          optional: false
         }
       ]
     }
