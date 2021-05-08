@@ -3,7 +3,7 @@ const db = new Database();
 
 module.exports = {
   name: 'destroy',
-  description: 'destroys the target, yes, they're dead now',
+  description: `destroys the target, yes, they're dead now`,
   usage: '<target>',
   args: true,
   execute(interaction, args, client) {
