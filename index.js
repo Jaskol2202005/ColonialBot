@@ -185,6 +185,10 @@ client.on(`voiceStateUpdate`, (oldState, newState) => {
     db.get(`${newState.channelID}`).then(value => {
       client.channels.cache.get(value).updateOverwrite(oldState.id, { VIEW_CHANNEL: true })
     })
+  } else if (newState.channelID === null || typeof newState.channelID == `undefined`) {
+    db.get(`${oldState.channelID}`).then(value => {
+      client.channels.cache.get(value).permissionOverwrites.get(oldState.id).delete();
+    })
   }
   console.log(oldState);
   console.log(newState);
