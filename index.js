@@ -35,21 +35,6 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).commands.post({
-    data: {
-      name: "destroy",
-      description: `destroys the target, yes, they're dead now`,
-      options: [
-        {
-          name: `target`,
-          description: `thing you wish to be destroyed`,
-          type: 3,
-          optional: false
-        }
-      ]
-    }
-  });
-
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
@@ -189,6 +174,15 @@ client.on(`voiceStateUpdate`, (oldState, newState) => {
   } else if (newState.channelID === null || typeof newState.channelID == `undefined`) {
     db.get(`${oldState.channelID}`).then(value => {
       client.channels.cache.get(value).permissionOverwrites.get(oldState.id).delete();
+    })
+  } else if (oldState.channelID !== newState.channelID) {
+    db.get(`${oldState.channelID}`).then(value => {
+      let oldLink = value
+      db.get(`${newState.channelID}`).then(value => {
+        let newLink = value
+        client.channels.cache.get(oldLink).permissionOverwrites.get(oldState.id).delete();
+        client.channels.cache.get(newState).updateOverwrite(oldState.id, { VIEW_CHANNEL: true })
+      })
     })
   }
 })
