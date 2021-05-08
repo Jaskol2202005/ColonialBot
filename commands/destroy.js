@@ -3,24 +3,54 @@ const db = new Database();
 
 module.exports = {
   name: 'destroy',
-  description: 'destorys the discord client, ultimately killing the bot until a restart is induced, or blows up a fed',
-  usage: '<nuclear code here>',
+  description: 'destroys the target, yes, they're dead now',
+  usage: '<target>',
   args: true,
-  execute(message, args) {
+  execute(interaction, args, client) {
     db.get("authorizedUsers").then(value => {
       let authorizedUsers = value
 
-      let pos = authorizedUsers.indexOf(message.author.id)
+      let pos = authorizedUsers.indexOf(interaction.member.user.id)
 
-      if (pos > -1 && args[0] === `bot`) {
-        message.channel.send(`Discord client shutting down, <!@637414359655514134> please turn me back on soon!`)
+      args[0].value.replace(/[\]\-\^\\\[/!@#$%&*(){}|;:'",.<>?~`=+_]/g, ` `).toLowerCase().split(/ +/)
+
+      if (pos > -1 && args[0].value === `bot`) {
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: `Discord client shutting down, <!@637414359655514134> please turn me back on soon!`
+            }
+          }
+        })
         process.exit(0)
-      } else if (args[0] === `fed`) {
-        message.channel.send(`:boom:\n\nFed destroyed!`)
-      } else if (pos > -1) {
-        message.reply(`Wrong nuclear code provided`)
+      } else if (testValue.indexOf(`empire` || `imperial`)) {
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: `You do realize this is an Imperial server... right?`
+            }
+          }
+        })
+      } else if (args[0].value !== `bot`) {
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: `:boom::boom::boom:\n\n${args[0].value} destroyed!`
+            }
+          }
+        })
       } else {
-        message.reply(`You aren't authorized to use this command!`)
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: `You aren't authorized to use this command!`
+            }
+          }
+        })
       }
     });
   }
