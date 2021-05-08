@@ -24,8 +24,7 @@ module.exports = {
           }
         })
         process.exit(0)
-      } else if (args[0].value.indexOf(`empire` || `imperial` || `the princess` || `aisling`) > -1) {
-        client.api.interactions(interaction.id, interaction.token).callback.post({
+      } else if (args[0].value.indexOf(`empire`) > -1 || args[0].value.indexOf(`imperial`) > -1 || args[0].value.indexOf(`the princess`) > -1 || args[0].value.indexOf(`aisling`) > -1
           data: {
             type: 4,
             data: {
