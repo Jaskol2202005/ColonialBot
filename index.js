@@ -35,6 +35,20 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
+  client.api.applications(client.user.id).commands.post({
+    data: {
+      name: "destroy",
+      description: `destroys the target, yes, they're dead now`,
+      options: [
+        {
+          name: `target`,
+          description: `thing you wish to be destroyed`,
+          type: 3
+        }
+      ]
+    }
+  });
+
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
@@ -164,11 +178,6 @@ client.on('guildMemberAdd', member => { //welcome message
 client.on('guildMemberRemove', member => { //leaving message + pfp for identification
   client.channels.cache.get(`821961477929959454`).send(`Goodbye **${member.user.username}** :(\nUser's pfp: https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`)
 });
-
-db.set(`567685575197458436`, `820157893205950494`)
-db.set(`781439168177897472`, `820158025263874048`)
-db.set(`831291737434619975`, `831291900601958460`)
-db.set(`831292748660211802`, `831292905565192192`)
 
 client.on(`voiceStateUpdate`, (oldState, newState) => {
   if (newState.channelID === `781458562672230431`) return;
