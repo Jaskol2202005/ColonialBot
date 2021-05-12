@@ -33,6 +33,28 @@
       "Pioneer",
       "Elite"
     ],
+    "soldier": [
+      "Defenceless",
+      "Mostly Defenceless",
+      "Rookie",
+      "Soldier",
+      "Gunslinger",
+      "Warrior",
+      "Gladiator",
+      "Deadeye",
+      "Elite"
+    ],
+    "exobiologist": [
+      "Directionless",
+      "Mostly Directionless",
+      "Compiler",
+      "Collector",
+      "Cataloguer",
+      "Taxonomist",
+      "Ecologist",
+      "Geneticist",
+      "Elite"
+    ],
     "empire": [
       "None",
       "Outsider",
