@@ -18,17 +18,22 @@ module.exports = {
         }
       })
     } else {
+      let reply = ``
       db.get(`snickers${mention}`).then(value => {
         let currentSnickers = value
         db.set(`snickers${mention}`, currentSnickers + 1)
-        client.api.interactions(interaction.id, interaction.token).callback.post({
+        reply += `You gave <@${mention}> a Snickers!\nThey now have ${currentSnickers + 1} Snickers!`
+      })
+      if (args[1].value) {
+        reply += `\n\nIncluded message: ${args[1].value}`
+      }
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
           data: {
-            type: 4,
-            data: {
-              content: `You gave <@${mention}> a Snickers!\nThey now have ${currentSnickers + 1} Snickers!`
-            }
+            content: reply
           }
-        })
+        }
       })
     }
   }
