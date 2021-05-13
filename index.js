@@ -35,7 +35,7 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).commands.patch({
+  client.api.applications(client.user.id).commands.edit({
     data: {
       name: "destroy",
       description: "destroys the target, yes, they're dead now",
@@ -49,7 +49,7 @@ client.once('ready', () => { //console text and status set
       ]
     }
   });
-  client.api.applications(client.user.id).commands.patch({
+  client.api.applications(client.user.id).commands.edit({
     data: {
       name: "thanks",
       description: "thank someone, and give them a snickers",
@@ -69,7 +69,7 @@ client.once('ready', () => { //console text and status set
       ]
     }
   });
-  client.api.applications(client.user.id).commands.patch({
+  client.api.applications(client.user.id).commands.edit({
     data: {
       name: "thank",
       description: "thank someone, and give them a snickers",
