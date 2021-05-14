@@ -52,7 +52,7 @@ client.once('ready', () => { //console text and status set
       ]
     },
     `842823172830920754`
-  )
+  ).then(console.log).catch(console.error);
   slash.editCommand(
     {
       name: "thanks",
@@ -73,7 +73,7 @@ client.once('ready', () => { //console text and status set
       ]
     },
     `842823492947935293`
-  )
+  ).then(console.log).catch(console.error);
   slash.editCommand(
     {
       name: "thank",
@@ -94,7 +94,7 @@ client.once('ready', () => { //console text and status set
       ]
     },
     `842823308584026132`
-  )
+  ).then(console.log).catch(console.error);
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
