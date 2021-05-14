@@ -45,7 +45,7 @@ client.once('ready', () => { //console text and status set
         {
           name: "target",
           description: "target you wish to destroy",
-          type: 1,
+          type: 3,
           required: true
         }
       ]
@@ -65,7 +65,7 @@ client.once('ready', () => { //console text and status set
         {
           name: "message",
           description: "message you'd like to give to the person you're thanking",
-          type: 1,
+          type: 3,
           required: false
         }
       ]
@@ -85,7 +85,7 @@ client.once('ready', () => { //console text and status set
         {
           name: "message",
           description: "message you'd like to give to the person you're thanking",
-          type: 1,
+          type: 3,
           required: false
         }
       ]
