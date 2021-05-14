@@ -23,18 +23,18 @@ module.exports = {
         let currentSnickers = value
         db.set(`snickers${mention}`, currentSnickers + 1)
         reply += `You gave <@${mention}> a Snickers!\nThey now have ${currentSnickers + 1} Snickers!`
-      })
-      if (args[1].value) {
-        reply += `\n\nIncluded message: ${args[1].value}`
-      }
-      client.api.interactions(interaction.id, interaction.token).callback.post({
-        data: {
-          type: 4,
-          data: {
-            content: reply
-          }
+        if (args[1].value) {
+          reply += `\n\nIncluded message: ${args[1].value}`
         }
-      })
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: reply
+            }
+          }
+        })
+      })    
     }
   }
 }
