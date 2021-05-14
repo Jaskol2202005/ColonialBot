@@ -37,6 +37,7 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   const slash = new Client(process.env.token, client.user.id)
   slash.getCommands().then(console.log).catch(console.error);
+  console.log(`ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh---0-asgvahkfvasgukfdluaykfafyuafukdagsyasfgyfgylgaasfuaslyuasysqaasyyasfulasfyuyaffayasfbalafsyuafyufyuafysuafsvfviiayayafiifasiasiuqfdfdsvgyudgbayogaaguogooagvyuduvyagdyoouvyaugdadgyvuybagdyoavgdoyvaduaoouaaydyaavobqavoadayodoiavdoavbgydoyabgidoabyidaubdubiaiudafghaikIausgbfyuavhgduoavhligsvuabhvgolibdugayoufgolabhsfgyuhadgyuagfyvafovubahysvchbauovshjuyvgbhjlsyvbhaslivyudsfjugsbgyuasuif0asfhwjofgsrfoihunvmihubksjnohgikjlaosuijkngvsblkvs;duvbsidpvukbsgyhdlibvushidouvfaiubvodbfpvadbnpvbsvuijfpbvpanidvbaiodivbiudavbiaajvbiasvbdibsvnpbdvdbshuvubsdivbayudipgbliapilvobdgjpbagpdh[bogusdoinvsd[uovgai]]`);
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
   slash.editCommand(
