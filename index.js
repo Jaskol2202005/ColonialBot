@@ -51,7 +51,7 @@ client.once('ready', () => { //console text and status set
         }
       ]
     },
-    842823172830920754
+    `842823172830920754`
   )
   slash.editCommand(
     {
@@ -72,7 +72,7 @@ client.once('ready', () => { //console text and status set
         }
       ]
     },
-    842823492947935293
+    `842823492947935293`
   )
   slash.editCommand(
     {
@@ -93,7 +93,7 @@ client.once('ready', () => { //console text and status set
         }
       ]
     },
-    842823308584026132
+    `842823308584026132`
   )
 });
 
