@@ -13,6 +13,8 @@ require('dotenv').config();
 
 const moment = require('moment-timezone'); //moment for powerplay tick reminders
 
+const { Client } = require("discord-slash-commands-client")
+
 const Discord = require('discord.js'); //discordjs dependency and collection bootup
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -33,10 +35,11 @@ for (const file of commandFiles) { //loads commands
 const prefix = nconf.get(`prefix`); //gets prefix from database
 
 client.once('ready', () => { //console text and status set
+  const slash = new Client(process.env.token, client.user.id)
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).commands.edit({
-    data: {
+  slash.editCommand(
+    {
       name: "destroy",
       description: "destroys the target, yes, they're dead now",
       options: [
@@ -48,9 +51,9 @@ client.once('ready', () => { //console text and status set
         }
       ]
     }
-  });
-  client.api.applications(client.user.id).commands.edit({
-    data: {
+  )
+  slash.editCommand(
+    {
       name: "thanks",
       description: "thank someone, and give them a snickers",
       options: [
@@ -68,9 +71,9 @@ client.once('ready', () => { //console text and status set
         }
       ]
     }
-  });
-  client.api.applications(client.user.id).commands.edit({
-    data: {
+  )
+  slash.editCommand(
+    {
       name: "thank",
       description: "thank someone, and give them a snickers",
       options: [
@@ -88,7 +91,7 @@ client.once('ready', () => { //console text and status set
         }
       ]
     }
-  });
+  )
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
