@@ -167,8 +167,6 @@ client.on('guildMemberRemove', member => { //leaving message + pfp for identific
   client.channels.cache.get(`821961477929959454`).send(`Goodbye **${member.user.username}** :(\nUser's pfp: https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`)
 });
 
-db.set("781485264786292753", `825017045971370002`)
-
 client.on(`voiceStateUpdate`, (oldState, newState) => {
   if (newState.channelID === `781458562672230431`) return;
   if (oldState.channelID === null || typeof oldState.channelID == `undefined`) {
