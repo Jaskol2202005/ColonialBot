@@ -37,60 +37,6 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.api.applications(client.user.id).commands.post({
-    data: {
-      name: "destroy",
-      description: "destroys the target, yes, they're dead now",
-      options: [
-        {
-          name: "target",
-          description: "target you wish to destroy",
-          type: 3,
-          required: true
-        }
-      ]
-    }
-  });
-  client.api.applications(client.user.id).commands.post({
-    data: {
-      name: "thanks",
-      description: "thank someone, and give them a snickers",
-      options: [
-        {
-          name: "user",
-          description: "user you'd like to thank",
-          type: 6,
-          required: true
-        },
-        {
-          name: "message",
-          description: "message you'd like to give to the person you're thanking",
-          type: 3,
-          required: false
-        }
-      ]
-    }
-  });
-  client.api.applications(client.user.id).commands.post({
-    data: {
-      name: "thank",
-      description: "thank someone, and give them a snickers",
-      options: [
-        {
-          name: "user",
-          description: "user you'd like to thank",
-          type: 6,
-          required: true
-        },
-        {
-          name: "message",
-          description: "message you'd like to give to the person you're thanking",
-          type: 3,
-          required: false
-        }
-      ]
-    }
-  });
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
