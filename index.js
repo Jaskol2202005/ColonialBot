@@ -50,7 +50,8 @@ client.once('ready', () => { //console text and status set
           required: true
         }
       ]
-    }
+    },
+    842823172830920754
   )
   slash.editCommand(
     {
@@ -70,7 +71,8 @@ client.once('ready', () => { //console text and status set
           required: false
         }
       ]
-    }
+    },
+    842823492947935293
   )
   slash.editCommand(
     {
@@ -90,7 +92,8 @@ client.once('ready', () => { //console text and status set
           required: false
         }
       ]
-    }
+    },
+    842823308584026132
   )
 });
 
