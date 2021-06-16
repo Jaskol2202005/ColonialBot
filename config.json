@@ -9,7 +9,12 @@
       "Master",
       "Dangerous",
       "Deadly",
-      "Elite"
+      "Elite",
+      "Elite I",
+      "Elite II",
+      "Elite III",
+      "Elite IV",
+      "Elite V"
     ],
     "trade": [
       "Penniless",
@@ -20,7 +25,12 @@
       "Broker",
       "Entrepreneur",
       "Tycoon",
-      "Elite"
+      "Elite",
+      "Elite I",
+      "Elite II",
+      "Elite III",
+      "Elite IV",
+      "Elite V"
     ],
     "exploration": [
       "Aimless",
@@ -31,7 +41,12 @@
       "Pathfinder",
       "Ranger",
       "Pioneer",
-      "Elite"
+      "Elite",
+      "Elite I",
+      "Elite II",
+      "Elite III",
+      "Elite IV",
+      "Elite V"
     ],
     "soldier": [
       "Defenceless",
@@ -42,7 +57,12 @@
       "Warrior",
       "Gladiator",
       "Deadeye",
-      "Elite"
+      "Elite",
+      "Elite I",
+      "Elite II",
+      "Elite III",
+      "Elite IV",
+      "Elite V"
     ],
     "exobiologist": [
       "Directionless",
@@ -53,7 +73,12 @@
       "Taxonomist",
       "Ecologist",
       "Geneticist",
-      "Elite"
+      "Elite",
+      "Elite I",
+      "Elite II",
+      "Elite III",
+      "Elite IV",
+      "Elite V"
     ],
     "empire": [
       "None",
