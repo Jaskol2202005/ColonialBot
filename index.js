@@ -216,6 +216,7 @@ setInterval(() => {
             let lastTick = moment(value).toISOString()
             let currentDate = moment().toISOString()
             let inTwentySeven = moment(value).add(27, `hour`).toISOString()
+            let inTwentyEight = moment(value).add(28, `hour`).toISOString()
             console.log(data[0].time);
             db.get("nowTime").then(value => {
               let nowTime = moment(value).toISOString()
@@ -224,7 +225,7 @@ setInterval(() => {
                 if (firstTime) {
                   db.set("lastTick", currentTick)
                   db.set("firstTime", false)
-                } else if (inTwentySeven < currentDate) {
+                } else if (inTwentySeven < currentDate && currentDate < inTwentyEight) {
                   client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed on **${moment().format("LLLL")} UTC** (Tick completed by deduction, 27 hours since last)`)
                   client.channels.cache.get(`800816235574067230`).send(`---------tick (by deduction)----------`)
                   client.channels.cache.get(`829207812005429268`).send(`---------tick (by deduction)----------`)
