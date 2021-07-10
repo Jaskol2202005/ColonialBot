@@ -5,7 +5,7 @@ module.exports = {
   description: 'Looks for faction details',
   usage: '<faction name>',
   execute(interaction, args, client) {
-    if (interaction.channel_id !== `781456276911685653`) {
+    if (interaction.channel_id !== '715038247964639282') {
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
