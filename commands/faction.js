@@ -58,6 +58,7 @@ module.exports = {
                   if (reply.length >= 1900) {
                     if (overflow === true) {
                       client.channels.cache.get(interaction.channel_id).send(reply)
+                      overflow = false
                     } else {
                       client.api.interactions(interaction.id, interaction.token).callback.post({
                         data: {
