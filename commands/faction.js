@@ -10,7 +10,7 @@ module.exports = {
       console.log(array);
       var options = {
         host: 'elitebgs.app',
-        path: `/api/ebgs/v4/factions?name=${array[0]}`,
+        path: `/api/ebgs/v5/factions?name=${array[0]}`,
         headers: {
           'Accept': 'application/json'
         }
