@@ -7,7 +7,6 @@ module.exports = {
   execute(interaction, args, client) {
     if (interaction.channel_id === '715038247964639282' || interaction.channel_id === '781456276911685653' || interaction.channel_id === '831563438571913247' || interaction.channel_id === '831847459205545994') {
       let array = args[0].value.toLowerCase().split(/ +/);
-      console.log(array);
       var options = {
         host: 'elitebgs.app',
         path: `/api/ebgs/v5/factions?name=${array[0]}`,
