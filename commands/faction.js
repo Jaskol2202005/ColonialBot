@@ -54,26 +54,35 @@ module.exports = {
 
                 for (var i = 0; i < presence.length; i++) {
                   if (reply.length >= 1900) {
-                    client.api.interactions(interaction.id, interaction.token).callback.post({
-                      data: {
-                        type: 4,
+                    if (overflow === true) {
+                      client.channels.cache.get(interaction.channel_id).send(reply)
+                    } else {
+                      client.api.interactions(interaction.id, interaction.token).callback.post({
                         data: {
-                          content: reply
+                          type: 4,
+                          data: {
+                            content: reply
+                          }
                         }
-                      }
-                    })
-                    reply = ``
+                      })
+                      reply = ``
+                      let overflow = true
+                    }  
                   }
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nState: **${presence[i].state.charAt(0).toUpperCase() + presence[i].state.slice(1)}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**`
                 }
-                client.api.interactions(interaction.id, interaction.token).callback.post({
-                  data: {
-                    type: 4,
+                if (overflow === true) {
+                  client.channels.cache.get(interaction.channel_id).send(reply)
+                } else {
+                  client.api.interactions(interaction.id, interaction.token).callback.post({
                     data: {
-                      content: reply
+                      type: 4,
+                      data: {
+                        content: reply
+                      }
                     }
-                  }
-                })
+                  })
+                }
               }
             } catch (e) {
               console.log('Error parsing JSON!');
