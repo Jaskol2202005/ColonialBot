@@ -30,7 +30,7 @@ module.exports = {
           if (res.statusCode === 200) {
             try {
               var data = JSON.parse(json);
-              console.log(data);
+              console.log(data.docs[0]);
 
               let faction = data.docs[0]
               let presence = faction.faction_presence
