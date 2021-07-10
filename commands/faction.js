@@ -52,6 +52,8 @@ module.exports = {
 
                 reply += `Faction: **${faction.name}**\nGovernment type: **${governmentUpper}**\nAllegiance: **${allegianceUpper}**\nEDDB link: https://eddb.io/faction/${faction.eddb_id}`
 
+                let overflow = false
+
                 for (var i = 0; i < presence.length; i++) {
                   if (reply.length >= 1900) {
                     if (overflow === true) {
@@ -66,8 +68,8 @@ module.exports = {
                         }
                       })
                       reply = ``
-                      let overflow = true
-                    }  
+                      overflow = true
+                    }
                   }
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nState: **${presence[i].state.charAt(0).toUpperCase() + presence[i].state.slice(1)}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**`
                 }
