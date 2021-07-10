@@ -24,6 +24,9 @@ let Parser = require('rss-parser'); //rss parser for galnet articles (prototype 
 let parser = new Parser();
 
 db.set("firstTime", true)
+db.get("ignoreList").then(value => {
+  console.log(value)
+})
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')); //loads directory for commands
 
