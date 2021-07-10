@@ -53,6 +53,17 @@ module.exports = {
                 reply += `Faction: **${faction.name}**\nGovernment type: **${governmentUpper}**\nAllegiance: **${allegianceUpper}**\nEDDB link: https://eddb.io/faction/${faction.eddb_id}`
 
                 for (var i = 0; i < presence.length; i++) {
+                  if (reply.length >= 1900) {
+                    client.api.interactions(interaction.id, interaction.token).callback.post({
+                      data: {
+                        type: 4,
+                        data: {
+                          content: reply
+                        }
+                      }
+                    })
+                    reply = ``
+                  }
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nState: **${presence[i].state.charAt(0).toUpperCase() + presence[i].state.slice(1)}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**`
                 }
                 client.api.interactions(interaction.id, interaction.token).callback.post({
