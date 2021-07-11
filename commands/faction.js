@@ -60,7 +60,7 @@ module.exports = {
                 let overflow = false
 
                 for (var i = 0; i < presence.length; i++) {
-                  if (reply.length >= 1900) {
+                  if (reply.length >= 1820) {
                     if (overflow === true) {
                       client.channels.cache.get(interaction.channel_id).send(reply)
                       overflow = false
