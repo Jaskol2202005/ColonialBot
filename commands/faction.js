@@ -76,14 +76,13 @@ module.exports = {
                     }
                   }
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nState: **${presence[i].state.charAt(0).toUpperCase() + presence[i].state.slice(1)}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nLast Updated: **${moment(presence[i].updated_at).format(`LLLL`)}**\nNeeds Update? `
-                  db.get("lastTick").then(value => {
-                    let lastTick = value
-                    if (lastUpdated < lastTick) {
-                      reply += `Yes`
-                    } else {
-                      reply += `No`
-                    }
-                  })
+
+                  let lastTick = value
+                  if (lastUpdated < lastTick) {
+                    reply += `Yes`
+                  } else {
+                    reply += `No`
+                  }
                 }
                 if (overflow === true) {
                   client.channels.cache.get(interaction.channel_id).send(reply)
@@ -113,6 +112,7 @@ module.exports = {
             console.log('Status:', res.statusCode);
           }
         });
+        })
       }).on('error', function (err) {
         console.log('Error:', err);
       });
