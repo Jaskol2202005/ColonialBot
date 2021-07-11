@@ -18,6 +18,7 @@ module.exports = {
         }
       };
 
+      db.get("lastTick").then(value => {
       array.shift()
       for (var i = 0; i < array.length; i++) {
         options.path += `+${array[i]}`;
@@ -108,6 +109,7 @@ module.exports = {
       }).on('error', function (err) {
         console.log('Error:', err);
       });
+      })
     } else {
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
