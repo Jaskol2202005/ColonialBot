@@ -81,7 +81,11 @@ module.exports = {
                   let lastUpdated = moment(presence[i].updated_at).toISOString()
 
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nState: **${presence[i].state.charAt(0).toUpperCase() + presence[i].state.slice(1)}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\n`
-                  
+                  if (presence[i].conflicts.length !== 0) {
+                    reply += `Faction currently in a ${presence[i].conflicts[0].type}, ${presence[i].conflicts[0].days_won} days won`
+                  } else {
+                    reply += `No conflict reported`
+                  }
                   reply += `\nLast Updated: **${moment(presence[i].updated_at).format(`LLLL`)}**\nNeeds Update? `
                   if (lastUpdated < lastTick) {
                     reply += `Yes`
