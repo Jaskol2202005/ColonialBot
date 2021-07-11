@@ -77,6 +77,9 @@ module.exports = {
                       overflow = true
                     }
                   }
+
+                  let lastUpdated = moment(presence[i].updated_at).toISOString()
+
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nState: **${presence[i].state.charAt(0).toUpperCase() + presence[i].state.slice(1)}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nLast Updated: **${moment(presence[i].updated_at).format(`LLLL`)}**\nNeeds Update? `
                   if (lastUpdated < lastTick) {
                     reply += `Yes`
