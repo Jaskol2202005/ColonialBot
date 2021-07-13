@@ -100,8 +100,8 @@ module.exports = {
                   if (presence[i].recovering_states.length === 0) {
                   } else {
                     reply += `\nRecovering states: `
-                    for (var k = 0; k < presence[i].recovering_states.length; i++) {
-                      reply += `${presence[i].recovering_states[k].state.charAt(0).toUpperCase() + presence[i].recovering_states[k].state.slice(1)},`
+                    for (var l = 0; l < presence[i].recovering_states.length; i++) {
+                      reply += `${presence[i].recovering_states[l].state.charAt(0).toUpperCase() + presence[i].recovering_states[l].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
