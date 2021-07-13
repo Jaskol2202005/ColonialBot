@@ -80,7 +80,7 @@ module.exports = {
 
                   let lastUpdated = moment(presence[i].updated_at).toISOString()
 
-                  reply += `\n\nFaction presence: **${presence[i].system_name}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nActive state: `
+                  reply += `\n\nFaction presence: **${presence[i].system_name}**\nInfluence: **${Math.trunc(presence[i].influence * 1000)}%**\nActive state: `
                   if (presence[i].active_states.length === 0) {
                     reply += `**None**`
                   } else {
