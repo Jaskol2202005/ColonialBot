@@ -102,7 +102,6 @@ module.exports = {
                     reply += `\nRecovering states: `
                     for (var j = 0; j < presence[i].recovering_states.length; i++) {
                       reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
-                      console.log(presence[i].recovering_states);
                     }
                     reply.slice(0, -1);
                   }
