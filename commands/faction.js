@@ -81,7 +81,7 @@ module.exports = {
                   let lastUpdated = moment(presence[i].updated_at).toISOString()
 
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nActive state: `
-                  if (presence[i].active_states === []) {
+                  if (presence[i].active_states.length === 0) {
                     reply += `**None**`
                   } else {
                     for (var i = 0; i < presence[i].active_states.length; i++) {
@@ -89,7 +89,7 @@ module.exports = {
                     }
                     reply.slice(0, -1);
                   }
-                  if (presence[i].pending_states === []) {
+                  if (presence[i].pending_states.length === 0) {
                   } else {
                     reply += `\nPending states: `
                     for (var i = 0; i < presence[i].pending_states.length; i++) {
@@ -97,7 +97,7 @@ module.exports = {
                     }
                     reply.slice(0, -1);
                   }
-                  if (presence[i].recovering_states === []) {
+                  if (presence[i].recovering_states.length === 0) {
                   } else {
                     reply += `\nRecovering states: `
                     for (var i = 0; i < presence[i].recovering_states.length; i++) {
