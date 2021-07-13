@@ -85,7 +85,7 @@ module.exports = {
                     reply += `**None**`
                   } else {
                     for (var j = 0; j < presence[i].active_states.length; i++) {
-                      reply += `${presence[i].active_states[j].state.charAt(0).toUpperCase() + presence[i].active_states[j].slice(1)},`
+                      reply += `${presence[i].active_states[j].state.charAt(0).toUpperCase() + presence[i].active_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
@@ -93,7 +93,7 @@ module.exports = {
                   } else {
                     reply += `\nPending states: `
                     for (var j = 0; j < presence[i].pending_states.length; i++) {
-                      reply += `${presence[i].pending_states[j].state.charAt(0).toUpperCase() + presence[i].pending_states[j].slice(1)},`
+                      reply += `${presence[i].pending_states[j].state.charAt(0).toUpperCase() + presence[i].pending_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
@@ -101,7 +101,7 @@ module.exports = {
                   } else {
                     reply += `\nRecovering states: `
                     for (var j = 0; j < presence[i].recovering_states.length; i++) {
-                      reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].slice(1)},`
+                      reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
