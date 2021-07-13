@@ -92,16 +92,16 @@ module.exports = {
                   if (presence[i].pending_states.length === 0) {
                   } else {
                     reply += `\nPending states: `
-                    for (var j = 0; j < presence[i].pending_states.length; i++) {
-                      reply += `${presence[i].pending_states[j].state.charAt(0).toUpperCase() + presence[i].pending_states[j].state.slice(1)},`
+                    for (var k = 0; k < presence[i].pending_states.length; i++) {
+                      reply += `${presence[i].pending_states[k].state.charAt(0).toUpperCase() + presence[i].pending_states[k].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
                   if (presence[i].recovering_states.length === 0) {
                   } else {
                     reply += `\nRecovering states: `
-                    for (var j = 0; j < presence[i].recovering_states.length; i++) {
-                      reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
+                    for (var k = 0; k < presence[i].recovering_states.length; i++) {
+                      reply += `${presence[i].recovering_states[k].state.charAt(0).toUpperCase() + presence[i].recovering_states[k].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
