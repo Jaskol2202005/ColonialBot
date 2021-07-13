@@ -80,11 +80,35 @@ module.exports = {
 
                   let lastUpdated = moment(presence[i].updated_at).toISOString()
 
-                  reply += `\n\nFaction presence: **${presence[i].system_name}**\nState: **${presence[i].state.charAt(0).toUpperCase() + presence[i].state.slice(1)}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\n`
-                  if (presence[i].conflicts.length !== 0) {
-                    reply += `Faction currently in a ${presence[i].conflicts[0].type}, ${presence[i].conflicts[0].days_won} days won`
+                  reply += `\n\nFaction presence: **${presence[i].system_name}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nActive state: `
+                  if (presence[i].active_states === []) {
+                    reply += `**None**`
                   } else {
-                    reply += `No conflict reported`
+                    for (var i = 0; i < presence[i].active_states.length; i++) {
+                      reply += `${presence[i].active_states[i].charAt(0).toUpperCase() + presence[i].active_states[i].slice(1)},`
+                    }
+                    reply.slice(0, -1);
+                  }
+                  if (presence[i].pending_states === []) {
+                  } else {
+                    reply += `\nPending states: `
+                    for (var i = 0; i < presence[i].pending_states.length; i++) {
+                      reply += `${presence[i].pending_states[i].charAt(0).toUpperCase() + presence[i].pending_states[i].slice(1)},`
+                    }
+                    reply.slice(0, -1);
+                  }
+                  if (presence[i].recovering_states === []) {
+                  } else {
+                    reply += `\nRecovering states: `
+                    for (var i = 0; i < presence[i].recovering_states.length; i++) {
+                      reply += `${presence[i].recovering_states[i].charAt(0).toUpperCase() + presence[i].recovering_states[i].slice(1)},`
+                    }
+                    reply.slice(0, -1);
+                  }
+                  if (presence[i].conflicts.length !== 0) {
+                    reply += `\nFaction currently in a ${presence[i].conflicts[0].type}, ${presence[i].conflicts[0].days_won} days won`
+                  } else {
+                    reply += `\nNo conflict reported`
                   }
                   reply += `\nLast Updated: **${moment(presence[i].updated_at).format(`LLLL`)}**\nNeeds Update? `
                   if (lastUpdated < lastTick) {
