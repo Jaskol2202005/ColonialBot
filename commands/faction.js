@@ -100,10 +100,10 @@ module.exports = {
                   if (presence[i].recovering_states.length === 0) {
                   } else {
                     reply += `\nRecovering states: `
+                    console.log(presence[i].recovering_states.length);
                     for (var l = 0; l < presence[i].recovering_states.length; i++) {
                       reply += `${presence[i].recovering_states[0].state.charAt(0).toUpperCase() + presence[i].recovering_states[0].state.slice(1)},`
                     }
-                    console.log(based);
                     reply.slice(0, -1);
                   }
                   if (presence[i].conflicts.length !== 0) {
