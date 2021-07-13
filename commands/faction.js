@@ -131,7 +131,7 @@ module.exports = {
                 }
               }
             } catch (e) {
-              console.log('Error parsing JSON!');
+              console.log(`Error parsing JSON! ${e}`);
               client.api.interactions(interaction.id, interaction.token).callback.post({
                 data: {
                   type: 4,
