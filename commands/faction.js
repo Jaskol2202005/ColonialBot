@@ -111,7 +111,7 @@ module.exports = {
                   }
                   reply += `\nLast Updated: **${moment(presence[i].updated_at).format(`LLLL`)}**\nNeeds Update? `
 
-                  await db.get("lastTick").then(value => {
+                  db.get("lastTick").then(value => {
                   if (lastUpdated < lastTick) {
                     reply += `Yes`
                   } else {
