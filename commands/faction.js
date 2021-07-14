@@ -99,7 +99,6 @@ module.exports = {
                   }
                   if (presence[i].recovering_states.length === 0) {
                   } else {
-                    console.log(`test`);
                     reply += `\nRecovering states: `
                     for (var j = 0; j < presence[i].recovering_states.length; i++) {
                       console.log(`test`);
