@@ -8,7 +8,7 @@ module.exports = { //again... read the description
         Math.random() * (max - min + 1) + min
       )
     }
-    if (between(min, max) === 1) {
+    if (between(1, 2) === 1) {
       let reply = `Heads`
     } else {
       let reply = `Tails`
