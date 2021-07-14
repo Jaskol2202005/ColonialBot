@@ -131,14 +131,25 @@ client.ws.on('INTERACTION_CREATE', async interaction => { //recieving commands
 
 client.on('message', message => { //recieving regular messages
   console.log(message.content); //logs messages, doesn't have to if you don't want it
+  let messageArray = message.content.replace(/[\]\-\^\\\[/!@#$%&*(){}|;:'",.<>?~`=+_]/g, ` `).toLowerCase()
+  if (messageArray.includes(`flip a coin`)) {
+    function between(min, max) {
+      return Math.floor(
+        Math.random() * (max - min + 1) + min
+      )
+    }
+    if (between(1, 2) === 1) {
+      message.reply(`Heads`)
+    } else {
+      message.reply(`Tails`)
+    }
+  }
   db.get("ignoreList").then(value => { //opsec breach detection
     let ignoreList = value
     let pos = ignoreList.indexOf(message.channel.id)
     if (pos === -1) {
       db.get("currentOperations").then(value => {
         let currentOperations = value
-        let messageArray = message.content.replace(/[\]\-\^\\\[/!@#$%&*(){}|;:'",.<>?~`=+_]/g, ` `).toLowerCase()
-        console.log(messageArray);
         for (var i = 0; i < currentOperations.length; i++) {
           let pos = messageArray.indexOf(currentOperations[i]);
           if (messageArray.includes(currentOperations[i])) {
