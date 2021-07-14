@@ -9,17 +9,23 @@ module.exports = { //again... read the description
       )
     }
     if (between(1, 2) === 1) {
-      let reply = `Heads`
-    } else {
-      let reply = `Tails`
-    }
-    client.api.interactions(interaction.id, interaction.token).callback.post({
-      data: {
-        type: 4,
+      client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
-          content: reply
+          type: 4,
+          data: {
+            content: `Heads`
+          }
         }
-      }
-    })
+      })
+    } else {
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content: `Tails`
+          }
+        }
+      })
+    }
   }
 }
