@@ -18,7 +18,6 @@ module.exports = {
         }
       };
 
-      let lastTick = value
       array.shift()
       for (var i = 0; i < array.length; i++) {
         options.path += `+${array[i]}`;
