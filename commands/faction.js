@@ -106,7 +106,6 @@ module.exports = {
                       reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
-                    console.log(`test`);
                   }
                   if (presence[i].conflicts.length !== 0) {
                     reply += `\nFaction currently in a ${presence[i].conflicts[0].type}, ${presence[i].conflicts[0].days_won} days won`
