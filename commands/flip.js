@@ -3,7 +3,12 @@ module.exports = { //again... read the description
   description: `flips a coin`,
   usage: ``,
   execute(interaction, args, client) {
-    if (getRandomInt(2) === 1) {
+    function between(min, max) {
+      return Math.floor(
+        Math.random() * (max - min + 1) + min
+      )
+    }
+    if (between(min, max) === 1) {
       let reply = `Heads`
     } else {
       let reply = `Tails`

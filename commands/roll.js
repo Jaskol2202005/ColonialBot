@@ -3,12 +3,17 @@ module.exports = { //again... read the description
   description: `rolls a dice of your choice`,
   usage: ``,
   execute(interaction, args, client) {
+    function between(min, max) {
+      return Math.floor(
+        Math.random() * (max - min + 1) + min
+      )
+    }
     if (args[0].name === `d4`) {
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
           data: {
-            content: getRandomInt(4) + 1
+            content: between(1, 4)
           }
         }
       })
@@ -17,7 +22,7 @@ module.exports = { //again... read the description
         data: {
           type: 4,
           data: {
-            content: getRandomInt(6) + 1
+            content: between(1, 6)
           }
         }
       })
@@ -26,7 +31,7 @@ module.exports = { //again... read the description
         data: {
           type: 4,
           data: {
-            content: getRandomInt(8) + 1
+            content: between(1, 8)
           }
         }
       })
@@ -35,7 +40,7 @@ module.exports = { //again... read the description
         data: {
           type: 4,
           data: {
-            content: getRandomInt(10) + 1
+            content: between(1, 10)
           }
         }
       })
@@ -44,7 +49,7 @@ module.exports = { //again... read the description
         data: {
           type: 4,
           data: {
-            content: getRandomInt(12) + 1
+            content: between(1, 12)
           }
         }
       })
@@ -53,7 +58,7 @@ module.exports = { //again... read the description
         data: {
           type: 4,
           data: {
-            content: getRandomInt(20) + 1
+            content: between(1, 20)
           }
         }
       })
