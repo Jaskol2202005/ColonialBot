@@ -82,10 +82,9 @@ module.exports = {
 
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nActive state: `
                   if (presence[i].active_states.length === 0) {
+                    console.log(`test`);
                     reply += `**None**`
                   } else {
-                    console.log(`Length: ${presence[i].active_states.length}`);
-                    console.log(`J: ${j}`);
                     for (var j = 0; j < presence[i].active_states.length; i++) {
                       reply += `${presence[i].active_states[j].state.charAt(0).toUpperCase() + presence[i].active_states[j].state.slice(1)},`
                     }
