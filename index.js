@@ -141,7 +141,7 @@ client.on('message', message => { //recieving regular messages
         console.log(messageArray);
         for (var i = 0; i < currentOperations.length; i++) {
           let pos = messageArray.indexOf(currentOperations[i]);
-          if (pos !== -1) {
+          if (messageArray.includes(currentOperations[i])) {
             message.reply(`Opsec breach detected, message deleted.\n\nMake sure to censor opsec data next time!\nex. [REDACTED]`)
             message.delete()
             return;
