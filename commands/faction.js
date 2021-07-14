@@ -84,9 +84,9 @@ module.exports = {
                   if (presence[i].active_states.length === 0) {
                     reply += `**None**`
                   } else {
+                    console.log(`Length: ${presence[i].active_states.length}`);
+                    console.log(`J: ${j}`);
                     for (var j = 0; j < presence[i].active_states.length; i++) {
-                      console.log(`Length: ${presence[i].active_states.length}`);
-                      console.log(`J: ${j}`);
                       reply += `${presence[i].active_states[j].state.charAt(0).toUpperCase() + presence[i].active_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
