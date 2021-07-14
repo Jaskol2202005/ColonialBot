@@ -82,7 +82,6 @@ module.exports = {
 
                   reply += `\n\nFaction presence: **${presence[i].system_name}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nActive state: `
                   if (presence[i].active_states.length === 0) {
-                    console.log(`test`);
                     reply += `**None**`
                   } else {
                     for (var j = 0; j < presence[i].active_states.length; i++) {
@@ -100,11 +99,14 @@ module.exports = {
                   }
                   if (presence[i].recovering_states.length === 0) {
                   } else {
+                    console.log(`test`);
                     reply += `\nRecovering states: `
                     for (var j = 0; j < presence[i].recovering_states.length; i++) {
+                      console.log(`test`);
                       reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
+                    console.log(`test`);
                   }
                   if (presence[i].conflicts.length !== 0) {
                     reply += `\nFaction currently in a ${presence[i].conflicts[0].type}, ${presence[i].conflicts[0].days_won} days won`
