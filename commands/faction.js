@@ -18,7 +18,6 @@ module.exports = {
         }
       };
 
-      db.get("lastTick").then(value => {
       let lastTick = value
       array.shift()
       for (var i = 0; i < array.length; i++) {
@@ -85,7 +84,7 @@ module.exports = {
                     reply += `**None**`
                   } else {
                     for (var j = 0; j < presence[i].active_states.length; i++) {
-                      await reply += `${presence[i].active_states[j].state.charAt(0).toUpperCase() + presence[i].active_states[j].state.slice(1)},`
+                      reply += `${presence[i].active_states[j].state.charAt(0).toUpperCase() + presence[i].active_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
@@ -93,7 +92,7 @@ module.exports = {
                   } else {
                     reply += `\nPending states: `
                     for (var k = 0; k < presence[i].pending_states.length; i++) {
-                      await reply += `${presence[i].pending_states[j].state.charAt(0).toUpperCase() + presence[i].pending_states[j].state.slice(1)},`
+                      reply += `${presence[i].pending_states[j].state.charAt(0).toUpperCase() + presence[i].pending_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
@@ -101,7 +100,7 @@ module.exports = {
                   } else {
                     reply += `\nRecovering states: `
                     for (var l = 0; l < presence[i].recovering_states.length; i++) {
-                      await reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
+                      reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
                     }
                     reply.slice(0, -1);
                   }
@@ -111,11 +110,14 @@ module.exports = {
                     reply += `\nNo conflict reported`
                   }
                   reply += `\nLast Updated: **${moment(presence[i].updated_at).format(`LLLL`)}**\nNeeds Update? `
+
+                  await db.get("lastTick").then(value => {
                   if (lastUpdated < lastTick) {
                     reply += `Yes`
                   } else {
                     reply += `No`
                   }
+                  })
                 }
                 if (overflow === true) {
                   client.channels.cache.get(interaction.channel_id).send(reply)
@@ -148,7 +150,6 @@ module.exports = {
       }).on('error', function (err) {
         console.log('Error:', err);
       });
-      })
     } else {
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
