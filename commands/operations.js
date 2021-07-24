@@ -39,7 +39,7 @@ module.exports = {
               data: {
                 type: 4,
                 data: {
-                  content: "Operation added successfully"
+                  content: `Operation ${nextOperation} added successfully`
                 }
               }
             })
@@ -67,7 +67,7 @@ module.exports = {
               data: {
                 type: 4,
                 data: {
-                  content: "Operation removed successfully"
+                  content: `Operation ${removedOperation} removed successfully`
                 }
               }
             })
