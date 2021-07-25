@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "To join the squadron, go to your right hand panel, in the home tab, click on the squadron button, search **TRCG** in the search bar, and you should find us!\n\nAfter you've joined in-game, you are also free to join our <[inara squadron!](https://inara.cz/squadron/9718/)>"
+          content: "To join the squadron, go to your right hand panel, in the home tab, click on the squadron button, search **TRCG** in the search bar, and you should find us!\n\nAfter you've joined in-game, you are also free to join our [inara squadron!](https://inara.cz/squadron/9718/)"
         }
       }
     })
