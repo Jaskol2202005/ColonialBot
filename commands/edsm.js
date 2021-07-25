@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Find accurate exploration data at: https://edsm.net"
+          content: "Use [EDSM](https://edsm.net) for finding systems and what resides in them"
         }
       }
     })

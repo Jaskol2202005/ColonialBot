@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Find accurate trading data at: https://eddb.io"
+          content: "Use [EDDB](https://eddb.io) for accurate and easily accesible ttrading data"
         }
       }
     })

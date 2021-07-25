@@ -17,7 +17,7 @@ module.exports = {
         data: {
           type: 4,
           data: {
-            content: `Plot neutron highway routes online here: https://www.spansh.co.uk/plotter`
+            content: `[Plot neutron highway routes online!](https://www.spansh.co.uk/plotter)`
           }
         }
       })
@@ -26,7 +26,7 @@ module.exports = {
         data: {
           type: 4,
           data: {
-            content: `Desktop client for neutron routing here: https://github.com/winneon/neutron`
+            content: `[Desktop client to maximize your neutron plotting efficiency!](https://github.com/winneon/neutron)`
           }
         }
       })

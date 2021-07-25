@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Build ships online and test their stats at:\nhttps://coriolis.io\nhttps://edsy.org\n\nBrowse all ships at: https://inara.cz/galaxy-shipyard/"
+          content: "Build ships virtually and test their stats at [Coriolis](https://coriolis.io) and [EDSY](https://edsy.org)\n\nBrowse all ships on [inara](https://inara.cz/galaxy-shipyard/)"
         }
       }
     })

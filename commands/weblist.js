@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Find mostly anything related to trading, combat and player stats at: https://inara.cz\nFind accurate trading data at: https://eddb.io\nFind accurate exploration data at: https://edsm.net\nBuild ships virtually and test their stats at: https://coriolis.io and https://edsy.org\nFind mining hotspots and sell locations at: https://edtools.cc/miner\nNeutron highway and road to riches at: https://spansh.co.uk\nUseful material finding, fleet carrier calculators, and more at: https://cmdrs-toolbox.com/\nNeed fuel? https://fuelrats.com"
+          content: "Use [inara](https://inara.cz) for finding virtually anything in-game\nUse [EDDB](https://eddb.io) for accurate and easily accesible ttrading data\nUse [EDSM](https://edsm.net) for finding systems and what resides in them\nBuild ships virtually and test their stats at [Coriolis](https://coriolis.io) and [EDSY](https://edsy.org)\nFind mining hotspots and sell locations as well as other niche data on [EDTools](https://edtools.cc/miner)\nEfficient neutron plotter and road to riches on [Spansh](https://spansh.co.uk)\n[Cmdr's Toolbox](https://cmdrs-toolbox.com), a useful material finder, fleet carrier calculator, and more\n[Need fuel?](https://fuelrats.com)"
         }
       }
     })

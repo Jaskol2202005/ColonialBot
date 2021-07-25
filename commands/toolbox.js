@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Useful material finding, fleet carrier calculators, and more at: https://cmdrs-toolbox.com/"
+          content: "[Cmdr's Toolbox](https://cmdrs-toolbox.com/), a useful material finder, fleet carrier calculator, and more"
         }
       }
     })

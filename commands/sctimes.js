@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Aproximate travel times for supercruise at: https://confluence.fuelrats.com/display/public/FRKB/Supercruise+Travel+Times"
+          content: "[Aproximate travel times for supercruise](https://confluence.fuelrats.com/display/public/FRKB/Supercruise+Travel+Times)"
         }
       }
     })

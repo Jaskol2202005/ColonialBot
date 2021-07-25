@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Get fuel at: https://fuelrats.com/i-need-fuel"
+          content: "[Need Fuel?](https://fuelrats.com/i-need-fuel)"
         }
       }
     })

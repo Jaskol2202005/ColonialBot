@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Find mostly anything related to trading, combat and player stats at: https://inara.cz"
+          content: "Use [inara](https://inara.cz) for finding virtually anything in-game"
         }
       }
     })

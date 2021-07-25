@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Find where and what each engineer does at: https://inara.cz/galaxy-engineers/"
+          content: "[Here's a chart of engineers to help with unlocks and planning](https://inara.cz/galaxy-engineers/)"
         }
       }
     })

@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Find nearest stations with services, commodities, modules or ships at https://inara.cz/nearest/"
+          content: "Find nearest stations with services, commodities, modules or ships on [inara](https://inara.cz/nearest/) or [EDDB](https://eddb.io/station)"
         }
       }
     })

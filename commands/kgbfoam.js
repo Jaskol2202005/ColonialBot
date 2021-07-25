@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Learn to filter the galaxy map for scoopable stars at: https://confluence.fuelrats.com/pages/releaseview.action?pageId=1507609\n\nOther languages available at: https://confluence.fuelrats.com/display/public/FRKB/KGBFOAM"
+          content: "[Learn to filter the galaxy map for scoopable stars!!!](https://confluence.fuelrats.com/pages/releaseview.action?pageId=1507609)\n\n[Other languages available too!](https://confluence.fuelrats.com/display/public/FRKB/KGBFOAM)"
         }
       }
     })

@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "Need some starting money? Try road to riches! https://spansh.co.uk/riches"
+          content: "Need some starting money? [Try road to riches!](https://spansh.co.uk/riches)"
         }
       }
     })
