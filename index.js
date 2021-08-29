@@ -279,13 +279,13 @@ setInterval(() => {
                   db.set("lastTick", currentTick)
                   db.set("firstTime", false)
                 } else if (inTwentySeven < currentDate && currentDate < inTwentyEight) {
-                  client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed on **${moment().format("LLLL")} UTC** (Tick completed by deduction, 27 hours since last)`)
+                  client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed on **<t:${moment().unix()}:f>** (Tick completed by deduction, 27 hours since last)`)
                   client.channels.cache.get(`800816235574067230`).send(`---------tick (by deduction)----------`)
                   client.channels.cache.get(`829207812005429268`).send(`---------tick (by deduction)----------`)
                   db.set("lastTick", currentDate)
                   db.set("nowTime", currentDate)
                 } else if (lastTick !== currentTick && lastTick !== nowTime) {
-                  client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed on **${moment(data[0].time).format("LLLL")} UTC**`)
+                  client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed on **<t:${moment(data[0].time).unix()}:f>** <t:${moment(data[0].time).unix()}:R>`)
                   client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
                   client.channels.cache.get(`829207812005429268`).send(`---------tick----------`)
                   db.set("lastTick", currentTick)
