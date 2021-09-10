@@ -7,7 +7,7 @@ module.exports = {
       data: {
         type: 4,
         data: {
-          content: "https://discord.gg/QhvkpRq"
+          content: "https://discord.gg/trcg"
         }
       }
     })
