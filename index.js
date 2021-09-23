@@ -298,13 +298,13 @@ setInterval(() => {
                   client.channels.cache.get(`568524008165998603`).send(`Tick successfully completed on **<t:${moment(data[0].time).unix()}:f>**, <t:${moment(data[0].time).unix()}:R>`)
                   client.channels.cache.get(`800816235574067230`).messages.fetch({ limit: 1 }).then(messages => {
                     let lastMessage = messages.first()
-                    if (!lastMessage.authot.bot) {
+                    if (!lastMessage.author.bot) {
                       client.channels.cache.get(`800816235574067230`).send(`---------tick----------`)
                     }
                   })
                   client.channels.cache.get(`829207812005429268`).messages.fetch({ limit: 1 }).then(messages => {
                     let lastMessage = messages.first()
-                    if (!lastMessage.authot.bot) {
+                    if (!lastMessage.author.bot) {
                       client.channels.cache.get(`829207812005429268`).send(`---------tick----------`)
                     }
                   })
