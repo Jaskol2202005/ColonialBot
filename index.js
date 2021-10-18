@@ -132,7 +132,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => { //recieving commands
 client.on('message', message => { //recieving regular messages
   console.log(message.content); //logs messages, doesn't have to if you don't want it
   let messageArray = message.content.replace(/[\]\-\^\\\[/!@#$%&*(){}|;:'",.<>?~`=+_]/g, ` `).toLowerCase()
-  if (messageArray.includes(`omg it s jaskol`)) {
+  if (messageArray.includes(`omg it s jaskol`) || messageArray.includes(`omg its jaskol`)) {
     message.delete()
   }
   if (messageArray.includes(`https   coriolis io outfit`)) {
