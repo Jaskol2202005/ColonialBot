@@ -132,6 +132,9 @@ client.ws.on('INTERACTION_CREATE', async interaction => { //recieving commands
 client.on('message', message => { //recieving regular messages
   console.log(message.content); //logs messages, doesn't have to if you don't want it
   let messageArray = message.content.replace(/[\]\-\^\\\[/!@#$%&*(){}|;:'",.<>?~`=+_]/g, ` `).toLowerCase()
+  if (messageArray.includes(`omg it s jaskol`)) {
+    message.delete()
+  }
   if (messageArray.includes(`https   coriolis io outfit`)) {
     message.reply(`To minimize clutter and keep things nice and compact, we request that you use coriolis' built in link shortener:\nhttps://imgur.com/a/IpY716u\nhttps://imgur.com/a/LreQVcF`)
     message.delete()
