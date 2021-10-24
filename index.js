@@ -50,31 +50,26 @@ client.once('ready', () => { //console text and status set
         name: "1v1",
         description: "Options for the 1v1 queue",
         type: 2,
-        required: true,
         options: [
           {
             name: "register",
             description: "Register for the 1v1 queue",
             type: 1,
-            required: true
           },
           {
             name: "unregister",
             description: "Unregister from the 1v1 queue",
             type: 1,
-            required: true
           },
           {
             name: "clear",
             description: "Clear the 1v1 queue",
             type: 1,
-            required: true
           },
           {
             name: "queue",
             description: "Check to see who is in the 1v1 queue",
             type: 1,
-            required: true
           }
         ]
       },
@@ -82,31 +77,26 @@ client.once('ready', () => { //console text and status set
         name: "2v2",
         description: "Options for the 2v2 queue",
         type: 2,
-        required: true,
         options: [
           {
             name: "register",
             description: "Register for the 2v2 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "unregister",
             description: "Unregister from the 2v2 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "clear",
             description: "Clear the 2v2 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "queue",
             description: "Check to see who is in the 2v2 queue",
             type: 1,
-            required: true
           }
         ]
       },
@@ -114,31 +104,26 @@ client.once('ready', () => { //console text and status set
         name: "3v3",
         description: "Options for the 3v3 queue",
         type: 2,
-        required: true,
         options: [
           {
             name: "register",
             description: "Register for the 3v3 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "unregister",
             description: "Unregister from the 3v3 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "clear",
             description: "Clear the 3v3 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "queue",
             description: "Check to see who is in the 3v3 queue",
             type: 1,
-            required: true
           }
         ]
       },
@@ -146,31 +131,26 @@ client.once('ready', () => { //console text and status set
         name: "4v4",
         description: "Options for the 4v4 queue",
         type: 2,
-        required: true,
         options: [
           {
             name: "register",
             description: "Register for the 4v4 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "unregister",
             description: "Unregister from the 4v4 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "clear",
             description: "Clear the 4v4 queue",
             type: 1,
-            required: true
-          }
+          },
           {
             name: "queue",
             description: "Check to see who is in the 4v4 queue",
             type: 1,
-            required: true
           }
         ]
       }
