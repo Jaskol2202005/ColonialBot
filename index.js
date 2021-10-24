@@ -14,7 +14,7 @@ require('dotenv').config();
 const moment = require('moment-timezone'); //moment for powerplay tick reminders
 
 const { Client } = require("discord-slash-commands-client")
-const commands = new Client(
+const slash = new Client(
   process.env.token,
   "793349157720555570"
 )
@@ -41,7 +41,7 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  commands
+  slash
   .createCommand({
     name: "matchmaking",
     description: "PvP matchmaking queues",
