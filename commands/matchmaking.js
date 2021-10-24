@@ -1,5 +1,11 @@
 const Database = require("@replit/database"); //database dependency
 const db = new Database();
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
 module.exports = { //command for adding or removing members from the auth list
   name: 'matchmaking',
@@ -25,6 +31,22 @@ module.exports = { //command for adding or removing members from the auth list
               }
             }
           })
+          if (matchupQueue.length === matchup * 2) {
+            db.set(`activeFight${matchup}`, matchupQueue)
+            db.set(`${matchup}queue`, [])
+            db.set(`${matchup}queue`, [])
+            let reply = `${matchup}v${matchup} queue full, randomized teams:\n`
+            let team1 = matchupQueue.slice(0, matchupQueue.length / 2)
+            let team2 = matchupQueue.slice(matchupQueue.length / -2)
+            for (var i = 0; i < team1.length; i++) {
+              reply += `<@team1[i]> `
+            }
+            reply += `\n vs \n`
+            for (var i = 0; i < team2.length; i++) {
+              reaply += `<@team2[i]> `
+            }
+            client.channels.cache.get(`708839430307184756`).send(reply)
+          }
         } else if (args[0].options[0].name === "register") {
           client.api.interactions(interaction.id, interaction.token).callback.post({
             data: {
