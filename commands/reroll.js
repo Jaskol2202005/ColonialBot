@@ -16,8 +16,8 @@ module.exports = { //command for adding or removing members from the auth list
     db.get(`activeFight${matchup}`).then(value => {
       let fighters = value
       let reply = `${matchup}v${matchup} queue full, randomized teams:\n`
-      let team1 = matchupQueue.slice(0, matchupQueue.length / 2)
-      let team2 = matchupQueue.slice(matchupQueue.length / -2)
+      let team1 = fighters.slice(0, fighters.length / 2)
+      let team2 = fighters.slice(fighters.length / -2)
       for (var i = 0; i < team1.length; i++) {
         reply += `<@${team1[i]}> `
       }
