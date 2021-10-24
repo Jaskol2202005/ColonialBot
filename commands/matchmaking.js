@@ -45,7 +45,7 @@ module.exports = { //command for adding or removing members from the auth list
             for (var i = 0; i < team2.length; i++) {
               reply += `<@${team2[i]}> `
             }
-            client.channels.cache.get(`708839430307184756`).send(reply)
+            client.channels.cache.get(`833879975094386708`).send(reply)
           }
         } else if (args[0].options[0].name === "register") {
           client.api.interactions(interaction.id, interaction.token).callback.post({
