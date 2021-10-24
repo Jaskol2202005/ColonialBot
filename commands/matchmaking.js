@@ -58,6 +58,7 @@ module.exports = { //command for adding or removing members from the auth list
           })
         } else if (args[1].name = clear && matchupQueue.length > 0) {
           db.set(`${matchup}queue`, [])
+          db.set(`${matchup}queueNames`, [])
           client.api.interactions(interaction.id, interaction.token).callback.post({
             data: {
               type: 4,
