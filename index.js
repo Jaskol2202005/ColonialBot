@@ -14,6 +14,10 @@ require('dotenv').config();
 const moment = require('moment-timezone'); //moment for powerplay tick reminders
 
 const { Client } = require("discord-slash-commands-client")
+const commands = new Client(
+  "NzkzMzQ5MTU3NzIwNTU1NTcw.X-q9-g.0YgEtaAI51XgnH_QYZQz9qrrR8Y",
+  "793349157720555570"
+)
 
 const Discord = require('discord.js'); //discordjs dependency and collection bootup
 const client = new Discord.Client();
@@ -37,7 +41,7 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  client.getCommands().then(console.log).catch(console.error);
+  commands.getCommands().then(console.log).catch(console.error);
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
