@@ -155,7 +155,7 @@ client.once('ready', () => { //console text and status set
         ]
       }
     ]
-  }, "708839430307184753")
+  })
   .then(console.log)
   .catch(console.error);
 });
