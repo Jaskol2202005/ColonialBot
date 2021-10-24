@@ -41,7 +41,143 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  commands.getCommands().then(console.log).catch(console.error);
+  commands
+  .createCommand({
+    name: "matchmaking",
+    description: "PvP matchmaking queues",
+    options: [
+      {
+        name: "1v1",
+        description: "Options for the 1v1 queue",
+        type: 2,
+        required: true,
+        options: [
+          {
+            name: "register",
+            description: "Register for the 1v1 queue",
+            type: 1,
+            required: true
+          },
+          {
+            name: "unregister",
+            description: "Unregister from the 1v1 queue",
+            type: 1,
+            required: true
+          },
+          {
+            name: "clear",
+            description: "Clear the 1v1 queue",
+            type: 1,
+            required: true
+          },
+          {
+            name: "queue",
+            description: "Check to see who is in the 1v1 queue",
+            type: 1,
+            required: true
+          }
+        ]
+      },
+      {
+        name: "2v2",
+        description: "Options for the 2v2 queue",
+        type: 2,
+        required: true,
+        options: [
+          {
+            name: "register",
+            description: "Register for the 2v2 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "unregister",
+            description: "Unregister from the 2v2 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "clear",
+            description: "Clear the 2v2 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "queue",
+            description: "Check to see who is in the 2v2 queue",
+            type: 1,
+            required: true
+          }
+        ]
+      },
+      {
+        name: "3v3",
+        description: "Options for the 3v3 queue",
+        type: 2,
+        required: true,
+        options: [
+          {
+            name: "register",
+            description: "Register for the 3v3 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "unregister",
+            description: "Unregister from the 3v3 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "clear",
+            description: "Clear the 3v3 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "queue",
+            description: "Check to see who is in the 3v3 queue",
+            type: 1,
+            required: true
+          }
+        ]
+      },
+      {
+        name: "4v4",
+        description: "Options for the 4v4 queue",
+        type: 2,
+        required: true,
+        options: [
+          {
+            name: "register",
+            description: "Register for the 4v4 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "unregister",
+            description: "Unregister from the 4v4 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "clear",
+            description: "Clear the 4v4 queue",
+            type: 1,
+            required: true
+          }
+          {
+            name: "queue",
+            description: "Check to see who is in the 4v4 queue",
+            type: 1,
+            required: true
+          }
+        ]
+      }
+    ]
+  }, "708839430307184753")
+  .then(console.log)
+  .catch(console.error);
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
