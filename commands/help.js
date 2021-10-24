@@ -25,7 +25,14 @@ module.exports = {
     const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
     if (!command) {
-	     return message.reply('that\'s not a valid command!');
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content: 'that\'s not a valid command!'
+          }
+        }
+      })
      }
 
      let reply = `**Name:** ${command.name}`
