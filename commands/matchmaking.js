@@ -39,11 +39,11 @@ module.exports = { //command for adding or removing members from the auth list
             let team1 = matchupQueue.slice(0, matchupQueue.length / 2)
             let team2 = matchupQueue.slice(matchupQueue.length / -2)
             for (var i = 0; i < team1.length; i++) {
-              reply += `<@team1[i]> `
+              reply += `<@${team1[i]}> `
             }
             reply += `\n vs \n`
             for (var i = 0; i < team2.length; i++) {
-              reply += `<@team2[i]> `
+              reply += `<@${team2[i]}> `
             }
             client.channels.cache.get(`708839430307184756`).send(reply)
           }
