@@ -6,7 +6,7 @@ module.exports = { //command for adding or removing members from the auth list
   description: 'command for pvp matchmaking',
   usage: '1v1|2v2|3v3|4v4, register|unregister|clear|queue',
   execute(interaction, args, client) {
-    console.log(args);
+    console.log(args[0].options);
     let matchup = args[0].name.charAt(0)
     db.get(`${matchup}queue`).then(value => {
       let matchupQueue = value
