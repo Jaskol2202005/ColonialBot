@@ -15,7 +15,7 @@ const moment = require('moment-timezone'); //moment for powerplay tick reminders
 
 const { Client } = require("discord-slash-commands-client")
 const commands = new Client(
-  "NzkzMzQ5MTU3NzIwNTU1NTcw.X-q9-g.0YgEtaAI51XgnH_QYZQz9qrrR8Y",
+  process.env.token,
   "793349157720555570"
 )
 
