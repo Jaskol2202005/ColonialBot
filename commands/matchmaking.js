@@ -43,7 +43,7 @@ module.exports = { //command for adding or removing members from the auth list
             }
             reply += `\n vs \n`
             for (var i = 0; i < team2.length; i++) {
-              reaply += `<@team2[i]> `
+              reply += `<@team2[i]> `
             }
             client.channels.cache.get(`708839430307184756`).send(reply)
           }
