@@ -41,35 +41,6 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  slash
-  .createCommand({
-    name: "Reroll",
-    description: "PvP match rerolling",
-    options: [
-      {
-        name: "1v1",
-        description: "Reroll the current active 1v1 match",
-        type: 1
-      },
-      {
-        name: "2v2",
-        description: "Reroll the current active 2v2 match",
-        type: 1
-      },
-      {
-        name: "3v3",
-        description: "Reroll the current active 3v3 match",
-        type: 1
-      },
-      {
-        name: "4v4",
-        description: "Reroll the current active 4v4 match",
-        type: 1
-      }
-    ]
-  })
-  .then(console.log)
-  .catch(console.error);
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
