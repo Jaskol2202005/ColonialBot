@@ -5,6 +5,14 @@ console.log('Authenticating...');
 //dependencies
 const Database = require("@replit/database"); //Since I use replit for hosting, I use their database as well
 const db = new Database();
+db.set("1queue", [])
+db.set("2queue", [])
+db.set("3queue", [])
+db.set("4queue", [])
+db.set("1queueNames", [])
+db.set("2queueNames", [])
+db.set("3queueNames", [])
+db.set("4queueNames", [])
 
 var https = require('https') //general dependencies
 var nconf = require('nconf');
