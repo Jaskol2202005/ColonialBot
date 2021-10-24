@@ -12,7 +12,7 @@ module.exports = { //command for adding or removing members from the auth list
       db.get(`${matchup}queueNames`).then(value => {
         let matchupQueueNames = value
         let pos = matchupQueue.indexOf(interaction.member.user.id)
-        if (args[0].options[0].name = "register" && pos === -1) {
+        if (args[0].options[0].name === "register" && pos === -1) {
           matchupQueue.push(interaction.member.user.id)
           db.set(`${matchup}queue`, matchupQueue)
           matchupQueueNames.push(interaction.member.user.username)
@@ -25,7 +25,7 @@ module.exports = { //command for adding or removing members from the auth list
               }
             }
           })
-        } else if (args[0].options[0].name = "register") {
+        } else if (args[0].options[0].name === "register") {
           client.api.interactions(interaction.id, interaction.token).callback.post({
             data: {
               type: 4,
@@ -34,7 +34,7 @@ module.exports = { //command for adding or removing members from the auth list
               }
             }
           })
-        } else if (args[0].options[0].name = "unregister" && pos > -1) {
+        } else if (args[0].options[0].name === "unregister" && pos > -1) {
           matchupQueue.splice(pos, 1)
           db.set(`${matchup}queue`, matchupQueue)
           matchupQueueNames.splice(pos, 1)
@@ -47,7 +47,7 @@ module.exports = { //command for adding or removing members from the auth list
               }
             }
           })
-        } else if (args[0].options[0].name = "unregister") {
+        } else if (args[0].options[0].name === "unregister") {
           client.api.interactions(interaction.id, interaction.token).callback.post({
             data: {
               type: 4,
@@ -56,7 +56,7 @@ module.exports = { //command for adding or removing members from the auth list
               }
             }
           })
-        } else if (args[0].options[0].name = "clear" && matchupQueue.length > 0) {
+        } else if (args[0].options[0].name === "clear" && matchupQueue.length > 0) {
           db.set(`${matchup}queue`, [])
           db.set(`${matchup}queueNames`, [])
           client.api.interactions(interaction.id, interaction.token).callback.post({
@@ -67,7 +67,7 @@ module.exports = { //command for adding or removing members from the auth list
               }
             }
           })
-        } else if (args[0].options[0].name = "clear") {
+        } else if (args[0].options[0].name === "clear") {
           client.api.interactions(interaction.id, interaction.token).callback.post({
             data: {
               type: 4,
@@ -76,7 +76,7 @@ module.exports = { //command for adding or removing members from the auth list
               }
             }
           })
-        } else if (args[0].options[0].name = "queue" && matchupQueue.length > 0) {
+        } else if (args[0].options[0].name === "queue" && matchupQueue.length > 0) {
           reply = `CMDRs in ${matchup}v${matchup} queue:`
           for (var i = 0; i < matchupQueue.length; i++) {
             reply += `\n${matchupQueueNames[i]}`
