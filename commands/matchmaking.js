@@ -94,7 +94,7 @@ module.exports = { //command for adding or removing members from the auth list
             data: {
               type: 4,
               data: {
-                content: "No on in queue"
+                content: "No one in queue"
               }
             }
           })
