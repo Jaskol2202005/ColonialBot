@@ -342,7 +342,7 @@ setInterval(() => {
       }
     });
   });
-  let currentDay = moment.tz('America/Los_Angeles').format('dddd') //powerplay tick detection
+  let currentDay = moment.tz('America/Edmonton').format('dddd') //powerplay tick detection
   db.get("powerplayReminder").then( value => {
     let powerplayReminder = value
     if (currentDay === `Wednesday` && powerplayReminder === `not said`) {
