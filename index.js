@@ -266,6 +266,27 @@ client.on(`voiceStateUpdate`, (oldState, newState) => {
   console.log(newState);
   if (newState.channelID === `781458562672230431`) return;
   if (newState.channelID === `567685575197458436`) {
+    oldState.guild.createChannel(`new-public`, {
+      type: `GUILD_VOICE`,
+      permissionOverwrites: [
+        {
+          id: `567746245637046272`,
+          allow: [Permissions.FLAGS.VIEW_CHANNEL]
+        },
+        {
+          id: `572424557772668959`,
+          allow: [Permissions.FLAGS.VIEW_CHANNEL]
+        },
+        {
+          id: `764092358136430602`,
+          allow: [Permissions.FLAGS.VIEW_CHANNEL]
+        },
+        {
+          id: oldState.id,
+          allow: [Permissions.FLAGS.VIEW_CHANNEL]
+        }
+      ]
+    })
 
   }
 })
