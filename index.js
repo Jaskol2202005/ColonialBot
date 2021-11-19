@@ -253,6 +253,23 @@ client.on(`voiceStateUpdate`, (oldState, newState) => {
   }
 })
 
+function makeChannel(message){
+  var server = message.guild;
+  var name = message.author.username;
+
+  server.createChannel(name, "text");
+}
+
+client.on(`voiceStateUpdate`, (oldState, newState) => {
+  console.log(oldState);
+  console.log(`------------------------------------------------------------------------------------------`);
+  console.log(newState);
+  if (newState.channelID === `781458562672230431`) return;
+  if (newState.channelID === `567685575197458436`) {
+
+  }
+})
+
 var options = { //bgs tick detection
   host: 'elitebgs.app',
   path: `/api/ebgs/v5/ticks`,
