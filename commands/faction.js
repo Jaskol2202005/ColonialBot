@@ -3,7 +3,7 @@ const Database = require("@replit/database");
 const db = new Database();
 const moment = require('moment-timezone');
 function firstCharUpper(string) {
-  string.charAt(0).toUpperCase() + faction.government.slice(1)
+  string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 module.exports = {
