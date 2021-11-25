@@ -38,6 +38,8 @@ module.exports = {
               var data = JSON.parse(json);
               console.log(data.docs[0]);
 
+              db.get("lastTick").then(value => {
+                let lastTick = value
 
                 let faction = data.docs[0]
                 let presence = faction.faction_presence
@@ -92,6 +94,7 @@ module.exports = {
                         reply += `${firstCharUpper(presence[i].active_states[j].state)},`
                       }
                       reply.slice(0, -1);
+                      console.log(`active state check pass ${i}`);
                     }
                     if (presence[i].pending_states.length === 0) {
                     } else {
@@ -100,6 +103,7 @@ module.exports = {
                         reply += `${firstCharUpper(presence[i].pending_states[j].state)},`
                       }
                       reply.slice(0, -1);
+                      console.log(`pending state check pass ${i}`);
                     }
                     if (presence[i].recovering_states.length === 0) {
                     } else {
@@ -108,6 +112,7 @@ module.exports = {
                         reply += `${firstCharUpper(presence[i].recovering_states[j].state)},`
                       }
                       reply.slice(0, -1);
+                      console.log(`recovering state check pass ${i}`);
                     }
                     if (presence[i].conflicts.length !== 0) {
                       reply += `\nFaction currently in a ${presence[i].conflicts[0].type}, ${presence[i].conflicts[0].days_won} days won`
@@ -116,6 +121,11 @@ module.exports = {
                     }
                     reply += `\nLast Updated: **<t:${moment(presence[i].updated_at).unix()}:F>, <t:${moment(presence[i].updated_at).unix()}:R>**\nNeeds Update? `
 
+                    if (lastUpdated < lastTick) {
+                      reply += `Yes`
+                    } else {
+                      reply += `No`
+                    }
                   }
                   if (overflow === true) {
                     client.channels.cache.get(interaction.channel_id).send(reply)
@@ -130,6 +140,7 @@ module.exports = {
                     })
                   }
                 }
+              })
             } catch (e) {
               console.log(`Error parsing JSON! ${e}`);
               client.api.interactions(interaction.id, interaction.token).callback.post({
