@@ -2,6 +2,9 @@ const https = require('https');
 const Database = require("@replit/database");
 const db = new Database();
 const moment = require('moment-timezone');
+function firstCharUpper(string) {
+  string.charAt(0).toUpperCase() + faction.government.slice(1)
+}
 
 module.exports = {
   name: 'faction',
@@ -40,100 +43,101 @@ module.exports = {
 
               let reply = ``
 
-              if (data.total === 0) {
-                client.api.interactions(interaction.id, interaction.token).callback.post({
-                  data: {
-                    type: 4,
-                    data: {
-                      content: `System couldn't be found, make sure you spelled it right!`
-                    }
-                  }
-                })
-              } else {
-                let governmentUpper = faction.government.charAt(0).toUpperCase() + faction.government.slice(1)
-                let allegianceUpper = faction.allegiance.charAt(0).toUpperCase() + faction.allegiance.slice(1)
+              db.get("lastTick").then(value => {
+                let lastTick = value
 
-                reply += `Faction: **${faction.name}**\nGovernment type: **${governmentUpper}**\nAllegiance: **${allegianceUpper}**\nEDDB link: https://eddb.io/faction/${faction.eddb_id}`
-
-                let overflow = false
-
-                for (var i = 0; i < presence.length; i++) {
-                  if (reply.length >= 1750) {
-                    if (overflow === true) {
-                      client.channels.cache.get(interaction.channel_id).send(reply)
-                      overflow = false
-                    } else {
-                      client.api.interactions(interaction.id, interaction.token).callback.post({
-                        data: {
-                          type: 4,
-                          data: {
-                            content: reply
-                          }
-                        }
-                      })
-                      reply = ``
-                      overflow = true
-                    }
-                  }
-
-                  let lastUpdated = moment(presence[i].updated_at).toISOString()
-
-                  console.log(presence[i]);
-
-                  reply += `\n\nFaction presence: **${presence[i].system_name}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nActive state: `
-                  if (presence[i].active_states.length === 0) {
-                    reply += `**None**`
-                  } else {
-                    for (var j = 0; j < presence[i].active_states.length; i++) {
-                      reply += `${presence[i].active_states[j].state.charAt(0).toUpperCase() + presence[i].active_states[j].state.slice(1)},`
-                    }
-                    reply.slice(0, -1);
-                  }
-                  if (presence[i].pending_states.length === 0) {
-                  } else {
-                    reply += `\nPending states: `
-                    for (var j = 0; j < presence[i].pending_states.length; i++) {
-                      reply += `${presence[i].pending_states[j].state.charAt(0).toUpperCase() + presence[i].pending_states[j].state.slice(1)},`
-                    }
-                    reply.slice(0, -1);
-                  }
-                  if (presence[i].recovering_states.length === 0) {
-                  } else {
-                    reply += `\nRecovering states: `
-                    for (var j = 0; j < presence[i].recovering_states.length; i++) {
-                      console.log(`test`);
-                      reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
-                    }
-                    reply.slice(0, -1);
-                  }
-                  if (presence[i].conflicts.length !== 0) {
-                    reply += `\nFaction currently in a ${presence[i].conflicts[0].type}, ${presence[i].conflicts[0].days_won} days won`
-                  } else {
-                    reply += `\nNo conflict reported`
-                  }
-                  reply += `\nLast Updated: **${moment(presence[i].updated_at).format(`LLLL`)}**\nNeeds Update? `
-
-                  db.get("lastTick").then(value => {
-                  if (lastUpdated < value) {
-                    reply += `Yes`
-                  } else {
-                    reply += `No`
-                  }
-                  })
-                }
-                if (overflow === true) {
-                  client.channels.cache.get(interaction.channel_id).send(reply)
-                } else {
+                if (data.total === 0) {
                   client.api.interactions(interaction.id, interaction.token).callback.post({
                     data: {
                       type: 4,
                       data: {
-                        content: reply
+                        content: `Faction couldn't be found, make sure you spelled it right!`
                       }
                     }
                   })
+                } else {
+                  let governmentUpper = firstCharUpper(faction.government)
+                  let allegianceUpper = firstCharUpper(faction.allegiance)
+
+                  reply += `Faction: **${faction.name}**\nGovernment type: **${governmentUpper}**\nAllegiance: **${allegianceUpper}**\nEDDB link: https://eddb.io/faction/${faction.eddb_id}`
+
+                  let overflow = false
+
+                  for (var i = 0; i < presence.length; i++) {
+                    if (reply.length >= 1750) {
+                      if (overflow === true) {
+                        client.channels.cache.get(interaction.channel_id).send(reply)
+                        overflow = false
+                      } else {
+                        client.api.interactions(interaction.id, interaction.token).callback.post({
+                          data: {
+                            type: 4,
+                            data: {
+                              content: reply
+                            }
+                          }
+                        })
+                        reply = ``
+                        overflow = true
+                      }
+                    }
+
+                    let lastUpdated = moment(presence[i].updated_at).toISOString()
+
+                    console.log(presence[i]);
+
+                    reply += `\n\nFaction presence: **${presence[i].system_name}**\nInfluence: **${Math.trunc(presence[i].influence * 100)}%**\nActive state: `
+                    if (presence[i].active_states.length === 0) {
+                      reply += `**None**`
+                    } else {
+                      for (var j = 0; j < presence[i].active_states.length; i++) {
+                        reply += `${presence[i].active_states[j].state.charAt(0).toUpperCase() + presence[i].active_states[j].state.slice(1)},`
+                      }
+                      reply.slice(0, -1);
+                    }
+                    if (presence[i].pending_states.length === 0) {
+                    } else {
+                      reply += `\nPending states: `
+                      for (var j = 0; j < presence[i].pending_states.length; i++) {
+                        reply += `${presence[i].pending_states[j].state.charAt(0).toUpperCase() + presence[i].pending_states[j].state.slice(1)},`
+                      }
+                      reply.slice(0, -1);
+                    }
+                    if (presence[i].recovering_states.length === 0) {
+                    } else {
+                      reply += `\nRecovering states: `
+                      for (var j = 0; j < presence[i].recovering_states.length; i++) {
+                        reply += `${presence[i].recovering_states[j].state.charAt(0).toUpperCase() + presence[i].recovering_states[j].state.slice(1)},`
+                      }
+                      reply.slice(0, -1);
+                    }
+                    if (presence[i].conflicts.length !== 0) {
+                      reply += `\nFaction currently in a ${presence[i].conflicts[0].type}, ${presence[i].conflicts[0].days_won} days won`
+                    } else {
+                      reply += `\nNo conflict reported`
+                    }
+                    reply += `\nLast Updated: **<t:${moment(presence[i].updated_at).unix()}:F>, <t:${moment(presence[i].updated_at).unix()}:R>**\nNeeds Update? `
+
+                    if (lastUpdated < lastTick) {
+                      reply += `Yes`
+                    } else {
+                      reply += `No`
+                    }
+                  }
+                  if (overflow === true) {
+                    client.channels.cache.get(interaction.channel_id).send(reply)
+                  } else {
+                    client.api.interactions(interaction.id, interaction.token).callback.post({
+                      data: {
+                        type: 4,
+                        data: {
+                          content: reply
+                        }
+                      }
+                    })
+                  }
                 }
-              }
+              })
             } catch (e) {
               console.log(`Error parsing JSON! ${e}`);
               client.api.interactions(interaction.id, interaction.token).callback.post({
