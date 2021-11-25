@@ -38,13 +38,13 @@ module.exports = {
               var data = JSON.parse(json);
               console.log(data.docs[0]);
 
-              let faction = data.docs[0]
-              let presence = faction.faction_presence
-
-              let reply = ``
-
               db.get("lastTick").then(value => {
                 let lastTick = value
+
+                let faction = data.docs[0]
+                let presence = faction.faction_presence
+
+                let reply = ``
 
                 if (data.total === 0) {
                   client.api.interactions(interaction.id, interaction.token).callback.post({
