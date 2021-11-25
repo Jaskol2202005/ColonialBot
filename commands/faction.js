@@ -38,7 +38,6 @@ module.exports = {
               var data = JSON.parse(json);
               console.log(data.docs[0]);
 
-                let lastTick = value
 
                 let faction = data.docs[0]
                 let presence = faction.faction_presence
