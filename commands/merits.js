@@ -17,7 +17,7 @@ module.exports = {
         data: {
           type: 4,
           data: {
-            content: "The delivery method of making merits can be a lot faster, but also requires quite a few credits to be able to do optimally\n\nFor fortification, go to Cubeo, pick up a cargo full of Aisling Programme Materials, then check the ADC Trello (https://trello.com/b/HBY3rRZR/aisling-duval) for a fortification that has not yet been completed, and deliver the materials.\n\nAlternatively, and only if it is specified directly in the <#764097736689451028> channel, you can pick up Aisling Media Materials from **any** Aisling control system, and deliver it to a system in the process of preparation (Check preparation tab under Aisling powerplay). The next cycle, under a successful system preparation, Aisling Sealed Contracts can be delivered to the prepared system."
+            content: "The delivery method of making merits can be a lot faster, but also requires quite a few credits to be able to do optimally\n\nFor fortification, go to one of the stations in Cubeo, select the powerplay contact under contacts at the station, and pick up a cargo full of Aisling Programme Materials, then check the ADC Trello (https://trello.com/b/HBY3rRZR/aisling-duval) for a fortification that has not yet been completed, and deliver the materials.\n\nIf all of the objectives are completed but you still need merits, you can deliver Aisling Programme Materials from Cubeo to Lamba-1 Tucanae, or Aisling Media Materials from Simyr to Na Chac Og"
           }
         }
       })
