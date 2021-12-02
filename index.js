@@ -18,10 +18,6 @@ const slash = new Client(
   process.env.token,
   "793349157720555570"
 )
-client.createCommand({
-  name: "google",
-  description: "explains how to effectively use the search engine \"Google\" to find anything that one desires"
-}, "567685575197458432")
 
 const Discord = require('discord.js'); //discordjs dependency and collection bootup
 const client = new Discord.Client();
