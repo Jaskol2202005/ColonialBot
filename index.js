@@ -29,8 +29,6 @@ let parser = new Parser();
 
 db.set("firstTime", true)
 
-db.set("currentCycle", 345)
-
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')); //loads directory for commands
 
 for (const file of commandFiles) { //loads commands
