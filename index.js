@@ -197,13 +197,18 @@ client.on('guildMemberAdd', member => { //welcome message
       "value": "We are a casual and friendly group, so be respectful of others in game and in Discord.  All members of this server will have their Discord nickname matching their in game CMDR name."
     },
     {
-      "name": "Inappropriate posts:",
-      "value": "We have members from all areas of the world and all age groups.  We ask that you keep your posts, even in our meme channels to be appropriate for all ages and not offensive to anyone.   Also, we discourage the use of anything that would be considered \"not safe for work\" (NSFW)  if you don't think that your workplace would approve of the material you're about to post.  Please just keep it to yourself or post it somewhere else.",
+      "name": "Inappropriate Posts:",
+      "value": "We have members from all areas of the world and all age groups. We ask that you keep your posts, even in our meme channels to be appropriate for all ages and not offensive to anyone. Also, we discourage the use of anything that would be considered \"not safe for work\" (NSFW) if you don't think that your workplace would approve of the material you're about to post. Please just keep it to yourself or post it somewhere else.",
       "inline": true
     },
     {
-      "name": "Inappropriate comments:",
-      "value": "We have members of all kinds of religious backgrounds.   All kinds of shapes and colors.  We will not tolerate any kind of racism, bigotry or hate of anyone or any group.  If you can't accept that people may be different from you.  If you can't be accepting of everyone and be kind and respectful to everyone.   Please see your way off this server.   If you don't, we'll do it for you with no warning and no second chances.   This is no tolerance and immediate ban.",
+      "name": "Inappropriate Comments:",
+      "value": "We have members of all kinds of religious backgrounds. All kinds of shapes and colors. We will not tolerate any kind of racism, bigotry or hate of anyone or any group.  If you can't accept that people may be different from you. If you can't be accepting of everyone and be kind and respectful to everyone. Please see your way off this server. If you don't, we'll do it for you with no warning and no second chances. This is no tolerance and immediate ban.",
+      "inline": true
+    },
+    {
+      "name": "Harassment:",
+      "value": "Our members are made up of new and veteran players alike. We know that you may have had dealings with the members of our discord in the past. Please leave your existing conflicts at the door. Through any of the channels on our server, or through the direct messages that being a member of our server allows, harassment of any of our members, guests, or allies is expressly forbidden and may result in your immediate removal.",
       "inline": true
     },
     {
@@ -211,12 +216,12 @@ client.on('guildMemberAdd', member => { //welcome message
       "value": "While the Guard has no rules dictating the use of Solo and PG game modes, Power Play should be done in OPEN."
     },
     {
-      "name": "3 - COMBAT LOGGING:",
-      "value": "as described here: https://elite-dangerous.fandom.com/wiki/Combat_Logging, and use of cheats are not allowed."
+      "name": "3 - TOS BREACHES:",
+      "value": "The Elite: Dangerous TOS (as described here: https://www.frontierstore.net/ed-eula/) are to be respected in-game as well as on this server, modifying the game, the use of botting, and scraping netlog files is strictly forbidden. Additionally **combat logging** (as described here: https://elite-dangerous.fandom.com/wiki/Combat_Logging) is also forbidden."
     },
     {
       "name": "4 - GUESTS FROM OTHER SQUADRONS:",
-      "value": "If you are a member of another in-game squadron or group, soliciting current Guard members to change or join other squadrons is prohibited.  You must wear your groups tag in your user name (group tag)"
+      "value": "If you are a member of another in-game squadron or group, soliciting current Guard members to change or join other squadrons is prohibited. You must wear your groups tag in your user name (group tag)"
     },
     {
       "name": "5 - REPRESENTATION:",
@@ -225,6 +230,7 @@ client.on('guildMemberAdd', member => { //welcome message
   ]
 };
   member.send({ embed })
+  client.channels.cache.get(`832318597648089118`).send({ embed })
 });
 
 client.on('guildMemberRemove', member => { //leaving message + pfp for identification
