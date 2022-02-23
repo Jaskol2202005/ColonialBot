@@ -232,52 +232,6 @@ client.on('guildMemberAdd', member => { //welcome message
   member.send({ embed })
 });
 
-const embed = {
-"title": "**__Royal Colonial Guard has a Code of Conduct which we expect all of our members to adhere to.__**",
-"color": 1887981,
-"author": {
-  "name": "Commander Adama",
-  "icon_url": "https://cdn.discordapp.com/avatars/155967206729973760/8943b082cd5de91d924e162f3ae5c34d.png?size=256"
-},
-"fields": [
-  {
-    "name": "1 - HONOR AND RESPECT:",
-    "value": "We are a casual and friendly group, so be respectful of others in game and in Discord.  All members of this server will have their Discord nickname matching their in game CMDR name."
-  },
-  {
-    "name": "Inappropriate Posts:",
-    "value": "We have members from all areas of the world and all age groups. We ask that you keep your posts, even in our meme channels to be appropriate for all ages and not offensive to anyone. Also, we discourage the use of anything that would be considered \"not safe for work\" (NSFW) if you don't think that your workplace would approve of the material you're about to post. Please just keep it to yourself or post it somewhere else.",
-    "inline": true
-  },
-  {
-    "name": "Inappropriate Comments:",
-    "value": "We have members of all kinds of religious backgrounds. All kinds of shapes and colors. We will not tolerate any kind of racism, bigotry or hate of anyone or any group.  If you can't accept that people may be different from you. If you can't be accepting of everyone and be kind and respectful to everyone. Please see your way off this server. If you don't, we'll do it for you with no warning and no second chances. This is no tolerance and immediate ban.",
-    "inline": true
-  },
-  {
-    "name": "Harassment:",
-    "value": "Our members are made up of new and veteran players alike. We know that you may have had dealings with the members of our discord in the past. Please leave your existing conflicts at the door. Through any of the channels on our server, or through the direct messages that being a member of our server allows, harassment of any of our members, guests, or allies is expressly forbidden and may result in your immediate removal.",
-    "inline": true
-  },
-  {
-    "name": "2 - OPEN, PRIVATE GROUP (PG), or SOLO:",
-    "value": "While the Guard has no rules dictating the use of Solo and PG game modes, Power Play should be done in OPEN."
-  },
-  {
-    "name": "3 - TOS BREACHES:",
-    "value": "The Elite: Dangerous TOS (as described here: https://www.frontierstore.net/ed-eula/) are to be respected in-game as well as on this server, modifying the game, the use of botting, and scraping netlog files is strictly forbidden. Additionally **combat logging** (as described here: https://elite-dangerous.fandom.com/wiki/Combat_Logging) is also forbidden."
-  },
-  {
-    "name": "4 - GUESTS FROM OTHER SQUADRONS:",
-    "value": "If you are a member of another in-game squadron or group, soliciting current Guard members to change or join other squadrons is prohibited. You must wear your groups tag in your user name (group tag)"
-  },
-  {
-    "name": "5 - REPRESENTATION:",
-    "value": "When you're in our in game Squadron, you are wearing our [TRCG] badge, you are representing the entire group!  We do not gank other players."
-  }
-]
-client.channels.cache.get(`832318597648089118`).send({ embed })
-
 client.on('guildMemberRemove', member => { //leaving message + pfp for identification
   client.channels.cache.get(`821961477929959454`).send(`Goodbye **${member.user.username}** :(\nUser's pfp: https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`)
 });
@@ -303,13 +257,6 @@ client.on(`voiceStateUpdate`, (oldState, newState) => {
     })
   }
 })
-
-function makeChannel(message){
-  var server = message.guild;
-  var name = message.author.username;
-
-  server.createChannel(name, "text");
-}
 
 var options = { //bgs tick detection
   host: 'elitebgs.app',
