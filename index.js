@@ -41,10 +41,6 @@ const prefix = nconf.get(`prefix`); //gets prefix from database
 client.once('ready', () => { //console text and status set
   console.log('Authentication successful');
   client.user.setActivity('feds die', { type: "LISTENING" })
-  slash.createCommand({
-    name: "cat",
-    description: "Sends a cat photo"
-  }), '708839430307184753'
 });
 
 client.login(process.env.token); //discord token login, happens before .once('ready')
