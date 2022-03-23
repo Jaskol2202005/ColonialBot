@@ -7,7 +7,7 @@ module.exports = {
   execute(interaction, args, client) {
     var options = {
       host: 'thecatapi.com',
-      path: `/api/images/get?format=src&type=png`,
+      path: `/v1/images/search`,
       headers: {
         'Accept': 'application/json'
       }
