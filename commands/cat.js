@@ -1,36 +1,25 @@
-const https = require('https');
+const request = require('request');
 
 module.exports = {
   name: 'cat',
   description: 'Sends a cat photo',
   usage: '',
   execute(interaction, args, client) {
-    var options = {
-      host: 'thecatapi.com',
-      path: `/v1/images/search`,
-      headers: {
-        'Accept': 'application/json'
-      }
-    };
+    request.get('http://thecatapi.com/api/images/get?format=src&type=png', {
 
-    https.get(options, function (res) {
-      var json = '';
-
-      res.on('data', function (chunk) {
-        json += chunk;
-      });
-
-      res.on('end', function () {
-        if (res.statusCode === 200) {
-          console.log(json);
-          try {
-            var data = JSON.parse(json);
-            console.log(data);
-          } catch (e) {
-            console.log(`Error parsing JSON! ${e}`);
+    }, function(error, response, body) {
+	    if(!error && response.statusCode == 200) {
+        client.api.interactions(interaction.id, interaction.token).callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: response.request.uri.href
+            }
           }
-        }
-      })
+        })
+	    } else {
+		    console.log(error);
+	    }
     })
   }
 }
