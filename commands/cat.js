@@ -22,19 +22,12 @@ module.exports = {
 
       res.on('end', function () {
         if (res.statusCode === 200) {
+          console.log(json);
           try {
             var data = JSON.parse(json);
             console.log(data);
           } catch (e) {
             console.log(`Error parsing JSON! ${e}`);
-            client.api.interactions(interaction.id, interaction.token).callback.post({
-              data: {
-                type: 4,
-                data: {
-                  content: `Couldn't find this faction, make sure you spelled it right!\n\n*If you're 100% sure you spelled it right, faction may be restricted or the bot is broken*`
-                }
-              }
-            })
           }
         }
       })
