@@ -347,17 +347,18 @@ setInterval(() => {
       }
     });
   });
-  let currentDay = moment.tz('America/Edmonton').format('dddd') //powerplay tick detection
+  let currentDay = moment.utc().format('ddddHH') //powerplay tick detection
+  console.log(currentDay);
   db.get("powerplayReminder").then( value => {
     let powerplayReminder = value
-    if (currentDay === `Wednesday` && powerplayReminder === `not said`) {
+    if (currentDay === `Wednesday07` && powerplayReminder === `not said`) {
       client.channels.cache.get(`764097736689451028`).send(`Reminder that today is the last day to get your merits before the powerplay tick!`)
       db.set("powerplayReminder", `said`)
-    } else if (currentDay === `Thursday` && powerplayReminder === `said`) {
+    } else if (currentDay === `Thursday07` && powerplayReminder === `said`) {
       db.get("currentCycle").then(value => {
         let currentCycle = value + 1
-        client.channels.cache.get(`764097736689451028`).send(`The powerplay tick should now be in progress! The galaxy will be offline for aprox. 15 mins, enjoy your prismatics when it comes back online!`)
         client.channels.cache.get(`764097736689451028`).send(`-------------------------------------\nCycle ${currentCycle}\n-------------------------------------`)
+                client.channels.cache.get(`764097736689451028`).send(`The powerplay tick should now be in progress! The galaxy will be offline for aprox. 15 mins, enjoy your prismatics when it comes back online!`)
         db.set("powerplayReminder", `not said`)
         db.set("currentCycle", currentCycle)
       })
