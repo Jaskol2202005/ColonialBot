@@ -182,28 +182,6 @@ client.on('message', message => { //recieving regular messages
   message.reply(`non-interaction commands are now depreciated with this bot, please use the / command method through the popup window`)
 })
 
-client.on(`voiceStateUpdate`, (oldState, newState) => {
-  if (newState.channelID === `781458562672230431`) return;
-  if (oldState.channelID === null || typeof oldState.channelID == `undefined`) {
-    db.get(`${newState.channelID}`).then(value => {
-      client.channels.cache.get(value).updateOverwrite(oldState.id, { VIEW_CHANNEL: true })
-    })
-  } else if (newState.channelID === null || typeof newState.channelID == `undefined`) {
-    db.get(`${oldState.channelID}`).then(value => {
-      client.channels.cache.get(value).permissionOverwrites.get(oldState.id).delete();
-    })
-  } else if (oldState.channelID !== newState.channelID) {
-    db.get(`${oldState.channelID}`).then(value => {
-      let oldLink = value
-      db.get(`${newState.channelID}`).then(value => {
-        let newLink = value
-        client.channels.cache.get(oldLink).permissionOverwrites.get(oldState.id).delete();
-        client.channels.cache.get(newLink).updateOverwrite(oldState.id, { VIEW_CHANNEL: true })
-      })
-    })
-  }
-})
-
 var options = { //bgs tick detection
   host: 'elitebgs.app',
   path: `/api/ebgs/v5/ticks`,
