@@ -302,8 +302,7 @@ setInterval(() => {
     } else if (currentDay === `Thursday07` && powerplayReminder === `said`) {
       db.get("currentCycle").then(value => {
         let currentCycle = value + 1
-        client.channels.cache.get(`764097736689451028`).send(`-------------------------------------\nCycle ${currentCycle}\n-------------------------------------`)
-                client.channels.cache.get(`764097736689451028`).send(`The powerplay tick should now be in progress! The galaxy will be offline for aprox. 15 mins, enjoy your prismatics when it comes back online!`)
+        client.channels.cache.get(`764097736689451028`).send(`-------------------------------------\nCycle ${currentCycle}\n-------------------------------------\n\nThe powerplay tick should now be in progress! The galaxy will be offline for aprox. 15 mins, enjoy your prismatics when it comes back online!`)
         db.set("powerplayReminder", `not said`)
         db.set("currentCycle", currentCycle)
       })

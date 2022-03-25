@@ -5,9 +5,9 @@ module.exports = {
   description: 'Sends a cat photo',
   usage: '',
   execute(interaction, args, client) {
-    request.get('http://thecatapi.com/api/images/get?format=src&type=png', {
-
-    }, function(error, response, body) {
+    request.get('http://thecatapi.com/api/images/get?format=src&type=png', {      
+    },
+    function(error, response, body) {
 	    if(!error && response.statusCode == 200) {
         client.api.interactions(interaction.id, interaction.token).callback.post({
           data: {
