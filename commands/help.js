@@ -10,7 +10,7 @@ module.exports = {
     const { commands } = client;
 
     if (!args) {
-      let reply = `Here's a list of all my commands:\n${commands.map(command => command.name).join(', ')}\nYou can send "${prefix}help [command name]" to get info on a specific command!`
+      let reply = `Here's a list of all my commands:\n\n${commands.map(command => command.name).join(', ')}\n\nYou can send "${prefix}help [command name]" to get info on a specific command!`
 
       client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
